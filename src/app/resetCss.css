@@ -75,6 +75,8 @@
   
   a {
     background-color: transparent;
+    text-decoration: none;
+    color: black;
   }
   
   /**
@@ -140,13 +142,24 @@
   
   /* Embedded content
      ========================================================================== */
-  
+  ul{
+    list-style-type: none;
+    /* padding: 0; */
+  }
+  i{
+    vertical-align: middle;
+  }
+  strong{
+    font-weight: bolder
+  }
   /**
    * Remove the border on images inside links in IE 10.
    */
   
   img {
     border-style: none;
+    max-width: 100%;
+    height: auto;
   }
   
   /* Forms
@@ -192,12 +205,12 @@
    * Correct the inability to style clickable types in iOS and Safari.
    */
   
-  button,
+  /* button,
   [type="button"],
   [type="reset"],
   [type="submit"] {
     -webkit-appearance: button;
-  }
+  } */
   
   /**
    * Remove the inner border and padding in Firefox.
@@ -286,12 +299,12 @@
    * 1. Correct the odd appearance in Chrome and Safari.
    * 2. Correct the outline style in Safari.
    */
-  
+/*   
   [type="search"] {
     -webkit-appearance: textfield; /* 1 */
-    outline-offset: -2px; /* 2 */
-  }
-  
+    /* outline-offset: -2px; 2
+  } */
+   */
   /**
    * Remove the inner padding in Chrome and Safari on macOS.
    */

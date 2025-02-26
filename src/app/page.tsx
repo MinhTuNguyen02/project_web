@@ -5,13 +5,16 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
 export default function Home() {
   return (
-    // Header
-    <Header/>
-    // Slider
-
-    // Content
-
-    // Footer
+    <div>
+      {/* Header */}
+      <Header/>
+      {/* Slider */}
+  
+      {/* Content */}
+  
+      {/* Footer */}
+      <Footer/>
+    </div>
   );
 }
 
@@ -20,6 +23,8 @@ function Header(){
     <div className={styles.header}>
       <HeaderTop/>
       <HeaderMenu/>
+      {/* <div className={styles.test}></div>
+      <div className={styles.test_1}></div> */}
     </div>
   )
 }
@@ -136,6 +141,73 @@ function HeaderMenu(){
             </a>
           </div>
         </div>
+      </div>
+    </div>
+  )
+}
+
+function Footer(){
+  return(
+    <div className={styles.footer}>
+      <div className={styles.first_footer}>
+        <div className={styles.container}>
+          <div className={styles.footer_content}>
+            <div className={styles.footer_content_1}>
+              <div className={styles.logo_footer}>
+                <a href="">
+                  <img src="/img/logo.webp" alt="" />
+                </a>
+              </div>
+              <ul>
+                <li>
+                <i className="fa-solid fa-location-dot"></i>
+                  <strong>Trụ sở: </strong>
+                  số 97 - đường Man Thiện - phường Hiệp Phú - Quận 9 - TP Hồ Chí Minh
+                </li>
+                <li>
+                <i className="fa-solid fa-headset"></i>
+                  <strong>Tổng đài: </strong>
+                  <a href="tel:19008386">1900 8386</a>
+                </li>
+                <li>
+                  <i className="fa-regular fa-envelope"></i>
+                  <strong>Email: </strong>
+                  <a href="mailto:hahahehe@gmail.com">hahahehe@gmail.com</a>
+                </li>
+              </ul>
+            </div>
+
+            <div className={styles.footer_content_2}>
+              <h4><span>Tìm hiểu thêm</span></h4>
+              <div className={styles.footer_menu}>
+                <a href="">abcde</a>
+                <a href="">fghij</a>
+                <a href="">klmno</a>
+                <a href="">pqrst</a>
+                <a href="">uvwxyz</a>
+              </div>
+            </div>
+
+            <div className={styles.footer_content_3}>
+              <h4><span>Hỗ trợ khách hàng</span></h4>
+              <div className={styles.footer_menu}>
+                <a href="">abcde</a>
+                <a href="">fghij</a>
+                <a href="">klmno</a>
+                <a href="">pqrst</a>
+                <a href="">uvwxyz</a>
+              </div>
+            </div>
+
+            <div className={styles.footer_content_4}>
+              <h4><span>Theo dõi chúng tôi</span></h4>
+              <h4><span>Phương thức thanh toán</span></h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className={styles.copyright}>
+
       </div>
     </div>
   )
