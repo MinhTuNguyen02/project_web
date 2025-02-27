@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Image from "next/image";
 import styles from "./page.module.css";
 import "./resetCss.css";
@@ -11,7 +12,7 @@ export default function Home() {
       {/* Slider */}
   
       {/* Content */}
-  
+      <Section_Sign/>
       {/* Footer */}
       <Footer/>
     </div>
@@ -23,8 +24,6 @@ function Header(){
     <div className={styles.header}>
       <HeaderTop/>
       <HeaderMenu/>
-      {/* <div className={styles.test}></div>
-      <div className={styles.test_1}></div> */}
     </div>
   )
 }
@@ -201,7 +200,37 @@ function Footer(){
 
             <div className={styles.footer_content_4}>
               <h4><span>Theo dõi chúng tôi</span></h4>
+              <div className={styles.social_network}>
+                <ul className={styles.wrapper_social}>
+                  <li className={clsx(styles.icon_sn, styles.facebook)}>
+                    <span className={styles.tooltip}>Facebook</span>
+                    <span>
+                      <a href=""><i className="fa-brands fa-square-facebook"></i></a>
+                    </span>
+                  </li>
+                  <li className={clsx(styles.icon_sn, styles.instagram)}>
+                    <span className={styles.tooltip}>Instagram</span>
+                    <span>
+                      <a href=""><i className="fa-brands fa-instagram"></i></a>
+                    </span>
+                  </li>
+                  <li className={clsx(styles.icon_sn, styles.x)}>
+                    <span className={styles.tooltip}>X</span>
+                    <span>
+                      <a href=""><i className="fa-brands fa-square-x-twitter"></i></a>
+                    </span>
+                  </li>
+                  <li className={clsx(styles.icon_sn, styles.youtube)}>
+                    <span className={styles.tooltip}>Youtube</span>
+                    <span>
+                      <a href=""><i className="fa-brands fa-square-youtube"></i></a>
+                    </span>
+                  </li>
+                </ul>
+              </div>
               <h4><span>Phương thức thanh toán</span></h4>
+              <div className={styles.payment}>
+              </div>
             </div>
           </div>
         </div>
@@ -210,5 +239,29 @@ function Footer(){
 
       </div>
     </div>
+  )
+}
+
+function Section_Sign(){
+  return(
+    <section className={styles.section_sign}>
+      <section className={styles.section_malchip}>
+        <div className={styles.container}>
+          <div className={styles.sign_content}>
+            <div className={styles.sign_title}>
+              <h2>Đăng ký email để nhận được ưu đãi mới nhất của chúng tôi</h2>
+              <p>Rất hân hạnh được phục vụ bạn. Chúc bạn có trải nghiệm tuyệt vời về dịch vụ của Stationery</p>
+            </div>
+
+            <div className={styles.mail_footer}>
+              <form action="">
+                <input type="text" />
+                <span><button></button></span>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
   )
 }

@@ -76,7 +76,6 @@
   a {
     background-color: transparent;
     text-decoration: none;
-    color: black;
   }
   
   /**
@@ -302,9 +301,9 @@
 /*   
   [type="search"] {
     -webkit-appearance: textfield; /* 1 */
-    /* outline-offset: -2px; 2
+    /* outline-offset: -2px; 
   } */
-   */
+   /* */
   /**
    * Remove the inner padding in Chrome and Safari on macOS.
    */
