@@ -15,7 +15,9 @@
   
   /* Sections
      ========================================================================== */
-  
+  section{
+    display: block;
+  }
   /**
    * Remove the margin in all browsers.
    */
@@ -358,4 +360,19 @@
   
   [hidden] {
     display: none;
+  }
+
+  input[type="text"], input[type="email"], input[type="number"], input[type="tel"], input[type="password"], textarea.form-control, select.form-control {
+    border-radius: 0px;
+    color: #333;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    border-radius: 10px;
+    color: rgba(0, 0, 0, 0.9);
+    /* border: 1px solid #e1e1e1; */
+    padding: 0 20px;
+    width: 100%;
+    max-width: 100%;
+    display: block;
   }
