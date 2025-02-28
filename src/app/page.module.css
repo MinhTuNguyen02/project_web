@@ -56,7 +56,7 @@
 .input_search{
   padding: 5px 40px 5px 15px;
   border: 1px solid rgba(0, 0, 0, 0.25) !important;
-  border-radius: 25px;
+  border-radius: 25px !important;
   width: 100%;
   height: 40px;
   font-size: 14px;
@@ -286,12 +286,94 @@
 }
 /*  */
 
+.section_service{
+  margin-bottom: 0;
+  transform: translateY(35%);
+}
+
+.section_service .sub_sec_service{
+  background: url(https://bizweb.dktcdn.net/100/434/558/themes/894884/assets/bg_dich_vu_chung_toi.jpg?1651395726340)
+  no-repeat top center;
+  background-size: cover;
+  height: 720px;
+}
+
+.section_service .service_content{
+  margin-right: -10px;
+  margin-left: -10px;
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(var(--bs-gutter-y)* -1);
+}
+
+.section_service .service_content .service_left{
+  padding: 0 10px;
+  flex: 0 0 auto;
+  width: 50%;
+}
+
+.section_service .service_content .service_left .block_title h2{
+  font-size: 30px;
+  font-weight: bold;
+  color: #494949;
+  text-transform: uppercase;
+  margin-top: 65px;
+  margin-bottom: 50px;
+}
+
+.section_service .service_content .service_left .block_content .item{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 35px;
+}
+
+.section_service .service_content .service_left .block_content img{
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.section_service .service_content .service_left .block_content .info{
+  margin-left: 25px;
+}
+
+.section_service .service_content .service_left .block_content .info h3{
+  color: #494949;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.section_service .service_content .service_left .block_content .info p{
+  margin-bottom: 0;
+  color: #8E8C8C;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.section_service .service_content .service_right{
+  padding: 0 10px;
+  flex: 0 0 auto;
+  width: 50%;
+}
+
+.section_service .service_content .service_right img{
+  max-width: 100%;
+  height: auto;
+  margin-top: -35px;
+  margin-left: 22px;
+}
+
 .section_sign{
   position: relative;
   display: block;
   margin-bottom: 0;
   z-index: 1;
-  transform: translateY(30%);
+  transform: translateY(40%);
 }
 
 .section_sign .section_malchip{
@@ -301,7 +383,7 @@
 
 .section_sign .section_malchip .sign_content{
   margin: 0 auto;
-  padding: 35px 95px 40px;
+  padding: 20px 95px 40px;
   border-top-left-radius: 100px;
   border-bottom-right-radius: 100px;
   background: #9c8350;
