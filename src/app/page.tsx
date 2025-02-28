@@ -12,7 +12,7 @@ export default function Home() {
       {/* Slider */}
   
       {/* Content */}
-      <Sta_forYou/>
+      <Prod_forYou/>
       <Section_Service/>
       <Section_Sign/>
 
@@ -149,10 +149,10 @@ function HeaderMenu(){
   )
 }
 
-function Sta_forYou(){
+function Prod_forYou(){
   return(
-    <section className="sta_forYou">
-      <section className="sub_sta_forYou">
+    <section className={styles.prod_forYou}>
+      <section className={styles.sub_prod_forYou}>
         <div className={styles.container}>
           <div className={styles.e_tab}>
             <div className={styles.forYou_content}>
@@ -164,7 +164,10 @@ function Sta_forYou(){
                   <li className={styles.tab_link}><span>Bút</span></li>
                   <li className={styles.tab_link}><span>Bộ cắt dán</span></li>
                   <li className={styles.tab_link}><span>Bút màu</span></li>
-                </ul>
+                </ul>                
+              </div>
+
+              <div className={styles.tab_content}>
               </div>
             </div>
           </div>
