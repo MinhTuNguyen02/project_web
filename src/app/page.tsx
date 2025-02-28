@@ -255,8 +255,8 @@ function Section_Sign(){
 
             <div className={styles.mail_footer}>
               <form action="">
-                <input type="text" />
-                <span><button></button></span>
+                <input type="email" placeholder="Nhập email của bạn tại đây ..." />
+                <span className={clsx(styles.btn_mail,styles.subcribe)}><button>Đăng ký ngay</button></span>
               </form>
             </div>
           </div>

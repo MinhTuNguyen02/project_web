@@ -133,7 +133,7 @@
 .hotline_account .group_acc .sign_log{
   width: 130px;
   position: absolute;
-  top: 75%;
+  top: 90%;
   right: 5%;
   background: #fff;
   text-align: center;
@@ -287,14 +287,15 @@
 /*  */
 
 .section_sign{
+  position: relative;
   display: block;
   margin-bottom: 0;
-  transform: translateY(50%);
+  z-index: 1;
+  transform: translateY(30%);
 }
 
 .section_sign .section_malchip{
   position: relative;
-  z-index: 1;
   /* margin-top: -160px; */
 }
 
@@ -321,8 +322,72 @@
   color: #fff;
   font-style: italic;
   margin-bottom: 0;
+  font-size: 15px;
 }
 
+.sign_content .mail_footer{
+  width: 100%;
+  margin-top: 30px;
+}
+
+.sign_content .mail_footer form{
+  position: relative;
+  margin-bottom: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign_content .mail_footer form input{
+  height: 49px;
+  border-radius: 0;
+  line-height: 40px;
+  margin-bottom: 0px;
+  width: 393px;
+  background: #fff;
+  border-color: #fff;
+  font-size: 14px;
+  color: #333;
+  border-radius: 25px !important;
+}
+
+.sign_content .mail_footer .subcribe{
+  display: inline-block;
+  background: #FFD57E;
+  margin-left: 0px;
+  font-size: 14px;
+  color: #fff;
+  border: solid 1px #FFD57E;
+  width: 275px;
+  border-radius: 25px;
+  margin-left: 35px;
+}
+
+.sign_content .mail_footer .subcribe button:hover{
+  background: #ddb76d;
+}
+
+.sign_content .mail_footer .subcribe button{
+  height: 49px;
+  line-height: 49px;
+  width: 100%;
+  color: #000;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 0px;
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+  background: #FFD57E;
+  border-radius: 25px;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+}
 
 .footer{
   z-index: 0;
@@ -450,8 +515,13 @@
   transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
+.footer .first_footer .wrapper_social a i{
+  transform: translateY(-9%);
+}
+
 .footer .first_footer .wrapper_social a{
   color: #000;
+  padding: 6px;
 }
 
 .footer .first_footer .wrapper_social .tooltip{
