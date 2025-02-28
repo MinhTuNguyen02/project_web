@@ -24,7 +24,6 @@ function Header(){
     <div className={styles.header}>
       <HeaderTop/>
       <HeaderMenu/>
-      {/* hahahahahah */}
     </div>
   )
 }
