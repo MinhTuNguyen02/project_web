@@ -43,6 +43,10 @@
     font-size: 2em;
     margin: 0.67em 0;
   }
+
+  h3 {
+    margin-top: 0;
+  }
   
   /* Grouping content
      ========================================================================== */
@@ -368,7 +372,7 @@
     outline: none;
     box-shadow: none;
     border: none;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     color: rgba(0, 0, 0, 0.9);
     /* border: 1px solid #e1e1e1; */
     padding: 0 20px;

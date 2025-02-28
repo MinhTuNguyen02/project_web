@@ -12,7 +12,10 @@ export default function Home() {
       {/* Slider */}
   
       {/* Content */}
+      <Sta_forYou/>
+      <Section_Service/>
       <Section_Sign/>
+
       {/* Footer */}
       <Footer/>
     </div>
@@ -145,100 +148,89 @@ function HeaderMenu(){
   )
 }
 
-function Footer(){
+function Sta_forYou(){
   return(
-    <div className={styles.footer}>
-      <div className={styles.first_footer}>
+    <section className="sta_forYou">
+      <section className="sub_sta_forYou">
         <div className={styles.container}>
-          <div className={styles.footer_content}>
-            <div className={styles.footer_content_1}>
-              <div className={styles.logo_footer}>
-                <a href="">
-                  <img src="/img/logo.webp" alt="" />
-                </a>
-              </div>
-              <ul>
-                <li>
-                <i className="fa-solid fa-location-dot"></i>
-                  <strong>Trụ sở: </strong>
-                  số 97 - đường Man Thiện - phường Hiệp Phú - Quận 9 - TP Hồ Chí Minh
-                </li>
-                <li>
-                <i className="fa-solid fa-headset"></i>
-                  <strong>Tổng đài: </strong>
-                  <a href="tel:19008386">1900 8386</a>
-                </li>
-                <li>
-                  <i className="fa-regular fa-envelope"></i>
-                  <strong>Email: </strong>
-                  <a href="mailto:hahahehe@gmail.com">hahahehe@gmail.com</a>
-                </li>
-              </ul>
-            </div>
-
-            <div className={styles.footer_content_2}>
-              <h4><span>Tìm hiểu thêm</span></h4>
-              <div className={styles.footer_menu}>
-                <a href="">abcde</a>
-                <a href="">fghij</a>
-                <a href="">klmno</a>
-                <a href="">pqrst</a>
-                <a href="">uvwxyz</a>
-              </div>
-            </div>
-
-            <div className={styles.footer_content_3}>
-              <h4><span>Hỗ trợ khách hàng</span></h4>
-              <div className={styles.footer_menu}>
-                <a href="">abcde</a>
-                <a href="">fghij</a>
-                <a href="">klmno</a>
-                <a href="">pqrst</a>
-                <a href="">uvwxyz</a>
-              </div>
-            </div>
-
-            <div className={styles.footer_content_4}>
-              <h4><span>Theo dõi chúng tôi</span></h4>
-              <div className={styles.social_network}>
-                <ul className={styles.wrapper_social}>
-                  <li className={clsx(styles.icon_sn, styles.facebook)}>
-                    <span className={styles.tooltip}>Facebook</span>
-                    <span>
-                      <a href=""><i className="fa-brands fa-square-facebook"></i></a>
-                    </span>
-                  </li>
-                  <li className={clsx(styles.icon_sn, styles.instagram)}>
-                    <span className={styles.tooltip}>Instagram</span>
-                    <span>
-                      <a href=""><i className="fa-brands fa-instagram"></i></a>
-                    </span>
-                  </li>
-                  <li className={clsx(styles.icon_sn, styles.x)}>
-                    <span className={styles.tooltip}>X</span>
-                    <span>
-                      <a href=""><i className="fa-brands fa-square-x-twitter"></i></a>
-                    </span>
-                  </li>
-                  <li className={clsx(styles.icon_sn, styles.youtube)}>
-                    <span className={styles.tooltip}>Youtube</span>
-                    <span>
-                      <a href=""><i className="fa-brands fa-square-youtube"></i></a>
-                    </span>
-                  </li>
+          <div className={styles.e_tab}>
+            <div className={styles.forYou_content}>
+              <div className={clsx(styles.block_title,styles.clearfix)}>
+                <h2>VĂN PHÒNG PHẨM CHO BẠN</h2>
+                <ul className={clsx(styles.tab_title,styles.clearfix)}>
+                  <li className={styles.tab_link}><span>Sách</span></li>
+                  <li className={styles.tab_link}><span>Vở</span></li>
+                  <li className={styles.tab_link}><span>Bút</span></li>
+                  <li className={styles.tab_link}><span>Bộ cắt dán</span></li>
+                  <li className={styles.tab_link}><span>Bút màu</span></li>
                 </ul>
-              </div>
-              <h4><span>Phương thức thanh toán</span></h4>
-              <div className={styles.payment}>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className={styles.copyright}>
+      </section>
+    </section>
+  )
+}
 
-      </div>
-    </div>
+function Section_Service(){
+  return(
+    <section className={styles.section_service}>
+      <section className={styles.sub_sec_service}>
+        <div className={styles.container}>
+          <div className={styles.service_content}>
+            <div className={styles.service_left}>
+              <div className={styles.block_title}>
+                <h2>Dịch vụ của chúng tôi</h2>
+              </div>
+              <div className={styles.block_content}>
+                <div className={styles.item}>
+                  <div className={styles.icon_service}>
+                    <img src="img/xetai.svg" alt="" />
+                  </div>
+                  <div className={styles.info}>
+                    <h3>MIỄN PHÍ GIAO HÀNG NỘI THÀNH</h3>
+                    <p>Giao miễn phí trong nội thành HN và HCM</p>
+                  </div>
+                </div>
+                <div className={styles.item}>
+                  <div className={styles.icon_service}>
+                    <img src="img/trahang.svg" alt="" />
+                  </div>
+                  <div className={styles.info}>
+                    <h3>ĐỔI Trả hàng trong vòng 24h</h3>
+                    <p>Hỗ trợ đổi, trả hàng cho khách khi sản phẩm có lỗi</p>
+                  </div>
+                </div>
+                <div className={styles.item}>
+                  <div className={styles.icon_service}>
+                    <img src="img/ktrahang.svg" alt="" />
+                  </div>
+                  <div className={styles.info}>
+                    <h3>Kiểm tra hàng khi nhận hàng</h3>
+                    <p>Khách hàng kiểm tra hàng trước khi nhận</p>
+                  </div>
+                </div>
+                <div className={styles.item}>
+                  <div className={styles.icon_service}>
+                    <img src="img/cod.svg" alt="" />
+                  </div>
+                  <div className={styles.info}>
+                    <h3>THANH TOÁN COD</h3>
+                    <p>Hỗ trợ khách hàng thanh toán cod</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className={styles.service_right}>
+              <div className={styles.block_img}>
+                <img src="img/deliver.webp" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
   )
 }
 
@@ -265,3 +257,100 @@ function Section_Sign(){
     </section>
   )
 }
+
+  function Footer(){
+    return(
+      <div className={styles.footer}>
+        <div className={styles.first_footer}>
+          <div className={styles.container}>
+            <div className={styles.footer_content}>
+              <div className={styles.footer_content_1}>
+                <div className={styles.logo_footer}>
+                  <a href="">
+                    <img src="/img/logo.webp" alt="" />
+                  </a>
+                </div>
+                <ul>
+                  <li>
+                  <i className="fa-solid fa-location-dot"></i>
+                    <strong>Trụ sở: </strong>
+                    số 97 - đường Man Thiện - phường Hiệp Phú - Quận 9 - TP Hồ Chí Minh
+                  </li>
+                  <li>
+                  <i className="fa-solid fa-headset"></i>
+                    <strong>Tổng đài: </strong>
+                    <a href="tel:19008386">1900 8386</a>
+                  </li>
+                  <li>
+                    <i className="fa-regular fa-envelope"></i>
+                    <strong>Email: </strong>
+                    <a href="mailto:hahahehe@gmail.com">hahahehe@gmail.com</a>
+                  </li>
+                </ul>
+              </div>
+  
+              <div className={styles.footer_content_2}>
+                <h4><span>Tìm hiểu thêm</span></h4>
+                <div className={styles.footer_menu}>
+                  <a href="">abcde</a>
+                  <a href="">fghij</a>
+                  <a href="">klmno</a>
+                  <a href="">pqrst</a>
+                  <a href="">uvwxyz</a>
+                </div>
+              </div>
+  
+              <div className={styles.footer_content_3}>
+                <h4><span>Hỗ trợ khách hàng</span></h4>
+                <div className={styles.footer_menu}>
+                  <a href="">abcde</a>
+                  <a href="">fghij</a>
+                  <a href="">klmno</a>
+                  <a href="">pqrst</a>
+                  <a href="">uvwxyz</a>
+                </div>
+              </div>
+  
+              <div className={styles.footer_content_4}>
+                <h4><span>Theo dõi chúng tôi</span></h4>
+                <div className={styles.social_network}>
+                  <ul className={styles.wrapper_social}>
+                    <li className={clsx(styles.icon_sn, styles.facebook)}>
+                      <span className={styles.tooltip}>Facebook</span>
+                      <span>
+                        <a href=""><i className="fa-brands fa-square-facebook"></i></a>
+                      </span>
+                    </li>
+                    <li className={clsx(styles.icon_sn, styles.instagram)}>
+                      <span className={styles.tooltip}>Instagram</span>
+                      <span>
+                        <a href=""><i className="fa-brands fa-instagram"></i></a>
+                      </span>
+                    </li>
+                    <li className={clsx(styles.icon_sn, styles.x)}>
+                      <span className={styles.tooltip}>X</span>
+                      <span>
+                        <a href=""><i className="fa-brands fa-square-x-twitter"></i></a>
+                      </span>
+                    </li>
+                    <li className={clsx(styles.icon_sn, styles.youtube)}>
+                      <span className={styles.tooltip}>Youtube</span>
+                      <span>
+                        <a href=""><i className="fa-brands fa-square-youtube"></i></a>
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+                <h4><span>Phương thức thanh toán</span></h4>
+                <div className={styles.payment}>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={styles.copyright}>
+  
+        </div>
+      </div>
+    )
+  }
