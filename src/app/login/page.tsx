@@ -13,7 +13,7 @@ export default function Home() {
       {/* Slider */}
   
       {/* Content */}
-      <Section_Sign/>
+      <Login/>
       {/* Footer */}
       <Footer/>
     </div>
@@ -242,27 +242,41 @@ function Footer(){
     </div>
   )
 }
-
-function Section_Sign(){
-  return(
-    <section className={styles.section_sign}>
-      <section className={styles.section_malchip}>
-        <div className={styles.container}>
-          <div className={styles.sign_content}>
-            <div className={styles.sign_title}>
-              <h2>Đăng ký email để nhận được ưu đãi mới nhất của chúng tôi</h2>
-              <p>Rất hân hạnh được phục vụ bạn. Chúc bạn có trải nghiệm tuyệt vời về dịch vụ của Stationery</p>
+const Login = () => {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <div className="bg-white p-8 rounded-lg shadow-lg w-96">
+          <h2 className="text-2xl font-bold text-center mb-4">Đăng nhập</h2>
+          <form>
+            <div className="mb-4">
+              <label htmlFor="email" className="block text-gray-700">Email:</label>
+              <input 
+                type="email" 
+                id="email" 
+                className="w-full p-2 border border-gray-300 rounded mt-1"
+                placeholder="Nhập email"
+              />
             </div>
-
-            <div className={styles.mail_footer}>
-              <form action="">
-                <input type="email" placeholder="Nhập email của bạn tại đây ..." />
-                <span className={clsx(styles.btn_mail,styles.subcribe)}><button>Đăng ký ngay</button></span>
-              </form>
+            <div className="mb-4">
+              <label htmlFor="password" className="block text-gray-700">Mật khẩu:</label>
+              <input 
+                type="password" 
+                id="password" 
+                className="w-full p-2 border border-gray-300 rounded mt-1"
+                placeholder="Nhập mật khẩu"
+              />
             </div>
+            <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
+              Đăng nhập
+            </button>
+          </form>
+          <div className="text-center mt-4">
+            <Link href="/register" className="text-blue-500 hover:underline">Chưa có tài khoản? Đăng ký</Link>
           </div>
         </div>
-      </section>
-    </section>
-  )
-}
+      </div>
+    );
+  };
+  
+ 
+  
