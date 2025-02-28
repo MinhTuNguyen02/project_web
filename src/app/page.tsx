@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import "./resetCss.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -27,7 +28,6 @@ function Header(){
     <div className={styles.header}>
       <HeaderTop/>
       <HeaderMenu/>
-      {/* hahha */}
     </div>
   )
 }
@@ -86,15 +86,15 @@ function HeaderTop(){
     
               <li className={styles.account}>
                 <div className={styles.icon}>
-                  <a href="">
-                    <i className="fa-regular fa-user"></i>
-                  </a>
-                </div>
-                <div className={styles.sign_log}>
-                  <a href="">Đăng nhập</a>
-                  <a href="">Đăng ký</a>
-                </div>
-              </li>
+                <Link href="/login"> {/* Dùng <Link> và href="/login" */}
+                  <i className="fa-regular fa-user"></i>
+                </Link>
+              </div>
+            <div className={styles.sign_log}>
+            <Link href="/login">Đăng nhập</Link> {/* Dùng <Link> và href="/login" */}
+              <a href="">Đăng ký</a>
+              </div>
+            </li>
             </ul>
           </div>
         </div>
