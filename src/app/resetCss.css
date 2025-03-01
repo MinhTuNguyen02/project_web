@@ -17,6 +17,7 @@
      ========================================================================== */
   section{
     display: block;
+    margin-bottom: 0;
   }
   /**
    * Remove the margin in all browsers.
@@ -167,6 +168,9 @@
     height: auto;
   }
   
+  form{
+    display: block;
+  }
   /* Forms
      ========================================================================== */
   

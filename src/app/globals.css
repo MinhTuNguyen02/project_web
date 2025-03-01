@@ -35,10 +35,39 @@ div{
   flex-wrap: wrap;
 }
 
+.swiper-button-prev, .swiper-button-next{
+  color: #9C8350;
+  background-color: #9C8350;
+}
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: white;
+  background-color: black;
+}
+
 @keyframes Fadein{
   from{
       opacity: 0;
   }to{
       opacity: 1;
   }
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: #fff;
+  background-color: #9C8350;
+  width: 40px;
+  height: 40px;
+  /* border-radius: 50%; */
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background-color: black;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 7px;
 }

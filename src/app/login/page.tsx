@@ -244,33 +244,33 @@ function Footer(){
 }
 const Login = () => {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-100">
-        <div className="bg-white p-8 rounded-lg shadow-lg w-96">
-          <h2 className="text-2xl font-bold text-center mb-4">Đăng nhập</h2>
+      <div className={clsx(styles.flex, styles.items_center, styles.justify_center, styles.min_h_screen, styles.bg_gray_100)}>
+        <div className={clsx(styles.p_8, styles.rounded_lg, styles.shadow_lg, styles.w_96)}>
+          <h2 className={clsx(styles.text_2xl, styles.font_bold,  styles.text_center, styles.mb_4)}>Đăng nhập</h2>
           <form>
-            <div className="mb-4">
-              <label htmlFor="email" className="block text-gray-700">Email:</label>
+            <div className={styles.mb_4}>
+              <label htmlFor="email" className={clsx(styles.block, styles.text_gray_700)}>Email:</label>
               <input 
                 type="email" 
                 id="email" 
-                className="w-full p-2 border border-gray-300 rounded mt-1"
+                className={clsx(styles.w_full, styles.p_2, styles.border, styles.border_gray_300, styles.rounded, styles.mt_1)}
                 placeholder="Nhập email"
               />
             </div>
-            <div className="mb-4">
+            <div className={styles.mb_4}>
               <label htmlFor="password" className="block text-gray-700">Mật khẩu:</label>
               <input 
                 type="password" 
                 id="password" 
-                className="w-full p-2 border border-gray-300 rounded mt-1"
+                className={clsx(styles.w_full, styles.p_2, styles.border, styles.border_gray_300, styles.rounded, styles.mt_1)}
                 placeholder="Nhập mật khẩu"
               />
             </div>
-            <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
+            <button type="submit" className={clsx(styles.w_full, styles.bg_blue_500, styles.text_white, styles.py_2, styles.rounded, styles.hover_bg_blue_600)}>
               Đăng nhập
             </button>
           </form>
-          <div className="text-center mt-4">
+          <div className={clsx(styles.text_center, styles.mt_4)}>
             <Link href="/register" className="text-blue-500 hover:underline">Chưa có tài khoản? Đăng ký</Link>
           </div>
         </div>

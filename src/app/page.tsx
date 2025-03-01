@@ -1,9 +1,18 @@
+"use client";
 import clsx from "clsx";
 import Image from "next/image";
-import styles from "./page.module.css";
 import "./resetCss.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Link from 'next/link';
+import { useState, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import styles from "./page.module.css";
+
+
 
 export default function Home() {
   return (
@@ -11,8 +20,10 @@ export default function Home() {
       {/* Header */}
       <Header/>
       {/* Slider */}
-  
+      <Slider/>
       {/* Content */}
+      <CategorySlider/>
+      <Prod_forYou/>
       <Prod_forYou/>
       <Section_Service/>
       <Section_Sign/>
@@ -115,15 +126,14 @@ function HeaderMenu(){
               Danh mục sản phẩm
             </div>
             <div className={styles.list_menu}>
-
+              <div className={styles.contentfill}>
+                <div className={styles.swiper_wrapper}></div>
+                <div></div>
+              </div>
             </div>
           </div>
 
-          <div className={styles.slogan}>
-            <span>
-              Hãy đến với chúng tôi
-            </span>
-          </div>
+          <Slogan/>
 
           <div className={styles.menu}>
             <a href="" title="Khuyến mãi">
@@ -149,6 +159,164 @@ function HeaderMenu(){
   )
 }
 
+function Slogan() {
+  const texts = [
+    "Stationery lựa chọn số 1 cho bạn",
+    "Stationery lựa chọn số 1 cho bạn - Hãy đến với chúng tôi",
+  ];
+  const [index, setIndex] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false); // Bắt đầu hiệu ứng fade-out
+      setTimeout(() => {
+        setIndex((prevIndex) => (prevIndex + 1) % texts.length);
+        setFade(true); // Bắt đầu hiệu ứng fade-in
+      }, 500); // Đợi 500ms để hoàn thành fade-out trước khi đổi text
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className={styles.slogan}>
+      <span className={fade ? styles.fade_in : styles.fade_out}>{texts[index]}</span>
+    </div>
+  )
+}
+
+function Slider(){
+  return(
+    <Swiper
+    modules={[Navigation, Pagination, Autoplay]}
+    autoplay={{
+      delay: 4500,
+      disableOnInteraction: false,
+    }}
+    pagination={{ clickable: true }}
+    navigation
+    className={styles.home_slider}
+  >
+    <SwiperSlide>
+      <img src="img/slider1.webp" alt="Slide 1" />
+    </SwiperSlide>
+    <SwiperSlide>
+      <img src="img/slider1.webp" alt="Slide 2" />
+    </SwiperSlide>
+    <SwiperSlide>
+      <img src="img/slider1.webp" alt="Slide 3" />
+    </SwiperSlide>
+  </Swiper>
+  )
+}
+
+
+
+function CategorySlider() {
+  const categories = [
+    {
+      title: "Vpp Học Sinh",
+      imgSrc: "img/cate1.webp",
+    },
+    {
+      title: "Vpp văn phòng",
+      imgSrc: "img/cate2.webp",
+    },
+    {
+      title: "Phụ kiện",
+      imgSrc: "img/cate3.webp",
+    },
+    {
+      title: "Cặp - Túi xách",
+      imgSrc: "img/cate4.webp",
+    },
+    {
+      title: "Dụng cụ văn phòng",
+      imgSrc: "img/cate5.webp",
+    },
+  ]
+  return (
+  <section className={styles.section_2}>
+    <section className={styles.section_category}>
+      <div className={styles.container}>
+        <div className={styles.cate_list}>
+          <Swiper
+            modules={[Navigation, Autoplay]}
+            slidesPerView={5}
+            spaceBetween={30}
+            loop={false}
+            grabCursor={true}
+            navigation={{
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            }}
+            autoplay={false}
+            breakpoints={{
+              300: { slidesPerView: 2, spaceBetween: 5 },
+              640: { slidesPerView: 3, spaceBetween: 30 },
+              768: { slidesPerView: 4, spaceBetween: 30 },
+              992: { slidesPerView: 5, spaceBetween: 30 },
+              1199: { slidesPerView: 5, spaceBetween: 30 },
+            }}
+          >
+            {categories.map((category, index) => (
+              <SwiperSlide key={index}>
+                <div className={styles.cate_item}>
+                  <a className="image" href="#" title={category.title}>
+                    <img
+                      className="image_cate_thumb"
+                      width="75"
+                      height="75"
+                      src={category.imgSrc}
+                      alt={category.title}
+                    />
+                  </a>
+                  <h3 className={styles.title_cate}>
+                    <a href="#" title={category.title}>
+                      {category.title}
+                    </a>
+                  </h3>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          <div className="swiper-button-prev"></div>
+          <div className="swiper-button-next"></div>
+        </div>
+      </div>
+    </section>
+  </section>
+  )
+}
+
+
+
+
+function Slide_item(){
+  return(
+  <div className={styles.swiper_slide}>
+    <form>
+      <div className={styles.prod_block_item}>
+        <div className={styles.prod_act}>
+          <a href="">
+            <i className="fa-regular fa-heart"></i>
+          </a>
+        </div>
+        <a href="" className={styles.prod_trans}>
+          <img src="img/foryou1.webp" alt="" />
+        </a>
+        <div className={styles.prod_info}>
+          <a href="" className={styles.prod_name}>Sổ tay mini hoạt hình dễ thương</a>
+          <div className={styles.prod_price}> <span>38.000đ</span></div>
+        </div>
+        <div ></div>
+      </div>
+    </form>
+  </div>
+  )
+}
+
 function Prod_forYou(){
   return(
     <section className={styles.prod_forYou}>
@@ -168,6 +336,21 @@ function Prod_forYou(){
               </div>
 
               <div className={styles.tab_content}>
+                <div className={styles.contentfill}>
+                  <div className={styles.swiper_container}>
+                    <div className={styles.swiper_wrapper}>                                    
+                      <Slide_item/>
+                      <Slide_item/>
+                      <Slide_item/>
+                      <Slide_item/>
+                      <Slide_item/>
+                      <Slide_item/>                      
+                      <Slide_item/>
+                      <Slide_item/>                                            
+                    </div>
+                    <div ></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
