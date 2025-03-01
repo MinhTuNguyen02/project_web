@@ -163,8 +163,8 @@
    */
   
   img {
-    border-style: none;
     max-width: 100%;
+    border-style: none;
     height: auto;
   }
   

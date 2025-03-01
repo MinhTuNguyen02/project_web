@@ -295,7 +295,6 @@
   color: #9C8350;
 }
 
-/* Hover: đổi màu khi di chuột vào */
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
   color: white;
@@ -376,6 +375,21 @@
 }
 /*  */
 
+/* section 3 */
+.section_3{
+  margin-bottom: 0;
+}
+
+.section_3 .section_product_featured{
+  background: image("img/bg_sp_noibat.webp") no-repeat top center;
+  background-size: contain;
+  min-height: initial;
+  margin-bottom: 45px;
+}
+
+
+
+/*  */
 .prod_forYou{
   margin-bottom: 0;
 }
@@ -384,11 +398,11 @@
   margin-bottom: 85px;
 }
 
-.prod_forYou .sub_prod_forYou .block_title{
+.block_title{
   margin-bottom: 35px;
 }
 
-.prod_forYou .sub_prod_forYou .block_title h2{
+.block_title h2{
   font-size: 30px;
   font-weight: 700;
   text-align: center;
@@ -398,7 +412,12 @@
   margin-bottom: 20px;
 }
 
-.prod_forYou .sub_prod_forYou .block_title h2::after{
+.block_title h2 a{
+  color: #494949;
+  position: relative;
+}
+
+.forYou_content .block_title h2::after, .section_3 .block_title h2 a::after{
   content: "";
   background: url(https://bizweb.dktcdn.net/100/434/558/themes/894884/assets/icon_after_title.png?1651395726340) no-repeat;
   width: 257px;
