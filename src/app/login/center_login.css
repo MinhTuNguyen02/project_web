@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 70vh;
+    min-height: 100vh;
     background-color: #fff;
     padding: 20px;
   }
@@ -18,29 +18,8 @@
     font-weight: bold;
     margin-bottom: 20px;
     text-transform: uppercase;
-    background: linear-gradient(to right, #a68b5b, #c2a97e);
-    color: white;
-    padding: 20px 0;
-    border-radius: 8px;
-    text-align: center;
   }
-  .page_login input[type="email"],
-  .page_login input[type="password"] {
-  width: 100% !important;
-  padding: 10px !important;
-  border: 1px solid #ccc !important;
-  border-radius: 5px !important;
-  transition: all 0.3s ease !important;
-}
-
-
-input[type="email"]:focus,
-input[type="password"]:focus {
-  border-color: #a68b5b; 
-  box-shadow: 0 0 5px rgba(166, 139, 91, 0.5); 
-}
-
-    
+  
   .account-box-shadow {
     background: #fff;
     padding: 20px;
@@ -51,7 +30,6 @@ input[type="password"]:focus {
   .auth-tabs {
     display: flex;
     justify-content: center;
-    gap: 130px;
     border-bottom: 1px solid #ddd;
     margin-bottom: 20px;
   }
@@ -168,18 +146,5 @@ input[type="password"]:focus {
   
   .btn-google:hover {
     background: #a33d2e;
-  }
-  .login-header {
-    background: linear-gradient(to right, #ff7e5f, #feb47b); 
-    text-align: center;
-    padding: 20px 0;
-    border-radius: 8px;
-  }
-  
-  .login-header h1 {
-    margin: 0;
-    color: white; 
-    font-size: 24px;
-    font-weight: bold;
   }
   
