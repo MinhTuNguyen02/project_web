@@ -16,21 +16,40 @@ import styles from "./page.module.css";
 
 export default function Home() {
   return (
-    <div>
+    <div className={styles.main}>
+      <BackHeader/>
       {/* Header */}
       <Header/>
+
       {/* Slider */}
       <Slider/>
-      {/* Content */}
+
+    {/* Content */}
+      {/* Phân loại sản phẩm */}
       <CategorySlider/>
+
+      {/* Sản phẩm nổi bật */}
       <ProductFeaturedSwiper/>
+
+      {/* VPP Cho bạn */}
       <Prod_forYou/>
-      <Prod_forYou/>
+
+      {/* Dịch vụ */}
       <Section_Service/>
       <Section_Sign/>
 
       {/* Footer */}
       <Footer/>
+    </div>
+  );
+}
+
+function BackHeader(){
+  return(
+    <div className={styles.backHeader}>
+      <a href="#">
+        <i className="fa-solid fa-arrow-up"></i>
+      </a>
     </div>
   );
 }
@@ -141,7 +160,7 @@ function HeaderMenu(){
               <i className="fa-solid fa-fire"></i>
               Khuyến mãi
             </a>
-            <a href="" title="Dịch vụ">
+            <a href="#service" title="Dịch vụ">
               <i className="fa-solid fa-shield-heart"></i>
               Dịch vụ
             </a>
@@ -329,7 +348,7 @@ function ProductFeaturedSwiper(){
   ];
 
   return (
-  <section className={styles.section_3}>
+  <section className={clsx(styles.section_3,"section-3")}>
     <section className={styles.section_product_featured}>
       <div className={styles.container}>
         <div className={styles.block_title}>
@@ -352,7 +371,7 @@ function ProductFeaturedSwiper(){
             }}
           >
             {products.map((product) => (
-              <SwiperSlide key={product.id}>
+              <SwiperSlide key={product.id} className={styles.swiper_slide}>
                 <div className={styles.product_block_item}>
                   <a href={product.link} className={styles.product_transition}>
                     <img className={styles.product_thumbnail} src={product.image} alt={product.name} />
@@ -380,78 +399,120 @@ function ProductFeaturedSwiper(){
   );
 };
 
-
-
-function Slide_item(){
-  return(
-  <div className={styles.swiper_slide}>
-    <form>
-      <div className={styles.prod_block_item}>
-        <div className={styles.prod_act}>
-          <a href="">
-            <i className="fa-regular fa-heart"></i>
-          </a>
-        </div>
-        <a href="" className={styles.prod_trans}>
-          <img src="img/foryou1.webp" alt="" />
-        </a>
-        <div className={styles.prod_info}>
-          <a href="" className={styles.prod_name}>Sổ tay mini hoạt hình dễ thương</a>
-          <div className={styles.prod_price}> <span>38.000đ</span></div>
-        </div>
-        <div ></div>
-      </div>
-    </form>
-  </div>
-  )
-}
-
 function Prod_forYou(){
-  return(
-    <section className={styles.prod_forYou}>
-      <section className={styles.sub_prod_forYou}>
-        <div className={styles.container}>
-          <div className={styles.e_tab}>
-            <div className={styles.forYou_content}>
-              <div className={clsx(styles.block_title,styles.clearfix)}>
-                <h2>VĂN PHÒNG PHẨM CHO BẠN</h2>
-                <ul className={clsx(styles.tab_title,styles.clearfix)}>
-                  <li className={styles.tab_link}><span>Sách</span></li>
-                  <li className={styles.tab_link}><span>Vở</span></li>
-                  <li className={styles.tab_link}><span>Bút</span></li>
-                  <li className={styles.tab_link}><span>Bộ cắt dán</span></li>
-                  <li className={styles.tab_link}><span>Bút màu</span></li>
-                </ul>                
-              </div>
+  const products = [
+    {
+        id: 1,
+        name: 'Vở viết kẻ ngang nhiều hình siêu ngộ nghĩnh',
+        price: '12.000₫',
+        oldPrice: '41.000₫',
+        link: '/vo-viet-ke-ngang-nhieu-hinh-sieu-ngo-nghinh',
+        image: 'img/sp1.webp',
+    },
+    {
+        id: 2,
+        name: 'Hộp đựng văn phòng phẩm bằng nhựa trong suốt tiện dụng',
+        price: '15.000₫',
+        oldPrice: '25.000₫',
+        link: '/hop-dung-van-phong-pham-bang-nhua-trong-suot-tien-dung',
+        image: 'img/sp2.webp',
+    },
+    {
+        id: 3,
+        name: 'Sổ tay cá nhân tiện dụng văn phòng phẩm',
+        price: '28.000₫',
+        oldPrice: '',
+        link: '/so-tay-ca-nhan-tien-dung-van-phong-pham',
+        image: 'img/sp3.webp',
+    },
+    {
+        id: 4,
+        name: 'Máy Tính Mini Gấu Bỏ Túi Dễ Thương',
+        price: '29.000₫',
+        oldPrice: '49.000₫',
+        link: '/may-tinh-mini-gau-bo-tui-de-thuong',
+        image: 'img/sp4.webp',
+    },
+    {
+      id: 5,
+      name: 'Máy Tính Mini Gấu Bỏ Túi Dễ Thương',
+      price: '29.000₫',
+      oldPrice: '49.000₫',
+      link: '/may-tinh-mini-gau-bo-tui-de-thuong',
+      image: 'img/sp4.webp',
+  },
+  {
+    id: 6,
+    name: 'Máy Tính Mini Gấu Bỏ Túi Dễ Thương',
+    price: '29.000₫',
+    oldPrice: '49.000₫',
+    link: '/may-tinh-mini-gau-bo-tui-de-thuong',
+    image: 'img/sp4.webp',
+}
+];
 
-              <div className={styles.tab_content}>
-                <div className={styles.contentfill}>
-                  <div className={styles.swiper_container}>
-                    <div className={styles.swiper_wrapper}>                                    
-                      <Slide_item/>
-                      <Slide_item/>
-                      <Slide_item/>
-                      <Slide_item/>
-                      <Slide_item/>
-                      <Slide_item/>                      
-                      <Slide_item/>
-                      <Slide_item/>                                            
+return (
+  <section className={clsx(styles.section_4,"section-4")}>
+    <section className={styles.section_product_forYou}>
+      <div className={styles.container}>
+      <div className={clsx(styles.block_title,styles.clearfix)}>
+        <h2>VĂN PHÒNG PHẨM CHO BẠN</h2>
+        {/* <ul className={clsx(styles.tab_title,styles.clearfix)}>
+          <li className={styles.tab_link}><span>Sách</span></li>
+          <li className={styles.tab_link}><span>Vở</span></li>
+          <li className={styles.tab_link}><span>Bút</span></li>
+          <li className={styles.tab_link}><span>Bộ cắt dán</span></li>
+          <li className={styles.tab_link}><span>Bút màu</span></li>
+        </ul>                 */}
+      </div>
+        <div className={styles.block_product}>
+          <Swiper
+            modules={[Navigation, Pagination]}
+            slidesPerView={4}
+            spaceBetween={30}
+            navigation
+            pagination={{ clickable: true }}
+            breakpoints={{
+                300: { slidesPerView: 2, spaceBetween: 15 },
+                500: { slidesPerView: 2, spaceBetween: 20 },
+                640: { slidesPerView: 3, spaceBetween: 20 },
+                768: { slidesPerView: 3, spaceBetween: 20 },
+                991: { slidesPerView: 3, spaceBetween: 30 },
+                1200: { slidesPerView: 4, spaceBetween: 30 }
+            }}
+          >
+            {products.map((product) => (
+              <SwiperSlide key={product.id} className={styles.swiper_slide}>
+                <div className={styles.product_block_item}>
+                  <a href={product.link} className={styles.product_transition}>
+                    <img className={styles.product_thumbnail} src={product.image} alt={product.name} />
+                  </a>
+                  <div className={styles.product_info}>
+                    <a href={product.link} className={styles.item_product_name}>{product.name}</a>
+                    <div className={styles.product_price}>
+                      <span className={styles.price}>{product.price}</span>
+                      {product.oldPrice && <span className={styles.old_price}>{product.oldPrice}</span>}
                     </div>
-                    <div ></div>
+                  </div>
+                  <div className={styles.action_cart}>
+                    <button className={styles.cart_button} onClick={() => window.location.href = product.link}>
+                      Tùy chọn
+                    </button>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
-      </section>
+      </div>
     </section>
-  )
+  </section>
+  );
 }
 
 function Section_Service(){
   return(
-    <section className={styles.section_service}>
+    <section className={styles.section_service} id="service">
       <section className={styles.sub_sec_service}>
         <div className={styles.container}>
           <div className={styles.service_content}>
