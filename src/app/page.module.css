@@ -496,6 +496,10 @@
   height: 270px;
 }
 
+.block_product .product_block_item:hover .product_transition .product_thumbnail{
+  transform: scale(1.05);
+}
+
 .block_product .product_block_item .product_transition .product_thumbnail{
   max-width: 100%;
   max-height: 100%;
