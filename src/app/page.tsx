@@ -1,7 +1,7 @@
 "use client";
 import clsx from "clsx";
 import Image from "next/image";
-import "./resetCss.css";
+import "resetCss/resetCss.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Link from 'next/link';
 import { useState, useEffect } from "react";
