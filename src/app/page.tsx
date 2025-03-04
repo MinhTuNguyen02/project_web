@@ -146,10 +146,63 @@ function HeaderMenu(){
               Danh mục sản phẩm
             </div>
             <div className={styles.list_menu}>
-              <div className={styles.contentfill}>
-                <div className={styles.swiper_wrapper}></div>
-                <div></div>
-              </div>
+              <ul className={styles.item_big}>
+                <li className={styles.nav_item}>
+                  <a href="">VPP Học Sinh</a>
+                  <ul className={styles.item_small}>
+                    <li><a href="">Vở</a></li>
+                    <li><a href="">Bút</a></li>
+                    <li><a href="">Balo</a></li>
+                    <li><a href="">Bọc vở</a></li>
+                    <li><a href="">Nhãn vở</a></li>
+                    <li><a href="">Tẩy</a></li>
+                  </ul>
+                </li>
+                <li className={styles.nav_item}>
+                  <a href="">VPP Văn Phòng</a>
+                  <ul className={styles.item_small}>
+                    <li><a href="">Kẹp tài liệu</a></li>
+                    <li><a href="">Sổ tài liệu</a></li>
+                    <li><a href="">Bắn ghim</a></li>
+                    <li><a href="">Giấy note</a></li>
+                    <li><a href="">Giấy in</a></li>
+                    <li><a href="">Trang tri văn phòng</a></li>
+                  </ul>
+                </li>
+                <li className={styles.nav_item}>
+                  <a href="">Dụng cụ vẽ</a>
+                  <ul className={styles.item_small}>
+                    <li><a href="">Bút vẽ</a></li>
+                    <li><a href="">Màu vẽ</a></li>
+                    <li><a href="">Khay - Cọ vẽ</a></li>
+                    <li><a href="">Tập vẽ - Giấy vẽ</a></li>
+                    <li><a href="">Bộ vẽ sáng tạo</a></li>
+                    <li><a href="">Giá vẽ - khung vẽ</a></li>
+                  </ul>
+                </li>
+                <li className={styles.nav_item}>
+                  <a href="">Bút viết</a>
+                  <ul className={styles.item_small}>
+                    <li><a href="">Bút chì</a></li>
+                    <li><a href="">Bút bi</a></li>
+                    <li><a href="">Bút nước</a></li>
+                    <li><a href="">Bút lông</a></li>
+                    <li><a href="">Bút dạ quang</a></li>
+                    <li><a href="">Bút mực</a></li>
+                  </ul>
+                </li>
+                <li className={styles.nav_item}>
+                  <a href="">Sản phẩm về giấy</a>
+                  <ul className={styles.item_small}>
+                    <li><a href="">Sổ các loại</a></li>
+                    <li><a href="">Tập - Vở</a></li>
+                    <li><a href="">Giấy note</a></li>
+                    <li><a href="">Sticker</a></li>
+                    <li><a href="">Các loại giấy khác</a></li>
+                    <li><a href="">Nhãn vở</a></li>
+                  </ul>
+                </li>
+              </ul>
             </div>
           </div>
 
@@ -208,6 +261,7 @@ function Slogan() {
 
 function Slider(){
   return(
+    <section className="section-1">
     <Swiper
     modules={[Navigation, Pagination, Autoplay]}
     autoplay={{
@@ -228,6 +282,7 @@ function Slider(){
       <img src="img/slider3.jpg" alt="Slide 3" />
     </SwiperSlide>
   </Swiper>
+  </section>
   )
 }
 

@@ -55,7 +55,15 @@ div{
 }
 
 
+.section-1 .swiper-button-next::after, .section-1 .swiper-button-prev::after{
+  font-size: 18px;
+  font-weight: 700;
+}
 
+.section-1 .swiper-button-next, .section-1 .swiper-button-prev{
+  width: 45px;
+  height: 45px;
+}
 
 .section-3 .swiper-button-next, .section-3 .swiper-button-prev{
   visibility: hidden;
