@@ -221,7 +221,7 @@ function HeaderMenu(){
               <i className="fa-solid fa-bullhorn"></i>
               Tin tức
             </a>
-            <a href="" title="Liên hệ">
+            <a href="/contact" title="Liên hệ">
               <i className="fa-solid fa-square-phone"></i>
               Liên hệ
             </a>
