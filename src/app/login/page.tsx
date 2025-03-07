@@ -5,18 +5,14 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import React, { useState } from "react";
 
-// Import Header và Footer từ thư mục component
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 
 export default function Home() {
   return (
     <div>
-      {/* Header */}
       <Header/>
-      {/* Content */}
       <Login/>
-      {/* Footer */}
       <Footer/>
     </div>
   );
@@ -32,7 +28,12 @@ function Login() {
   return (
     <div className="page_login">
       <div className="container">
-        <h1 className="title-head">ĐĂNG NHẬP TÀI KHOẢN</h1>
+      <div className="news-banner">
+      <div className="breadcrumb">
+         <span>Trang chủ </span> / <span> Đăng nhập tài khoản</span>
+      </div>
+      <h1 className="banner-title">ĐĂNG NHẬP TÀI KHOẢN</h1>
+      </div>
         <div className="account-box-shadow">
           {/* Tabs */}
           <div className="auth-tabs">
@@ -109,7 +110,7 @@ function Login() {
           )}
 
           <p className="privacy-text">
-            Template Stationery cam kết bảo mật và sẽ không bao giờ đăng hay chia sẻ thông tin mà chưa có được sự đồng ý của bạn.
+          Copyright © 2025 "HEHEHE" companry. All rights reserved..
           </p>
 
           {/* Social Login */}

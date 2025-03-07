@@ -196,10 +196,10 @@ export function HeaderMenu() {
               <i className="fa-solid fa-shield-heart"></i>
               Dịch vụ
             </a>
-            <a href="" title="Tin tức">
+            <Link href="/news" title="Tin tức">
               <i className="fa-solid fa-bullhorn"></i>
               Tin tức
-            </a>
+            </Link>
             <a href="" title="Liên hệ">
               <i className="fa-solid fa-square-phone"></i>
               Liên hệ
