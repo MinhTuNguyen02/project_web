@@ -7,18 +7,26 @@ import Link from 'next/link';
 import styles from './page.module.css';
 import Login from "./login.tsx";
 
+<<<<<<< HEAD
 import "./login_css.css";
+=======
+import React, { useState } from "react";
+
+import Header from "../component/Header";
+import Footer from "../component/Footer";
+>>>>>>> origin/huutri
 
 export default function Home() {
   return (
     <div>
-      {/* Header */}
       <Header/>
+<<<<<<< HEAD
       {/* Slider */}
   
       {/* Content */}
+=======
+>>>>>>> origin/huutri
       <Login/>
-      {/* Footer */}
       <Footer/>
     </div>
   );
@@ -33,6 +41,7 @@ function Header(){
   )
 }
 
+<<<<<<< HEAD
 function HeaderTop(){
   return(
     <div className={styles.header_top}>
@@ -44,14 +53,89 @@ function HeaderTop(){
                 <img className={styles.img_logo} src="/img/logo.webp" alt=""/>
               </picture>
             </a>
+=======
+  const handleTabChange = (tab: "login" | "register") => {
+    setActiveTab(tab);
+  };
+
+  return (
+    <div className="page_login">
+      <div className="container">
+      <div className="news-banner">
+      <div className="breadcrumb">
+         <span>Trang chủ </span> / <span> Đăng nhập tài khoản</span>
+      </div>
+      <h1 className="banner-title">ĐĂNG NHẬP TÀI KHOẢN</h1>
+      </div>
+        <div className="account-box-shadow">
+          {/* Tabs */}
+          <div className="auth-tabs">
+            <button
+              className={`auth-tab ${activeTab === "login" ? "active" : ""}`}
+              onClick={() => handleTabChange("login")}
+            >
+              Đăng nhập
+            </button>
+            <button
+              className={`auth-tab ${activeTab === "register" ? "active" : ""}`}
+              onClick={() => handleTabChange("register")}
+            >
+              Đăng ký
+            </button>
+>>>>>>> origin/huutri
           </div>
 
           <div className={styles.search}>
             <form className={styles.header_search} role="search">
               <input className={styles.input_search}  type="text" placeholder="Tìm kiếm sản phẩm..." autoComplete="off"/>
             </form>
+<<<<<<< HEAD
             <div className={styles.search_icon}>
               <i className="fa-solid fa-magnifying-glass"></i>
+=======
+          ) : (
+            <form className="form-signup">
+              <div className="form-group">
+                <label>Email<span>*</span></label>
+                <input
+                  type="email"
+                  className="form-control"
+                  placeholder="Nhập Địa chỉ Email"
+                />
+              </div>
+              <div className="form-group">
+                <label>Mật khẩu<span>*</span></label>
+                <input
+                  type="password"
+                  className="form-control"
+                  placeholder="Nhập Mật khẩu"
+                />
+              </div>
+              <div className="form-group">
+                <label>Nhập lại mật khẩu<span>*</span></label>
+                <input
+                  type="password"
+                  className="form-control"
+                  placeholder="Nhập lại mật khẩu"
+                />
+              </div>
+              <button type="submit" className="btn-radius">
+                ĐĂNG KÝ
+              </button>
+            </form>
+          )}
+
+          <p className="privacy-text">
+          Copyright © 2025 "HEHEHE" companry. All rights reserved..
+          </p>
+
+          {/* Social Login */}
+          <div className="social-login">
+            <span>hoặc đăng nhập qua</span>
+            <div className="social-buttons">
+              <button className="btn-facebook">Facebook</button>
+              <button className="btn-google">Google</button>
+>>>>>>> origin/huutri
             </div>
           </div>
           
