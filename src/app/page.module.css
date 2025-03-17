@@ -124,9 +124,101 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px){
+  .hotline_account .group_acc .hotline{
+    width: 210px;
+    height: 40px;
+  }
+  .hotline_account .group_acc .hotline a{
+    font-size: 18;
+  }
+  .header .header_top .logo{
+    width: 25%;
+  }
+  .header .header_top .hotline_account{
+    width: 41.6666666667%;
+  }
+  .header .header_top .search{
+    width: 33.3333333333%;
+  }
+  .hotline_account .group_acc li{
+    margin-left: 19px;
+  }
+  .header .header_menu{
+    max-height: 38px;
+  }
+  .slogan{
+    width: 350px;
+  }
+  .header .header_menu .block_menu .menu{
+    text-align: right;
+  }
+  .header .header_menu .block_menu a{
+    margin-left: 25px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .container{
+    max-width: 540px;
+  }
+  .header_menu .menu{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .header .header_menu .block_menu a{
+    margin: 5px 0;
+  }
+  .header_menu .category{
+    max-width: 50px;
+  }
+  .header_menu .category .title{
+    font-size: 0px !important;
+  }
   
-  
+  .header_menu .category .title i{
+    font-size: 17px;
+    margin-left: 36%;
+  }
+  .hotline_account .group_acc .hotline{
+    width: 0;
+    height: 0;
+  }
+  .hotline_account .group_acc .hotline a{
+    font-size: 0;
+  }
+  .header .header_top .logo{
+    width: 30%;
+  }
+  .header .header_top .hotline_account{
+    width: 25%;
+  }
+  .header .header_top .search{
+    width: 45%;
+  }
+  .hotline_account .group_acc li{
+    margin-left: 12px;
+  }
+  .header .header_menu{
+    max-height: 68px;
+  }
+  .slogan{
+    width: calc(100% - 50px);
+    background-color: #9C8350;
+    color: #fff;
+    height: 38px;
+    text-align: center;
+    margin-left: 0 !important;
+  }
+  .slogan span{
+    line-height: 38px;
+  }
+}
+
+@media (max-width: 576px){
+
 }
 
 
@@ -146,7 +238,6 @@
   /* display: inline-block; */
   padding: 0px 10px;
   flex: 0 0 auto;
-  width: 25%;
 }
 
 .img_logo{
@@ -162,8 +253,7 @@
   justify-content: flex-end;
   padding: 0px 10px;
   position: relative;
-  flex: 0 0 auto;
-  width: 33.3333333333%;
+  flex: 0 0 auto;  ;
 }
 
 .input_search{
@@ -201,7 +291,7 @@
   justify-content: flex-end;
   padding: 0px 10px;
   flex: 0 0 auto;
-  width: 41.6666666667%;
+  
 }
 
 .hotline_account .group_acc{
@@ -212,14 +302,10 @@
   display: inline-block;
 }
 
-.hotline_account .group_acc li{
-  margin-left: 19px;
-}
+
 
 .hotline_account .group_acc .hotline{
   background-color: #9c8350;
-  height: 40px;
-  width: 210px;
   border-radius: 40px;
   line-height: 40px;
   text-align: center;
@@ -228,7 +314,6 @@
 
 .hotline_account .group_acc .hotline a{
   color: #fff;
-  font-size: 18px;
   text-decoration: none;
 }
 
@@ -322,7 +407,6 @@
 }
 
 .header .header_menu{
-  height: 38px;
   background-color: #fff;
 }
 
@@ -419,7 +503,7 @@
   margin-left: 30px;
   font-size: 14px;
   font-style: italic;
-  width: 350px;
+  /* width: 350px; */
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -440,7 +524,7 @@
 }
 
 .header .header_menu .block_menu a{
-  margin-left: 25px;
+  /* margin-left: 25px; */
   font-size: 15px;
   text-decoration: none;
   color: #000;
@@ -450,9 +534,7 @@
   color: #9c8350;
 }
 
-.header .header_menu .block_menu .menu{
-  text-align: right;
-}
+
 
 .header .header_menu .block_menu .menu i{
   height: 20px;
