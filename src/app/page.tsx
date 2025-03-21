@@ -1,6 +1,6 @@
 "use client";
 import clsx from "clsx";
-import Image from "next/image";
+// import Image from "next/image";
 import "./resetCss.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Link from 'next/link';

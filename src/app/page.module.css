@@ -374,7 +374,7 @@
     margin-left: 20px !important;
   }
   .footer .footer_content_1{
-    width: 100%;
+    width: 100%
   }
   .footer .footer_content_2{
     width: 50%;
@@ -384,6 +384,9 @@
   }
   .footer .footer_content_4{
     width: 100%;
+  }
+  .header .header_menu .block_menu .category .list_menu{
+    visibility: hidden;
   }
 }
 
@@ -432,7 +435,7 @@
     margin-left: 10px;
   }
   .section_service .sub_sec_service{
-    height: 660px;
+    height: 950px;
   }
   .section_service .service_content .service_left{
     width: 100% !important;
@@ -1199,6 +1202,7 @@
   font-size: 14px;
   color: #333;
   border-radius: 25px !important;
+  text-overflow: ellipsis;
 }
 
 .sign_content .mail_footer .subcribe{
