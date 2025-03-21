@@ -30,7 +30,7 @@ function Login() {
       <div className="container">
       <div className="news-banner">
       <div className="breadcrumb">
-         <span>Trang chủ </span> / <span> Đăng nhập tài khoản</span>
+         <span>Trang chủ </span><span className="separator">/</span><span> Đăng nhập tài khoản</span>
       </div>
       <h1 className="banner-title">ĐĂNG NHẬP TÀI KHOẢN</h1>
       </div>

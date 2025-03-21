@@ -45,12 +45,20 @@
     font-style: italic;
   }
   
-  .breadcrumb span:first-child {
-    color: #D3D3D3;
-  }
+  .breadcrumb span:first-child,
+.breadcrumb a:first-child {
+  color: rgba(255, 255, 255, 0.7);
+  opacity: 0.7; 
+  text-decoration: none; 
+}
   .breadcrumb span:last-child {
     color: #FFD700; 
   }
+  .breadcrumb .separator {
+    margin: 0 8px;
+    color: #ccc;
+  }
+  
   
   .banner-title {
     position: relative;

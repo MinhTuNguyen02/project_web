@@ -189,7 +189,7 @@ function NewsPage() {
       <div className="container">
       <div className="news-banner">
       <div className="breadcrumb">
-        <span>Trang chủ</span> / <span>Tất cả tin tức</span>
+        <span>Trang chủ</span><span className="separator">/</span><span>Tất cả tin tức</span>
         </div>
             <h1 className="banner-title">TẤT CẢ TIN TỨC</h1>
         </div>
