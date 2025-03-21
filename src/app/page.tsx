@@ -262,29 +262,36 @@ function Slogan() {
 function Slider(){
   return(
     <section className="section-1">
-    <Swiper
-    modules={[Navigation, Pagination, Autoplay]}
-    autoplay={{
-      delay: 4500,
-      disableOnInteraction: false,
-    }}
-    pagination={{ clickable: true }}
-    navigation
-    className={styles.home_slider}
-  >
-    <SwiperSlide>
-      <img src="img/slider1.webp" alt="Slide 1" />
-    </SwiperSlide>
-    <SwiperSlide>
-      <img src="img/slider2.jpg" alt="Slide 2" />
-    </SwiperSlide>
-    <SwiperSlide>
-      <img src="img/slider3.jpg" alt="Slide 3" />
-    </SwiperSlide>
-  </Swiper>
-  </section>
+      <Swiper
+        modules={[Navigation, Pagination, Autoplay]}
+        autoplay={{
+          delay: 4500,
+          disableOnInteraction: false,
+        }}
+        pagination={{ clickable: true }}
+        navigation
+        className={styles.home_slider}
+      >
+        <SwiperSlide>
+          <Link href="/allProducts">
+            <img src="/img/slider1.webp" alt="Slide 1" />
+          </Link>
+        </SwiperSlide>
+        <SwiperSlide>
+          <Link href="/allProducts">
+            <img src="/img/slider2.jpg" alt="Slide 2" />
+          </Link>
+        </SwiperSlide>
+        <SwiperSlide>
+          <Link href="/allProducts">
+            <img src="/img/slider3.jpg" alt="Slide 3" />
+          </Link>
+        </SwiperSlide>
+      </Swiper>
+    </section>
   )
 }
+
 
 
 
@@ -312,56 +319,56 @@ function CategorySlider() {
     },
   ]
   return (
-  <section className={styles.section_2}>
-    <section className={styles.section_category}>
-      <div className={styles.container}>
-        <div className={styles.cate_list}>
-          <Swiper
-            modules={[Navigation, Autoplay]}
-            slidesPerView={5}
-            spaceBetween={30}
-            loop={false}
-            grabCursor={true}
-            navigation={{
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
-            }}
-            autoplay={false}
-            breakpoints={{
-              300: { slidesPerView: 2, spaceBetween: 5 },
-              640: { slidesPerView: 3, spaceBetween: 30 },
-              768: { slidesPerView: 4, spaceBetween: 30 },
-              992: { slidesPerView: 5, spaceBetween: 30 },
-              1199: { slidesPerView: 5, spaceBetween: 30 },
-            }}
-          >
-            {categories.map((category, index) => (
-              <SwiperSlide key={index}>
-                <div className={styles.cate_item}>
-                  <a className="image" href="#" title={category.title}>
-                    <img
-                      className="image_cate_thumb"
-                      width="75"
-                      height="75"
-                      src={category.imgSrc}
-                      alt={category.title}
-                    />
-                  </a>
-                  <h3 className={styles.title_cate}>
-                    <a href="#" title={category.title}>
-                      {category.title}
-                    </a>
-                  </h3>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          <div className="swiper-button-prev"></div>
-          <div className="swiper-button-next"></div>
+    <section className={styles.section_2}>
+      <section className={styles.section_category}>
+        <div className={styles.container}>
+          <div className={styles.cate_list}>
+            <Swiper
+              modules={[Navigation, Autoplay]}
+              slidesPerView={5}
+              spaceBetween={30}
+              loop={false}
+              grabCursor={true}
+              navigation={{
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+              }}
+              autoplay={false}
+              breakpoints={{
+                300: { slidesPerView: 2, spaceBetween: 5 },
+                640: { slidesPerView: 3, spaceBetween: 30 },
+                768: { slidesPerView: 4, spaceBetween: 30 },
+                992: { slidesPerView: 5, spaceBetween: 30 },
+                1199: { slidesPerView: 5, spaceBetween: 30 },
+              }}
+            >
+              {categories.map((category, index) => (
+                <SwiperSlide key={index}>
+                  <div className={styles.cate_item}>
+                    <Link className="image" href="/allProducts" title={category.title}>
+                      <img
+                        className="image_cate_thumb"
+                        width="75"
+                        height="75"
+                        src={`/img/${category.imgSrc.replace('img/', '')}`}
+                        alt={category.title}
+                      />
+                    </Link>
+                    <h3 className={styles.title_cate}>
+                      <Link href="/allProducts" title={category.title}>
+                        {category.title}
+                      </Link>
+                    </h3>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            <div className="swiper-button-prev"></div>
+            <div className="swiper-button-next"></div>
+          </div>
         </div>
-      </div>
+      </section>
     </section>
-  </section>
   )
 }
 
@@ -407,7 +414,7 @@ function ProductFeaturedSwiper(){
     <section className={styles.section_product_featured}>
       <div className={styles.container}>
         <div className={styles.block_title}>
-          <h2><a href="san-pham-noi-bat" title="Sản phẩm nổi bật">Sản phẩm nổi bật</a></h2>
+          <h2><Link href="/allProducts" title="Sản phẩm nổi bật">Sản phẩm nổi bật</Link></h2>
         </div>
         <div className={styles.block_product}>
           <Swiper
@@ -511,7 +518,9 @@ return (
     <section className={styles.section_product_forYou}>
       <div className={styles.container}>
       <div className={clsx(styles.block_title,styles.clearfix)}>
+        <Link href="/allProducts">
         <h2>VĂN PHÒNG PHẨM CHO BẠN</h2>
+        </Link>
         {/* <ul className={clsx(styles.tab_title,styles.clearfix)}>
           <li className={styles.tab_link}><span>Sách</span></li>
           <li className={styles.tab_link}><span>Vở</span></li>

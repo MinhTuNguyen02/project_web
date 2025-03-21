@@ -127,58 +127,58 @@ export function HeaderMenu() {
             <div className={styles.list_menu}>
               <ul className={styles.item_big}>
                 <li className={styles.nav_item}>
-                  <a href="">VPP Học Sinh</a>
+                  <a href="/products/vpp-hs">VPP Học Sinh</a>
                   <ul className={styles.item_small}>
-                    <li><a href="">Vở</a></li>
-                    <li><a href="">Bút</a></li>
-                    <li><a href="">Balo</a></li>
-                    <li><a href="">Bọc vở</a></li>
-                    <li><a href="">Nhãn vở</a></li>
-                    <li><a href="">Tẩy</a></li>
+                    <li><Link href="/products/vo?subcategory=vo">Vở</Link></li>
+                    <li><Link href="/products/but?subcategory=but">Bút</Link></li>
+                    <li><Link href="/products/balo?subcategory=balo">Balo</Link></li>
+                    <li><Link href="/products/boc-vo?subcategory=boc-vo">Bọc vở</Link></li>
+                    <li><Link href="/products/nhan-vo?subcategory=nhan-vo">Nhãn vở</Link></li>
+                    <li><Link href="/products/tay?subcategory=tay">Tẩy</Link></li>
                   </ul>
                 </li>
                 <li className={styles.nav_item}>
-                  <a href="">VPP Văn Phòng</a>
+                  <a href="/products/vpp-vp">VPP Văn Phòng</a>
                   <ul className={styles.item_small}>
-                    <li><a href="">Kẹp tài liệu</a></li>
-                    <li><a href="">Sổ tài liệu</a></li>
-                    <li><a href="">Bắn ghim</a></li>
-                    <li><a href="">Giấy note</a></li>
-                    <li><a href="">Giấy in</a></li>
-                    <li><a href="">Trang tri văn phòng</a></li>
+                    <li><Link href="/products/kep-tai-lieu?subcategory=kep-tai-lieu">Kẹp tài liệu</Link></li>
+                    <li><Link href="/products/so-tai-lieu?subcategory=so-tai-lieu">Sổ tài liệu</Link></li>
+                    <li><Link href="/products/ban-ghim?subcategory=ban-ghim">Bản ghim</Link></li>
+                    <li><Link href="/products/giay-note?subcategory=giay-note">Giấy note</Link></li>
+                    <li><Link href="/products/giay-in?subcategory=giay-in">Giấy in</Link></li>
+                    <li><Link href="/products/trang-tri-van-phong?subcategory=trang-tri-van-phong">Trang trí văn phòng</Link></li>
                   </ul>
                 </li>
                 <li className={styles.nav_item}>
-                  <a href="">Dụng cụ vẽ</a>
+                  <a href="/products/dcv">Dụng cụ vẽ</a>
                   <ul className={styles.item_small}>
-                    <li><a href="">Bút vẽ</a></li>
-                    <li><a href="">Màu vẽ</a></li>
-                    <li><a href="">Khay - Cọ vẽ</a></li>
-                    <li><a href="">Tập vẽ - Giấy vẽ</a></li>
-                    <li><a href="">Bộ vẽ sáng tạo</a></li>
-                    <li><a href="">Giá vẽ - khung vẽ</a></li>
+                    <li><Link href="/products/but-ve?subcategory=but-ve">Bút vẽ</Link></li>
+                    <li><Link href="/products/mau-ve?subcategory=mau-ve">Màu vẽ</Link></li>
+                    <li><Link href="/products/khay-co-ve?subcategory=khy-co-ve">Khay - Cọ vẽ</Link></li>
+                    <li><Link href="/products/tapve-giayve?subcategory=tapve-giayve">Tập vẽ - Giấy vẽ</Link></li>
+                    <li><Link href="/products/bo-ve-sang-tao?subcategory=bo-ve-sang-tao">Bộ vẽ sáng tạo</Link></li>
+                    <li><Link href="/products/gia-ve-khung-ve?subcategory=gia-ve-khung-ve">Giá vẽ - Khung vẽ</Link></li>
                   </ul>
                 </li>
                 <li className={styles.nav_item}>
-                  <a href="">Bút viết</a>
+                  <a href="/products/but-viet">Bút viết</a>
                   <ul className={styles.item_small}>
-                    <li><a href="">Bút chì</a></li>
-                    <li><a href="">Bút bi</a></li>
-                    <li><a href="">Bút nước</a></li>
-                    <li><a href="">Bút lông</a></li>
-                    <li><a href="">Bút dạ quang</a></li>
-                    <li><a href="">Bút mực</a></li>
+                    <li><Link href="/products/but-chi?subcategory=but-chi">Bút chì</Link></li>
+                    <li><Link href="/products/but-bi?subcategory=but-bi">Bút bi</Link></li>
+                    <li><Link href="/products/but-nuoc?subcategory=but-nuoc">Bút nước</Link></li>
+                    <li><Link href="/products/but-long?subcategory=but-long">Bút lông</Link></li>
+                    <li><Link href="/products/but-da-quang?subcategory=but-da-quang">Bút dạ quang</Link></li>
+                    <li><Link href="/products/but-muc?subcategory=but-muc">Bút mực</Link></li>
                   </ul>
                 </li>
                 <li className={styles.nav_item}>
-                  <a href="">Sản phẩm về giấy</a>
+                  <a href="/products/san-pham-ve-giay">Sản phẩm về giấy</a>
                   <ul className={styles.item_small}>
-                    <li><a href="">Sổ các loại</a></li>
-                    <li><a href="">Tập - Vở</a></li>
-                    <li><a href="">Giấy note</a></li>
-                    <li><a href="">Sticker</a></li>
-                    <li><a href="">Các loại giấy khác</a></li>
-                    <li><a href="">Nhãn vở</a></li>
+                    <li><Link href="/products/so-cac-loai?subcategory=so-cac-loai">Sổ các loại</Link></li>
+                    <li><Link href="/products/tap-vo?subcategory=tap-vo">Tập vở</Link></li>
+                    <li><Link href="/products/giay-notr?subcategory=giay-note">Giấy note</Link></li>
+                    <li><Link href="/products/sticker?subcategory=sticker">Sticker</Link></li>
+                    <li><Link href="/products/cac-loai-giay-khac?subcategory=cac-loai-giay-khac">Các loại giấy khác</Link></li>
+                    <li><Link href="/products/nhan-vo?subcategory=nhan-vo">Nhãn vở</Link></li>
                   </ul>
                 </li>
               </ul>
