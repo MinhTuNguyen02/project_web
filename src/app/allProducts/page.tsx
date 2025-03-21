@@ -2,6 +2,8 @@
 import "./product_css.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import React, { useState, useRef, useEffect } from "react";
+import Link from 'next/link'; // Thêm import Link
+import { useRouter } from 'next/navigation'; // Thêm import useRouter
 
 import Header from "../component/Header";
 import Footer from "../component/Footer";
@@ -17,6 +19,7 @@ export default function Home() {
 }
 
 function ProductPage() {
+  const router = useRouter(); // Thêm useRouter
 
   const [isOpenCategory, setIsOpenCategory] = useState(true);
   const [isOpenPublisher, setIsOpenPublisher] = useState(true);
@@ -99,6 +102,11 @@ function ProductPage() {
     setTimeout(() => {
       scrollToTop();
     }, 100);
+  };
+
+  // Thêm hàm để chuyển hướng đến trang chi tiết sản phẩm
+  const navigateToProductDetail = (productId: string) => {
+    router.push(`/productDetails/${productId}`);
   };
 
   const sampleProducts = [
@@ -725,11 +733,28 @@ function ProductPage() {
               {currentProducts.length > 0 ? (
                 currentProducts.map((product) => (
                   <div key={product.id} className="product-item">
-                    <div className="product-image-wrapper">
+                    {/* Thêm sự kiện onClick cho ảnh sản phẩm */}
+                    <div 
+                      className="product-image-wrapper" 
+                      onClick={() => navigateToProductDetail(product.id)}
+                      style={{ cursor: 'pointer' }}
+                    >
                       <img src={product.image} alt={product.name} className="product-image" />
                     </div>
-                    <h3 className="product-title">{product.name}</h3>
-                    <div className="product-price">
+                    {/* Thêm sự kiện onClick cho tên sản phẩm */}
+                    <h3 
+                      className="product-title" 
+                      onClick={() => navigateToProductDetail(product.id)}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      {product.name}
+                    </h3>
+                    {/* Thêm sự kiện onClick cho giá sản phẩm */}
+                    <div 
+                      className="product-price" 
+                      onClick={() => navigateToProductDetail(product.id)}
+                      style={{ cursor: 'pointer' }}
+                    >
                       <span className="current-price">{formatPrice(product.price)}</span>
                     </div>
                     {product && "buttonType" in product && product.buttonType === "addToCart" && (
