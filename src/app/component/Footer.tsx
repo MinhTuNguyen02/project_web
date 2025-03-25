@@ -1,9 +1,8 @@
 // src/app/components/Footer.tsx
-"use client";
 import styles from "../page.module.css";
 import clsx from "clsx";
 
-export default function Footer() {
+export default function Footer(){
   return(
     <div className={styles.footer}>
       <div className={styles.first_footer}>

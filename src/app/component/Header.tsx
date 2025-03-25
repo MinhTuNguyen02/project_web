@@ -1,58 +1,28 @@
-// src/app/components/Header.tsx
-"use client";
 import styles from "../page.module.css";
 import Link from 'next/link';
 import { useState, useEffect } from "react";
-import clsx from "clsx";
 
-export function BackHeader() {
+
+export default function Header(){
   return(
-    <div className={styles.backHeader}>
-      <a href="#">
-        <i className="fa-solid fa-arrow-up"></i>
-      </a>
-    </div>
-  );
-}
-
-export function Slogan() {
-  const texts = [
-    "Stationery lựa chọn số 1 cho bạn",
-    "Stationery lựa chọn số 1 cho bạn - Hãy đến với chúng tôi",
-  ];
-  const [index, setIndex] = useState(0);
-  const [fade, setFade] = useState(true);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setFade(false);
-      setTimeout(() => {
-        setIndex((prevIndex) => (prevIndex + 1) % texts.length);
-        setFade(true);
-      }, 500);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className={styles.slogan}>
-      <span className={fade ? styles.fade_in : styles.fade_out}>{texts[index]}</span>
+    <div className={styles.header}>
+      <HeaderTop/>
+      <HeaderMenu/>
     </div>
   )
 }
 
-export function HeaderTop() {
+function HeaderTop(){
   return(
     <div className={styles.header_top}>
       <div className={styles.container}>
         <div className={styles.block_top}>
           <div className={styles.logo}>
-            <a href="#" className={styles.logo_link}>
+            <Link href="http://localhost:3000" className={styles.logo_link}>
               <picture>
                 <img className={styles.img_logo} src="/img/logo.webp" alt=""/>
               </picture>
-            </a>
+            </Link>
           </div>
 
           <div className={styles.search}>
@@ -96,12 +66,12 @@ export function HeaderTop() {
     
               <li className={styles.account}>
                 <div className={styles.icon}>
-                <Link href="/login">
+                <Link href="/login"> {/* Dùng <Link> và href="/login" */}
                   <i className="fa-regular fa-user"></i>
                 </Link>
               </div>
             <div className={styles.sign_log}>
-              <Link href="/login">Đăng nhập</Link>
+            <Link href="/login">Đăng nhập</Link> {/* Dùng <Link> và href="/login" */}
               <a href="">Đăng ký</a>
               </div>
             </li>
@@ -113,13 +83,13 @@ export function HeaderTop() {
   )
 }
 
-export function HeaderMenu() {
+function HeaderMenu(){
   return(
     <div className={styles.header_menu}>
       <div className={styles.container}>
         <div className={styles.block_menu}>
 
-          <div className={styles.category}>
+        <div className={styles.category}>
             <div className={styles.title}>
               <i className="fa-solid fa-list-ul"></i>
               Danh mục sản phẩm
@@ -127,7 +97,7 @@ export function HeaderMenu() {
             <div className={styles.list_menu}>
               <ul className={styles.item_big}>
                 <li className={styles.nav_item}>
-                  <a href="/products/vpp-hs">VPP Học Sinh</a>
+                  <Link href="/products/vpp-hs">VPP Học Sinh</Link>
                   <ul className={styles.item_small}>
                     <li><Link href="/products/vo?subcategory=vo">Vở</Link></li>
                     <li><Link href="/products/but?subcategory=but">Bút</Link></li>
@@ -138,7 +108,7 @@ export function HeaderMenu() {
                   </ul>
                 </li>
                 <li className={styles.nav_item}>
-                  <a href="/products/vpp-vp">VPP Văn Phòng</a>
+                  <Link href="/products/vpp-vp">VPP Văn Phòng</Link>
                   <ul className={styles.item_small}>
                     <li><Link href="/products/kep-tai-lieu?subcategory=kep-tai-lieu">Kẹp tài liệu</Link></li>
                     <li><Link href="/products/so-tai-lieu?subcategory=so-tai-lieu">Sổ tài liệu</Link></li>
@@ -149,7 +119,7 @@ export function HeaderMenu() {
                   </ul>
                 </li>
                 <li className={styles.nav_item}>
-                  <a href="/products/dcv">Dụng cụ vẽ</a>
+                  <Link href="/products/dcv">Dụng cụ vẽ</Link>
                   <ul className={styles.item_small}>
                     <li><Link href="/products/but-ve?subcategory=but-ve">Bút vẽ</Link></li>
                     <li><Link href="/products/mau-ve?subcategory=mau-ve">Màu vẽ</Link></li>
@@ -160,7 +130,7 @@ export function HeaderMenu() {
                   </ul>
                 </li>
                 <li className={styles.nav_item}>
-                  <a href="/products/but-viet">Bút viết</a>
+                  <Link href="/products/but-viet">Bút viết</Link>
                   <ul className={styles.item_small}>
                     <li><Link href="/products/but-chi?subcategory=but-chi">Bút chì</Link></li>
                     <li><Link href="/products/but-bi?subcategory=but-bi">Bút bi</Link></li>
@@ -171,7 +141,7 @@ export function HeaderMenu() {
                   </ul>
                 </li>
                 <li className={styles.nav_item}>
-                  <a href="/products/san-pham-ve-giay">Sản phẩm về giấy</a>
+                  <Link href="/products/san-pham-ve-giay">Sản phẩm về giấy</Link>
                   <ul className={styles.item_small}>
                     <li><Link href="/products/so-cac-loai?subcategory=so-cac-loai">Sổ các loại</Link></li>
                     <li><Link href="/products/tap-vo?subcategory=tap-vo">Tập vở</Link></li>
@@ -200,10 +170,10 @@ export function HeaderMenu() {
               <i className="fa-solid fa-bullhorn"></i>
               Tin tức
             </Link>
-            <a href="" title="Liên hệ">
+            <Link href="/contact" title="Liên hệ">
               <i className="fa-solid fa-square-phone"></i>
               Liên hệ
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -211,11 +181,29 @@ export function HeaderMenu() {
   )
 }
 
-export default function Header() {
-  return(
-    <div className={styles.header}>
-      <HeaderTop/>
-      <HeaderMenu/>
+function Slogan() {
+  const texts = [
+    "Stationery lựa chọn số 1 cho bạn",
+    "Stationery lựa chọn số 1 cho bạn - Hãy đến với chúng tôi",
+  ];
+  const [index, setIndex] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false); // Bắt đầu hiệu ứng fade-out
+      setTimeout(() => {
+        setIndex((prevIndex) => (prevIndex + 1) % texts.length);
+        setFade(true); // Bắt đầu hiệu ứng fade-in
+      }, 500); // Đợi 500ms để hoàn thành fade-out trước khi đổi text
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className={styles.slogan}>
+      <span className={fade ? styles.fade_in : styles.fade_out}>{texts[index]}</span>
     </div>
   )
 }

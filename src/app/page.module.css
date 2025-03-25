@@ -85,6 +85,9 @@
   .sign_content .mail_footer .subcribe button{
     font-size: 24px;
   }
+  .hotline_account .group_acc .sign_log{
+    right: calc(100%-90px)
+  }
 }
 
 @media (min-width: 992px) and (max-width: 1200px){
@@ -592,7 +595,7 @@
   width: 130px;
   position: absolute;
   top: 90%;
-  right: 5%;
+  /* right: 5%; */
   background: #fff;
   text-align: center;
   z-index: 99;
