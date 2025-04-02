@@ -433,3 +433,25 @@ opacity: 1;
     margin: 0 3px;
   }
 }
+/* Thêm vào file product_css.css */
+.product-title-link {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
+
+.product-title-link:hover .product-title {
+  color: #a0844f;
+}
+
+.product-image-wrapper a {
+  display: block;
+  cursor: pointer;
+}
+
+.product-image-wrapper a:hover img {
+  opacity: 0.9;
+  transform: scale(1.03);
+  transition: all 0.3s ease;
+}
+

@@ -543,20 +543,6 @@ function ProductDetail() {
                 </div>
               </div>
             </div>
-            
-            {/* Sản phẩm nổi bật */}
-            <div className="featuredProducts">
-              <h3 className="featuredTitle">DANH SÁCH NỔI BẬT</h3>
-              <div className="featuredItem">
-                <div className="featuredImage">
-                  <img src="/img/featured1.jpg" alt="Sản phẩm nổi bật" />
-                </div>
-                <div className="featuredInfo">
-                  <div className="featuredName">Vở viết kẻ ngang nhiễm...</div>
-                  <div className="featuredPrice">12.000₫ <span className="featuredOriginalPrice">41.000₫</span></div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       );      
