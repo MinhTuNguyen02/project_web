@@ -1,6 +1,4 @@
-.page_login {
-    /* display: flex;
-    justify-content: center; */
+.page_admin {
     align-items: center;
     min-height: 70vh;
     background-color: #fff;
@@ -13,81 +11,6 @@
     margin-right: auto;
     padding: 0 10px;
   }
-  
-  .news-banner {
-    background-image: url('/img/banner_background.png'); 
-    background-size: cover;
-    background-position: center;
-    padding: 28px 0;
-    text-align: center;
-    color: white;
-    margin-bottom: 15px;
-    position: relative;
-    width: 100vw; 
-    margin-left: calc(-50vw + 50%); 
-    margin-top: -20px;
-  }
-  
-  .news-banner::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-  }
-  
-  .breadcrumb {
-    position: relative;
-    z-index: 2;
-    font-size: 14px;
-    margin-bottom: 10px;
-    font-style: italic;
-  }
-  
-  .breadcrumb span:first-child,
-.breadcrumb a:first-child {
-  color: rgba(255, 255, 255, 0.7);
-  opacity: 0.7; 
-  text-decoration: none; 
-}
-  .breadcrumb span:last-child {
-    color: #FFD700; 
-  }
-  .breadcrumb .separator {
-    margin: 0 8px;
-    color: #ccc;
-  }
-  
-  
-  .banner-title {
-    position: relative;
-    z-index: 2;
-    font-size: 25px;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding-top: 10px;
-    margin: 0;
-    color: #D3D3D3;
-  }
-  
-  .page_login input[type="email"],
-  .page_login input[type="password"] {
-  width: 100% !important;
-  padding: 10px !important;
-  border: 1px solid #ccc !important;
-  border-radius: 5px !important;
-  transition: all 0.3s ease !important;
-}
-
-
-input[type="email"]:focus,
-input[type="password"]:focus {
-  border-color: #a68b5b; 
-  box-shadow: 0 0 5px rgba(166, 139, 91, 0.5); 
-}
-
     
   .account-box-shadow {
     background: #fff;
@@ -118,13 +41,6 @@ input[type="password"]:focus {
     border-bottom: 2px solid #000;
   }
 
-
-
-  .cust-content{
-    height: 400px;
-    background-color: #97549d;
-  }
-
   .btn-add{
     margin-bottom: 10px;
   }
@@ -139,216 +55,6 @@ input[type="password"]:focus {
     border: 1px solid #000;
     cursor: pointer;
   }
-
-  table{
-    width: 100%;
-    border-collapse: collapse;
-
-  }
-  td, th {
-    border: 1px solid #dddddd;
-    text-align: center;
-    padding: 8px;
-    font-size: 16px;
-  }
-  td{
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-    font-size: 14px;
-  }
-  td button:hover{
-    color: #dddddd;
-  }
-  td button{
-    background-color: #9c8350;
-    color: #fff;
-    margin-left: 5px;
-    border: 1px solid #000;
-    cursor: pointer;
-    font-size: 12px;
-    width: 40px;
-    height: 20px;
-  }
-  .fix{
-    width: 20%;
-  }
-  .btn-fix{
-    text-align: center;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #cfcece;
-  }
-  
-
-
-  .form-signup .form-group {
-    text-align: left;
-    margin-bottom: 15px;
-  }
-  
-  .form-signup .form-group label {
-    font-size: 14px;
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .form-signup .form-group label span {
-    color: red;
-  }
-  
-  .form-control {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 14px;
-  }
-  
-  .forgot-password {
-    display: block;
-    text-align: right;
-    font-size: 14px;
-    margin-bottom: 15px;
-    color: #337ab7;
-    text-decoration: none;
-  }
-  
-  .forgot-password:hover {
-    color: #0056b3;
-  }
-  
-  .btn-radius {
-    width: 100%;
-    padding: 12px;
-    background: #000;
-    color: #fff;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .btn-radius:hover {
-    background: #333;
-  }
-  
-  .privacy-text {
-    font-size: 12px;
-    color: #888;
-    margin: 15px 0;
-  }
-  
-  .social-login {
-    margin-top: 20px;
-  }
-  
-  .social-login span {
-    font-size: 14px;
-    display: block;
-    margin-bottom: 10px;
-  }
-  
-  .social-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-  }
-  
-  .btn-facebook,
-  .btn-google {
-    padding: 10px 20px;
-    font-size: 14px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: #fff;
-  }
-  
-  .btn-facebook {
-    background: #3b5998;
-  }
-  
-  .btn-google {
-    background: #db4437;
-  }
-  
-  .btn-facebook:hover {
-    background: #2d4373;
-  }
-  
-  .btn-google:hover {
-    background: #a33d2e;
-  }
-  .login-header {
-    background: linear-gradient(to right, #ff7e5f, #feb47b); 
-    text-align: center;
-    padding: 20px 0;
-    border-radius: 8px;
-  }
-  
-  .login-header h1 {
-    margin: 0;
-    color: white; 
-    font-size: 24px;
-    font-weight: bold;
-  }
-
-  
-  .info-hv{
-    position: relative;
-    width: 30px;
-    height: 30px;
-    background-color: #9c8350;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-bottom: 50px;
-  }
-  
-  .info-hv i {
-    color: #fff;
-    font-size: 14px;
-  }
-
-  .info-show{
-    position: absolute;
-    left: 45px;
-    top: -10px;
-    width: 300px;
-    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    z-index: 99;
-    opacity: 0;
-    visibility: hidden;
-    background-color: #dddddd;
-  }
-  .info-show p{
-    margin: 8px 14px 8px 14px;
-  }
-  .info-show::before{
-    content: "";
-
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 15px;
-    border-color: #0000 #dddddd #0000 #0000;
-    position: absolute;
-    top: 10px;
-    margin-left: -1px;
-    right: 99.5%;
-  }
-
-  .info-hv:hover .info-show{
-    font-size: 13px;
-    opacity: 1;
-    visibility: visible;
-  }
-
 
   .cate-content{
     background-color: #dddddd;
@@ -404,7 +110,7 @@ input[type="password"]:focus {
   }
 
   .prod-content{
-    position: relative;
+    /* position: relative; */
     display: flex;
     flex-wrap: wrap;
     border-bottom: 1px solid #9c8350;
@@ -554,6 +260,7 @@ input[type="password"]:focus {
   }
 
   .frameInput{
+    z-index: 1;
     position: fixed;
     top: 0;
     left: 0;
@@ -569,7 +276,7 @@ input[type="password"]:focus {
     background-color: #fff;
     width: 700px;
     height: auto;
-    z-index: 3;
+    z-index: 999999;
   }
   .input-container.animate{
     animation: appearForm ease .6s;

@@ -68,7 +68,7 @@ function Content() {
 function MainContent(){
 
   return(
-    <div className="page_login">
+    <div className="page_admin">
       <div className="container">
         <Content/>
       </div>
