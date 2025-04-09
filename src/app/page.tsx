@@ -15,8 +15,6 @@ import Section_Service from "./contentPageHome/Section_Service";
 import Section_Sign from "./contentPageHome/Section_Sign";
 import styles from "./page.module.css";
 
-
-
 export default function Home() {
   return (
     <div className={styles.main}>
