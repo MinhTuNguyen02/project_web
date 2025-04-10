@@ -55,7 +55,7 @@ export const CategoryList = ( {isDisable} ) => {
     setEditMode(true); // Chế độ chỉnh sửa
     setEditingCategory(category); // Lưu danh mục đang chỉnh sửa
     setError(null);
-  };
+  }
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -80,12 +80,11 @@ export const CategoryList = ( {isDisable} ) => {
       } else {
         const createdCategory = await createNewCategoryAPI(newCategory)
         setCategories(prev => [...prev, createdCategory])
-        inputRef.current.focus()
       }
+      inputRef.current.focus()
       closeForm() 
 
     } catch (err) {
-      console.log(err.response?.data?.message)
       setError(err.response?.data?.message.split("-") || 'Không thể thêm danh mục');
     } finally {
       setLoading(false)
@@ -97,10 +96,10 @@ export const CategoryList = ( {isDisable} ) => {
       <div className={clsx('frameInput',vsb)} onClick={closeForm}>
         <div className={clsx('input-container', {animate})} onClick={(e) => e.stopPropagation()}>
           <div className="input-header">
-            <strong>Thêm danh mục</strong>
+            <strong>{editMode?"Sửa danh mục":"Thêm danh mục"}</strong>
             <i className="fa-solid fa-rectangle-xmark" onClick={closeForm}></i>
           </div>
-          <div className="input-content">
+          <div className="input-cate">
             <form onSubmit={handleSubmit}>
               <div className="block-inp">
                 <label htmlFor="categoryName">Tên danh mục</label>
@@ -110,6 +109,8 @@ export const CategoryList = ( {isDisable} ) => {
                   value={newCategory.categoryName} 
                   onChange={handleInputChange} 
                   ref={inputRef}
+                  min={2}
+                  max={50}
                   required
                 />
               </div>
@@ -127,7 +128,7 @@ export const CategoryList = ( {isDisable} ) => {
           </div>
           <div className="input-footer">
             <button onClick={handleSubmit} disabled={loading}>
-              {loading ? 'Đang thêm...' : 'Thêm'}
+              {loading ? (editMode?"Đang sửa":"Đang thêm") : (editMode?"Sửa":"Thêm")}
             </button>
           </div> 
         </div>

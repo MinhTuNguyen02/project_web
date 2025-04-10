@@ -30,3 +30,8 @@ export const createNewProductAPI = async (newProductData) => {
     const response = await axios.post(`${API_ROOT}/v1/products`,newProductData)
     return response.data
 }
+
+export const updateProductAPI = async (productId, updatedProductData) => {
+    const response = await axios.put(`${API_ROOT}/v1/products/${productId}`, updatedProductData)
+    return response.data
+}

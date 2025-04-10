@@ -19,7 +19,7 @@ export default function Home() {
   );
 }
 
-function Content() {
+function MainContent(){
   const [isDisable, setIsDisable] = useState(false);
   const handleCheckboxChange = (event: { target: { checked: boolean | ((prevState: boolean) => boolean) } }) => {
     setIsDisable(event.target.checked); 
@@ -29,9 +29,10 @@ function Content() {
   const handleTabChange = (tab: "category" | "product") => {
     setActiveTab(tab);
   };
-
-  return (
-    <div className="account-box-shadow">
+  return(
+    <div className="page_admin">
+      <div className="container">
+      <div className="account-box-shadow">
       <div className="update">
         <span>Xem</span>
         <label className="switch">
@@ -62,15 +63,6 @@ function Content() {
         <Prod_Content isDisable={isDisable}/>
       )}
     </div>
-  );
-}
-
-function MainContent(){
-
-  return(
-    <div className="page_admin">
-      <div className="container">
-        <Content/>
       </div>
     </div>
   )

@@ -124,31 +124,31 @@
   }
 
   .prod-content .prodImg{
-    width: 10%;
+    width: 8%;
   }
   .prod-content .prodId{
-    width: 25%;
+    width: 23%;
     text-align: center;
     align-content: center;
   }
   .prod-content .prodName{
-    width: 25%;
+    width: 32%;
     text-align: center;
     align-content: center;
   }
   .prod-content .prodInv{
-    width: 10%;
+    width: 7%;
     text-align: center;
     align-content: center;
   }
   .prod-content .prodPrice{
-    width: 15%;
+    width: 12%;
     text-align: center;
     align-content: center;
   }
   
   .prod-content .prodOpt{
-    width: 15%;
+    width: 18%;
     text-align: center;
     align-content: center;
   }
@@ -318,31 +318,62 @@
   .hidden{
     visibility: hidden;
   }
-  .input-container .input-content{
+  /* Category */
+  .input-container .input-cate{
     margin: 20px 0;
   }
-  .input-container .input-content .block-inp{
+  .input-container .input-cate .block-inp{
     width: 80%;
     margin-bottom: 10px;
     justify-self: center;
   }
-  .input-container .input-content label{
+  .input-container .input-cate label{
     font-size: 14px;
   }
-  .input-container .input-content input{
+  .input-container .input-cate input{
     border: 1px solid #000;
     padding: 0;
     font-size: 14px;
   }
+  /* Category */
 
+  /* Product */
+  .input-prod .cate-comboBox-inp{
+    font-size: 13px;
+  }
+  .input-prod form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  .input-container .input-prod{
+    margin: 20px;
+  }
+  .input-container .input-prod .block-inp{
+    width: 40%;
+    margin-bottom: 10px;
+  }
+  .input-container .input-prod label{
+    font-size: 14px;
+  }
+  .input-container .input-prod input{
+    border: 1px solid #000;
+    padding: 0;
+    font-size: 14px;
+  }
+  /* Product */
   .input-container .input-footer{
     margin: 15px;
     font-size: 14px;
   }
 
-  .input-content .error{
+  .error{
     font-size: 13px;
     justify-self: center;
     color: red;
     margin: 10px;
+  }
+
+  input:disabled{
+    background-color: rgb(239,239,239);
   }
