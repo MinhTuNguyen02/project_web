@@ -1,5 +1,5 @@
 // import Image from "next/image"
-export const  Prod_List = ({product, isDisable, onEdit, onAdd}) => {
+export const  Prod_List = ({product, isDisable, onEdit, onAdd, onDelete }) => {
   const handleEdit = () => {
     if (isDisable) {
       onEdit(product) // Gọi hàm chỉnh sửa với danh mục hiện tại
@@ -8,6 +8,11 @@ export const  Prod_List = ({product, isDisable, onEdit, onAdd}) => {
   const handleAdd = () => {
     onAdd(true)
     handleEdit()
+  }
+  const handleDelete = () => {
+    if (isDisable) {
+      onDelete(product._id) // Gọi hàm xóa với product._id
+    }
   }
   return(
     <div className="prod-content">
@@ -28,7 +33,7 @@ export const  Prod_List = ({product, isDisable, onEdit, onAdd}) => {
         <span>{product.productName}</span>
       </div>
       <div className="prodInv">
-        <span>{product.inventory}</span>
+        <span>{product.inventory==0?"Hết":product.inventory}</span>
       </div>
       <div className="prodPrice">
         <span>{product.price}đ</span>
@@ -36,7 +41,7 @@ export const  Prod_List = ({product, isDisable, onEdit, onAdd}) => {
       <div className="prodOpt">
         <button disabled={!isDisable} onClick={handleAdd}>Thêm</button>
         <button disabled={!isDisable} onClick={handleEdit}>Sửa</button>
-        <button disabled={!isDisable}>Xóa</button>
+        <button disabled={!isDisable} onClick={handleDelete}>Xóa</button>
       </div>
     </div>
   )

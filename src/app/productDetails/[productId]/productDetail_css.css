@@ -69,7 +69,6 @@
   .productDetailContent {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
     margin: 0 auto;
     padding: 0 15px;
     max-width: 1200px;
@@ -77,9 +76,11 @@
   
   /* Gallery sản phẩm */
   .productGallery {
-    flex: 0 0 45%;
+    padding-left: 10px;
+    padding-right: 10px;
+    flex: 0 0 auto;
+    width: 75%;
     min-width: 300px;
-    max-width: 450px;
   }
   .purchase-policy-container {
     display: flex;
@@ -154,8 +155,11 @@
   
   /* Thông tin sản phẩm */
   .productInfo {
-    flex: 1;
-    min-width: 300px;
+    flex: 0 0 auto;
+    width: 25%;
+    padding-left: 10px;
+    padding-right: 10px;
+    /* min-width: 300px; */
   }
   
   .productTitle {
@@ -196,11 +200,11 @@
   }
   
   .productDescription {
-    margin-bottom: 15px;
-    line-height: 1.5;
+    margin-top: 40px;
+    /* line-height: 1.5; */
     color: #666;
-    font-size: 13px;
-    max-width: 400px;
+    /* font-size: 13px; */
+    /* max-width: 400px; */
   }
   
   .productOptionsWrapper {
@@ -396,13 +400,23 @@
     align-items: flex-start;
   }
   
+  .policy-item h4{
+    font-size: 14px;
+  }
+  .policy-item p{
+    font-size: 12px;
+    color: #8E8C8C;
+    font-style: italic;
+    margin: 0;
+  }
+
   .policy-item:last-child {
     border-bottom: none;
   }
   
   .policy-icon {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     margin-right: 10px;
     flex-shrink: 0;
   }
@@ -475,3 +489,77 @@
     }
   }
   
+  .top-cont{
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .top-cont-left{
+    flex: 0 0 auto;
+    width: 50%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .top-cont-right{
+    flex: 0 0 auto;
+    width: 50%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .policy-container{
+    border: 1px solid #9c8350;
+    border-radius: 15px;
+    padding: 20px 10px;
+  }
+
+  .relatedProducts{
+    margin-top: 30px;
+    background: #F2F2F2;
+    border-radius: 15px;
+    padding: 15px;
+  }
+
+  .relatedProducts h4{
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  .relatedItem{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .relatedImage img{
+    width: 80px !important;
+    height: 80px !important;
+    margin-right: 10px;
+  }
+
+  .relatedInfo{
+    text-align: left;
+    width: calc(100% - 90px);
+  }
+
+  .relatedInfo .relatedName{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    color: #000;
+    line-height: 1.3;
+    margin-bottom: 5px;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .relatedInfo .relatedPrice{
+    font-size: 13px;
+    color: #DC2028;
+    font-weight: 700;
+  }

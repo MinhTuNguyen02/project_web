@@ -37,8 +37,8 @@ div{
 }
 
 .swiper-button-prev, .swiper-button-next{
-  color: #9C8350;
   background-color: #9C8350;
+  border-radius: 50%;
 }
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
@@ -58,11 +58,23 @@ div{
 .section-1 .swiper-button-next::after, .section-1 .swiper-button-prev::after{
   font-size: 18px;
   font-weight: 700;
+  color: #fff;
 }
 
 .section-1 .swiper-button-next, .section-1 .swiper-button-prev{
   width: 45px;
   height: 45px;
+}
+
+.section-2 .swiper-button-next::after, .section-2 .swiper-button-prev::after{
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.section-2 .swiper-button-next, .section-2 .swiper-button-prev{
+  width: 26px;
+  height: 26px;
 }
 
 .section-3 .swiper-button-next, .section-3 .swiper-button-prev{
@@ -72,10 +84,20 @@ div{
 .section-4 .swiper-button-prev{
   top: 40%;
   right: 98%;
+  width: 30px;
+  height: 30px;
 }
 
 .section-4 .swiper-button-next{
   top: 40%;
-  left: 98%;
+  left: 97%;
+  width: 30px;
+  height: 30px;
+}
+
+.section-4 .swiper-button-next::after, .section-4 .swiper-button-prev::after{
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
 }
 

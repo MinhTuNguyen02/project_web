@@ -1,4 +1,4 @@
-import { fetchProductAPI, fetchCategoryAPI, createNewProductAPI, updateProductAPI } from '../api/index'
+import { fetchProductAPI, fetchCategoryAPI, createNewProductAPI, updateProductAPI, deleteProductAPI } from '../api/index'
 import React, { useState, useEffect, useRef } from 'react'
 import {Prod_List} from "./Prod_List"
 import clsx from "clsx"
@@ -9,8 +9,8 @@ export const Prod_Content = ( {isDisable} ) => {
   const [selectedCategory, setSelectedCategory] = useState('')
   const [selectedCategoryInput, setSelectedCategoryInput] = useState('')
   const [vsb,setVsb] = useState('hidden')
-  const [animate, setAnimate] = useState(false);
-  const [refreshTrigger, setRefreshTrigger] = useState(0);
+  const [animate, setAnimate] = useState(false)
+  const [refreshTrigger, setRefreshTrigger] = useState(0)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
   const inputRef = useRef(null)
@@ -38,8 +38,8 @@ export const Prod_Content = ( {isDisable} ) => {
       img: [],
       quantity: 0
     })
-    setEditMode(false); // Reset chế độ chỉnh sửa
-    setEditingProduct(null); // Reset danh mục đang chỉnh sửa
+    setEditMode(false) // Reset chế độ chỉnh sửa
+    setEditingProduct(null) // Reset danh mục đang chỉnh sửa
     setSelectedCategoryInput('')
     setAddMode(false)
     setRefreshTrigger((prev) => prev + 1)
@@ -57,7 +57,7 @@ export const Prod_Content = ( {isDisable} ) => {
       img: [],
       quantity: 0
     })
-    setEditMode(false); // Chế độ thêm mới 
+    setEditMode(false) // Chế độ thêm mới 
     setError(null)
   }
 
@@ -108,12 +108,12 @@ export const Prod_Content = ( {isDisable} ) => {
   }
 
   const handleInputChange = (e) => {
-      const { id, value } = e.target;
+      const { id, value } = e.target
       setNewProduct((prev) => ({
         ...prev,
         [id]: id === 'img' ? value.split(',') : value // Xử lý img như mảng
-      }));
-  };
+      }))
+  }
   
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -125,13 +125,13 @@ export const Prod_Content = ( {isDisable} ) => {
       categoryId: selectedCategoryInput || newProduct.categoryId, // Sử dụng selectedCategory nếu có
       price: parseFloat(newProduct.price) || 0, // Chuyển price sang số
       quantity: parseInt(newProduct.quantity, 10) || 0 // Chuyển quantity sang số
-    };
+    }
 
     try{
       if(editMode) {
         const updatedProduct = await updateProductAPI(editingProduct._id, productData)
-        setCategories((prev) =>
-          prev.map((cat) => (cat._id === updatedProduct._id ? updatedProduct : cat))
+        setProducts((prev) =>
+          prev.map((prod) => (prod._id === updatedProduct._id ? updatedProduct : prod))
         )
       }else {
         const createdProduct = await createNewProductAPI(productData)
@@ -141,9 +141,24 @@ export const Prod_Content = ( {isDisable} ) => {
       closeForm() 
     } catch (err) {
       console.log(err.response?.data?.message)
-      setError(err.response?.data?.message.split("-") || 'Không thể thêm sản phẩm');
+      setError(err.response?.data?.message.split("-") || 'Không thể thêm sản phẩm')
     } finally {
       setLoading(false)
+    }
+  }
+
+  const handleDelete = async (productId) => {
+    if (window.confirm('Bạn có chắc muốn xóa sản phẩm này?')) {
+      setLoading(true)
+      try {
+        await deleteProductAPI(productId)
+        setProducts((prev) => prev.filter((prod) => prod._id !== productId))
+      } catch (err) {
+        console.log(err.response?.data?.message)
+        setError(err.response?.data?.message?.split('-') || ['Không thể xóa sản phẩm'])
+      } finally {
+        setLoading(false)
+      }
     }
   }
 
@@ -190,12 +205,15 @@ export const Prod_Content = ( {isDisable} ) => {
 
               <div className="block-inp">
                 <label htmlFor="description">Mô tả</label>
-                <input 
-                  type="text" 
+                <textarea 
+                  // type="text" 
                   id="description" 
                   value={newProduct.description} 
                   onChange={handleInputChange} 
                   disabled={editMode?(addMode?true:false):false}
+                  rows={1}
+                  style={{ resize: 'vertical' , width: 264, height: 17.7}}
+                  //style={{ whiteSpace: 'pre-wrap' }} them vao css cho chi tiet san pham
                 />
               </div>
 
@@ -268,6 +286,7 @@ export const Prod_Content = ( {isDisable} ) => {
         isDisable={isDisable} 
         onEdit={openEditForm}
         onAdd={openAddForm}
+        onDelete={handleDelete}
         />)}
       </div>
     </div>

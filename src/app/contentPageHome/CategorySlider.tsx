@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import Link from 'next/link';
 import styles from "../page.module.css";
+import clsx from "clsx";
 
 export default function CategorySlider() {
     const categories = [
@@ -28,7 +29,7 @@ export default function CategorySlider() {
       },
     ]
     return (
-      <section className={styles.section_2}>
+      <section className={clsx(styles.section_2,'section-2')}>
         <section className={styles.section_category}>
           <div className={styles.container}>
             <div className={styles.cate_list}>

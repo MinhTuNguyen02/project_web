@@ -26,6 +26,11 @@ export const fetchProductAPI = async (categoryId = '') => {
     return response.data
 }
 
+export const fetchProductByIdAPI = async (productId) => {
+    const response = await axios.get(`${API_ROOT}/v1/products/${productId}`)
+    return response.data
+}
+
 export const createNewProductAPI = async (newProductData) => {
     const response = await axios.post(`${API_ROOT}/v1/products`,newProductData)
     return response.data
@@ -33,5 +38,10 @@ export const createNewProductAPI = async (newProductData) => {
 
 export const updateProductAPI = async (productId, updatedProductData) => {
     const response = await axios.put(`${API_ROOT}/v1/products/${productId}`, updatedProductData)
+    return response.data
+}
+
+export const deleteProductAPI = async (productId) => {
+    const response = await axios.delete(`${API_ROOT}/v1/products/${productId}`)
     return response.data
 }
