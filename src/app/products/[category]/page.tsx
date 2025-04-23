@@ -1,13 +1,13 @@
-"use client";
-import "./product_css.css";
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import React, { useState, useRef, useEffect } from "react";
-import { useParams, useSearchParams } from 'next/navigation';
-import Link from 'next/link';
+"use client"
+import "./product_css.css"
+import '@fortawesome/fontawesome-free/css/all.min.css'
+import React, { useState, useRef, useEffect } from "react"
+import { useParams, useSearchParams } from 'next/navigation'
+import Link from 'next/link'
 
 
-import Header from "../../component/Header";
-import Footer from "../../component/Footer";
+import Header from "../../component/Header"
+import Footer from "../../component/Footer"
 
 export default function Home() {
   return (
@@ -16,7 +16,7 @@ export default function Home() {
       <CategoryPage/>
       <Footer/>
     </div>
-  );
+  )
 }
 
 
@@ -86,29 +86,29 @@ const categories = [
       { id : 'nhan-vo', name:'Nhãn vở', slug:'nhan-vo',parentId:'san-pham-ve-giay'}
     ]
   }
-];
+]
 
 function CategoryPage() {
-  const params = useParams();
-  const searchParams = useSearchParams();
-  const category = params.category;
-  const subcategory = searchParams.get('subcategory');
-  const productMainRef = useRef<HTMLDivElement>(null);
+  const params = useParams()
+  const searchParams = useSearchParams()
+  const category = params.category
+  const subcategory = searchParams.get('subcategory')
+  const productMainRef = useRef<HTMLDivElement>(null)
 
-  const [products, setProducts] = useState<Product[]>([]);
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-  const [sortedProducts, setSortedProducts] = useState<Product[]>([]);
-  const [selectedCategories, setSelectedCategories] = useState<Record<string, boolean>>({});
-  const [selectedPublishers, setSelectedPublishers] = useState<Record<string, boolean>>({});
-  const [selectedSubCategories, setSelectedSubCategories] = useState<string[]>([]);
+  const [products, setProducts] = useState<Product[]>([])
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
+  const [sortedProducts, setSortedProducts] = useState<Product[]>([])
+  const [selectedCategories, setSelectedCategories] = useState<Record<string, boolean>>({})
+  const [selectedPublishers, setSelectedPublishers] = useState<Record<string, boolean>>({})
+  const [selectedSubCategories, setSelectedSubCategories] = useState<string[]>([])
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [sortOption, setSortOption] = useState('default');
-  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1)
+  const [sortOption, setSortOption] = useState('default')
+  const [loading, setLoading] = useState(true)
 
-  const [isOpenCategory, setIsOpenCategory] = useState(true);
-  const [isOpenPublisher, setIsOpenPublisher] = useState(true);
-  const [isOpenPrice, setIsOpenPrice] = useState(true);
+  const [isOpenCategory, setIsOpenCategory] = useState(true)
+  const [isOpenPublisher, setIsOpenPublisher] = useState(true)
+  const [isOpenPrice, setIsOpenPrice] = useState(true)
 
   const sampleProducts = [
     {
@@ -331,57 +331,57 @@ function CategoryPage() {
       inStock: true,
       buttonType: "addToCart",
     },
-  ];
+  ]
   
 
   useEffect(() => {
     if (subcategory) {
       setSelectedSubCategories(prev => {
         if (!prev.includes(subcategory)) {
-          return [...prev, subcategory];
+          return [...prev, subcategory]
         }
-        return prev;
-      });
+        return prev
+      })
     }
-  }, [subcategory]);
+  }, [subcategory])
   
   
   
-  const productsPerPage = 9;
+  const productsPerPage = 9
 
   interface Product {
-    id: string;
-    name: string;
-    price: number;
-    publisher?: string;
-    createdAt?: string | number | Date; 
-    category?: string | string[];
-    categories?: string[];
-    image: string;
-    rating: number;
-    inStock: boolean;
-    buttonType: string;
+    id: string
+    name: string
+    price: number
+    publisher?: string
+    createdAt?: string | number | Date 
+    category?: string | string[]
+    categories?: string[]
+    image: string
+    rating: number
+    inStock: boolean
+    buttonType: string
   }
   
   const findCategoryInfo = () => {
-    const mainCategory = categories.find(cat => cat.slug === category);
+    const mainCategory = categories.find(cat => cat.slug === category)
     if (mainCategory) {
       return {
         isMainCategory: true,
         category: mainCategory,
         parentCategory: null,
         subCategories: mainCategory.children || [],
-      };
+      }
     }
     for (const main of categories) {
-      const subCat = main.children?.find(sub => sub.slug === category);
+      const subCat = main.children?.find(sub => sub.slug === category)
       if (subCat) {
         return {
           isMainCategory: false,
           category: subCat,
           parentCategory: main,
           subCategories: main.children.filter(sub => sub.slug !== category),
-        };
+        }
       }
     }
     return {
@@ -389,153 +389,153 @@ function CategoryPage() {
       category: null,
       parentCategory: null,
       subCategories: [],
-    };
-  };
+    }
+  }
   
-  const { isMainCategory, category: currentCategory, parentCategory, subCategories } = findCategoryInfo();
+  const { isMainCategory, category: currentCategory, parentCategory, subCategories } = findCategoryInfo()
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        setLoading(true);
-        const data = sampleProducts; 
-        setProducts(data);
-        console.log("Products fetched:", data);
-        setLoading(false);
+        setLoading(true)
+        const data = sampleProducts 
+        setProducts(data)
+        console.log("Products fetched:", data)
+        setLoading(false)
       } catch (error) {
-        console.error("Error fetching products:", error);
-        setLoading(false);
+        console.error("Error fetching products:", error)
+        setLoading(false)
       }
-    };
-    fetchProducts();
-  }, []);
-    let filtered: Product[] = [...products];
+    }
+    fetchProducts()
+  }, [])
+    let filtered: Product[] = [...products]
     useEffect(() => {
       if (!products.length) {
-        setFilteredProducts([]);
-        return;
+        setFilteredProducts([])
+        return
       }  
-      let filtered = [...products];
+      let filtered = [...products]
       if (category || selectedSubCategories.length > 0) {
         filtered = filtered.filter(product => {
-          const productCategories = getProductCategories(product);
+          const productCategories = getProductCategories(product)
 
           if (selectedSubCategories.length > 0) {
-            return selectedSubCategories.some(subCat => productCategories.includes(subCat));
+            return selectedSubCategories.some(subCat => productCategories.includes(subCat))
           }
 
           if (category) {
             if (typeof category === 'string' && productCategories.includes(category)) {
-              return true;
+              return true
             }
 
-            const mainCategory = categories.find(cat => cat.slug === category);
+            const mainCategory = categories.find(cat => cat.slug === category)
             if (mainCategory) {
               return mainCategory.children.some(child => 
                 productCategories.includes(child.slug)
-              );
+              )
             }
           }
           
-          return false;
-        });
+          return false
+        })
       }
-      console.log("Filtered products:", filtered);
-      setFilteredProducts(filtered);
-    }, [category, selectedSubCategories, products]);  
+      console.log("Filtered products:", filtered)
+      setFilteredProducts(filtered)
+    }, [category, selectedSubCategories, products])  
 
   useEffect(() => {
-    let sorted = [...filteredProducts];
+    let sorted = [...filteredProducts]
     switch (sortOption) {
       case 'name-az':
-        sorted.sort((a, b) => a.name.localeCompare(b.name));
-        break;
+        sorted.sort((a, b) => a.name.localeCompare(b.name))
+        break
       case 'name-za':
-        sorted.sort((a, b) => b.name.localeCompare(a.name));
-        break;
+        sorted.sort((a, b) => b.name.localeCompare(a.name))
+        break
       case 'price-asc':
-        sorted.sort((a, b) => a.price - b.price);
-        break;
+        sorted.sort((a, b) => a.price - b.price)
+        break
       case 'price-desc':
-        sorted.sort((a, b) => b.price - a.price);
-        break;
+        sorted.sort((a, b) => b.price - a.price)
+        break
       default:
-        sorted.sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime());
-        break;
+        sorted.sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime())
+        break
     }
     
-    setSortedProducts(sorted);
-    setCurrentPage(1); 
-  }, [filteredProducts, sortOption]);
+    setSortedProducts(sorted)
+    setCurrentPage(1) 
+  }, [filteredProducts, sortOption])
 
   const getProductCategories = (product: Product): string[] => {
     if (!product.category) {
-      return [];
+      return []
     }
-    return Array.isArray(product.category) ? product.category : [product.category];
-  };
+    return Array.isArray(product.category) ? product.category : [product.category]
+  }
   
   
 
   const handleSubCategoryChange = (subCatSlug: string) => {
     setSelectedSubCategories(prev => {
       if (prev.includes(subCatSlug)) {
-        return prev.filter(slug => slug !== subCatSlug);
+        return prev.filter(slug => slug !== subCatSlug)
       }
-      return [...prev, subCatSlug];
-    });
-  };
+      return [...prev, subCatSlug]
+    })
+  }
   
   // Xử lý khi checkbox danh mục thay đổi
   const handleCategoryChange = (categoryId:string) => {
     setSelectedCategories(prev => ({
       ...prev,
       [categoryId]: !prev[categoryId]
-    }));
-  };
+    }))
+  }
 
   // Xử lý khi checkbox nhà xuất bản thay đổi
   const handlePublisherChange = (publisherId:string) => {
     setSelectedPublishers(prev => ({
       ...prev,
       [publisherId]: !prev[publisherId]
-    }));
-  };
+    }))
+  }
 
   // Xử lý khi thay đổi sắp xếp
   const handleSortChange = (option : string) => {
-    setSortOption(option);
-  };
+    setSortOption(option)
+  }
 
-  const toggleCategory = () => setIsOpenCategory(!isOpenCategory);
-  const togglePublisher = () => setIsOpenPublisher(!isOpenPublisher);
-  const togglePrice = () => setIsOpenPrice(!isOpenPrice);
+  const toggleCategory = () => setIsOpenCategory(!isOpenCategory)
+  const togglePublisher = () => setIsOpenPublisher(!isOpenPublisher)
+  const togglePrice = () => setIsOpenPrice(!isOpenPrice)
 
   // Tính toán sản phẩm cho trang hiện tại
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
-  const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
+  const indexOfLastProduct = currentPage * productsPerPage
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage
+  const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct)
+  const totalPages = Math.ceil(sortedProducts.length / productsPerPage)
 
   const paginate = (pageNumber: number) => {
-      setCurrentPage(pageNumber);
+      setCurrentPage(pageNumber)
       if (productMainRef.current) {
-          productMainRef.current.scrollIntoView({ behavior: 'smooth' });
+          productMainRef.current.scrollIntoView({ behavior: 'smooth' })
       }
-  };
+  }
   const goToPreviousPage = () => {
     if (currentPage > 1) {
-      paginate(currentPage - 1);
+      paginate(currentPage - 1)
     }
-  };
+  }
   const goToNextPage = () => {
     if (currentPage < totalPages) {
-      paginate(currentPage + 1);
+      paginate(currentPage + 1)
     }
-  };
+  }
   const formatPrice = (price:number) => {
-    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
-  };
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price)
+  }
 
   return (
     <div className="page_product">
@@ -733,5 +733,5 @@ function CategoryPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }

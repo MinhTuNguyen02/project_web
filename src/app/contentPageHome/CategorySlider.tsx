@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper/modules";
-import Link from 'next/link';
-import styles from "../page.module.css";
-import clsx from "clsx";
+import { Swiper, SwiperSlide } from "swiper/react"
+import { Navigation, Autoplay } from "swiper/modules"
+import Link from 'next/link'
+import styles from "../page.module.css"
+import clsx from "clsx"
 
 export default function CategorySlider() {
     const categories = [

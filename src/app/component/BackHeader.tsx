@@ -1,4 +1,4 @@
-import styles from "../page.module.css";
+import styles from "./component.module.css"
 
 export default function BackHeader(){
     return(
@@ -7,5 +7,5 @@ export default function BackHeader(){
           <i className="fa-solid fa-arrow-up"></i>
         </a>
       </div>
-    );
+    )
 }

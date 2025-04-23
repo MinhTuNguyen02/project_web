@@ -1,9 +1,9 @@
-"use client"; // Đặt dòng này trên cùng để làm Client Component
-import React from "react";
-import Header from "../component/Header";
-import Footer from "../component/Footer";
-import "./contact_css.css";
-import { useRouter } from "next/navigation"; // Đổi từ "next/router" -> "next/navigation"
+"use client" // Đặt dòng này trên cùng để làm Client Component
+import React from "react"
+import Header from "../component/Header"
+import Footer from "../component/Footer"
+import "./contact_css.css"
+import { useRouter } from "next/navigation" // Đổi từ "next/router" -> "next/navigation"
 
 export default function ContactPage() {
   return (
@@ -17,12 +17,12 @@ export default function ContactPage() {
       {/* Footer */}
       <Footer />
     </div>
-  );
+  )
 }
 
 // Component Banner (Client Component)
 function Banner() {
-  const router = useRouter(); // Hook để điều hướng
+  const router = useRouter() // Hook để điều hướng
 
   return (
     <div className="banner">
@@ -37,7 +37,7 @@ function Banner() {
       </div>
       <h1>LIÊN HỆ</h1>
     </div>
-  );
+  )
 }
 
 function Contact() {
@@ -74,5 +74,5 @@ function Contact() {
         </div>
       </div>
     </section>
-  );
+  )
 }

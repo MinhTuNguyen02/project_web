@@ -45,7 +45,7 @@
     margin: 0.67em 0;
   }
 
-  h3 {
+  h3, h5 {
     margin-top: 0;
   }
   
@@ -191,9 +191,9 @@
   optgroup,
   select,
   textarea {
-    font-family: inherit; /* 1 */
-    font-size: 100%; /* 1 */
-    line-height: 1.15; /* 1 */
+    font-family: inherit; 
+    /* font-size: 100%; 1 */
+    /* line-height: 1.15; 1 */
     margin: 0; /* 2 */
   }
   
@@ -336,7 +336,7 @@
   
   ::-webkit-file-upload-button {
     -webkit-appearance: button; /* 1 */
-    font: inherit; /* 2 */
+    /* font: inherit; 2 */
   }
   
   /* Interactive

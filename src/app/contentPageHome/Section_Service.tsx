@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import styles from "../page.module.css";
+import styles from "../page.module.css"
 
 export default function Section_Service(){
     return(

@@ -1,5 +1,5 @@
-import styles from "../page.module.css";
-import clsx from "clsx";
+import styles from "../page.module.css"
+import clsx from "clsx"
 
 export default function Section_Sign(){
     return(

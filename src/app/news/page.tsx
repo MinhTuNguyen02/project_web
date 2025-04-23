@@ -1,10 +1,10 @@
-"use client";
-import "./news_css.css";
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import React, { useState, useRef } from "react";
+"use client"
+import "./news_css.css"
+import '@fortawesome/fontawesome-free/css/all.min.css'
+import React, { useState, useRef } from "react"
 
-import Header from "../component/Header";
-import Footer from "../component/Footer";
+import Header from "../component/Header"
+import Footer from "../component/Footer"
 
 export default function Home() {
   return (
@@ -13,30 +13,30 @@ export default function Home() {
       <NewsPage/>
       <Footer/>
     </div>
-  );
+  )
 }
 
 function NewsPage() {
-  const [activeTab, setActiveTab] = useState<"latest" | "popular">("latest");
-  const [currentPage, setCurrentPage] = useState(1);
-  const newsContentRef = useRef<HTMLDivElement>(null);
+  const [activeTab, setActiveTab] = useState<"latest" | "popular">("latest")
+  const [currentPage, setCurrentPage] = useState(1)
+  const newsContentRef = useRef<HTMLDivElement>(null)
 
   const handleTabChange = (tab: "latest" | "popular") => {
-    setActiveTab(tab);
-    setCurrentPage(1); 
+    setActiveTab(tab)
+    setCurrentPage(1) 
 
     if (newsContentRef.current) {
-      newsContentRef.current.scrollIntoView({ behavior: "smooth" });
+      newsContentRef.current.scrollIntoView({ behavior: "smooth" })
     }
-  };
+  }
 
   const handlePageChange = (page: number) => {
-    setCurrentPage(page);
+    setCurrentPage(page)
 
     if (newsContentRef.current) {
-      newsContentRef.current.scrollIntoView({ behavior: "smooth" });
+      newsContentRef.current.scrollIntoView({ behavior: "smooth" })
     }
-  };
+  }
 
   const latestNews = [
     {
@@ -102,7 +102,7 @@ function NewsPage() {
       date: "01/02/2025",
       image: "img/id1.webp"
     }
-  ];
+  ]
 
   const popularNews = [
     {
@@ -168,21 +168,21 @@ function NewsPage() {
       date: "01/01/2025",
       image: "img/sp2.webp"
     }
-  ];
+  ]
 
-  const itemsPerPage = 3;
+  const itemsPerPage = 3
 
-  const currentData = activeTab === "latest" ? latestNews : popularNews;
+  const currentData = activeTab === "latest" ? latestNews : popularNews
   
-  const totalPages = Math.ceil(currentData.length / itemsPerPage);
+  const totalPages = Math.ceil(currentData.length / itemsPerPage)
 
   const getCurrentPageData = () => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    return currentData.slice(startIndex, endIndex);
-  };
+    const startIndex = (currentPage - 1) * itemsPerPage
+    const endIndex = startIndex + itemsPerPage
+    return currentData.slice(startIndex, endIndex)
+  }
 
-  const currentNewsData = getCurrentPageData();
+  const currentNewsData = getCurrentPageData()
 
   return (
     <div className="page_news">
@@ -247,7 +247,7 @@ function NewsPage() {
               className="next"
               onClick={() => {
                 if (currentPage < totalPages) {
-                  handlePageChange(currentPage + 1);
+                  handlePageChange(currentPage + 1)
                 }
               }}
               style={{ cursor: "pointer" }}
@@ -269,5 +269,5 @@ function NewsPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }

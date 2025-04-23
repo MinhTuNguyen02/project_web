@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { fetchCategoryAPI, createNewCategoryAPI, updateCategoryAPI } from '../api/index'
 import { Cate_List } from "./Cate_List"
 import clsx from "clsx"
+import { toast } from 'react-toastify';
 
 export const CategoryList = ( {isDisable} ) => {
   const [categories, setCategories] = useState([])
@@ -77,9 +78,11 @@ export const CategoryList = ( {isDisable} ) => {
         setCategories((prev) =>
           prev.map((cat) => (cat._id === updatedCategory._id ? updatedCategory : cat))
         )
+        toast.success("Sửa thành công")
       } else {
         const createdCategory = await createNewCategoryAPI(newCategory)
         setCategories(prev => [...prev, createdCategory])
+        toast.success("Thêm thành công")
       }
       inputRef.current.focus()
       closeForm() 

@@ -1,0 +1,79 @@
+.order-info,
+.shipping-info,
+.order-items {
+  margin-bottom: 20px;
+}
+
+.order-info p,
+.shipping-info p {
+  font-size: 14px;
+  margin: 8px 0;
+}
+
+.order-info strong,
+.shipping-info strong,
+.order-items h3 {
+  font-weight: 600;
+}
+
+.shipping-info h3,
+.order-items h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.order-table-wrapper {
+  overflow-x: auto;
+  margin-top: 10px;
+}
+
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+}
+
+.order-table th,
+.order-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.order-table th {
+  background: #f9f9f9;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.order-table td {
+  font-size: 14px;
+}
+
+.order-table td img{
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+}
+
+.order-total {
+  text-align: right;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.order-total strong {
+  font-weight: 600;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .order-table {
+    min-width: 600px; /* Đảm bảo bảng cuộn ngang trên mobile */
+  }
+}

@@ -1,0 +1,159 @@
+.page_wishlist {
+  padding-bottom: 20px;
+}
+body {
+  margin: 0;
+}
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+.wishlist-container {
+  margin-top: 20px;
+}
+
+.wishlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.wl-banner {
+  background-image: url('/img/banner_background.png');
+  background-size: cover;
+  background-position: center;
+  padding: 28px 0;
+  text-align: center;
+  color: white;
+  margin-bottom: 30px;
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 28px 0;
+  box-sizing: border-box;
+}
+
+
+.breadcrumb {
+  position: relative;
+  z-index: 2;
+  font-size: 14px;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.breadcrumb .separator {
+  margin: 0 8px;
+  color: #ccc;
+}
+
+.breadcrumb span:last-child {
+  color: #FFD700;
+}
+
+.breadcrumb span:first-child,
+.breadcrumb a:first-child {
+color: rgba(255, 255, 255, 0.7);
+opacity: 0.7; 
+text-decoration: none; 
+}
+.breadcrumb .separator {
+margin: 0 8px;
+color: #ccc;
+}
+
+.breadcrumb span:first-child:hover,
+.breadcrumb a:first-child:hover {
+color: rgba(255, 255, 255, 1);
+opacity: 1;
+}
+
+
+.banner-title {
+  position: relative;
+  z-index: 2;
+  font-size: 25px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-top: 10px;
+  margin: 0;
+  color: #D3D3D3;
+}
+
+.wishlist-item {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.wishlist-image-wrapper {
+  margin-bottom: 10px;
+}
+
+.wishlist-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.wishlist-title {
+  font-size: 16px;
+  margin-bottom: 10px;
+  height: 25px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.wishlist-price {
+  color: #9c8350;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.wishlist-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.wishlist-button {
+  background-color: #9c8350;
+  color: white;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.wishlist-button:hover {
+  background-color: #8a703b;
+}
+
+.wishlist-remove-button {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+}
+
+.empty-wishlist {
+  text-align: center;
+  padding: 50px 0;
+}
+
+.btn-shop-now {
+  background-color: #9c8350;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.btn-shop-now:hover {
+  background-color: #8a703b;
+}

@@ -1,87 +1,160 @@
-"use client";
-import "./product_css.css";
+"use client"
+import "./product_css.css"
 import "../resetCss.css"
-import "@fortawesome/fontawesome-free/css/all.min.css";
-import React, { useState, useRef, useEffect } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { fetchCategoryAPI, fetchProductAPI } from "../api/index"; // Import API
-
-import Header from "../component/Header";
-import Footer from "../component/Footer";
+import "@fortawesome/fontawesome-free/css/all.min.css"
+import React, { useState, useRef, useEffect, useContext } from "react"
+import Link from "next/link"
+import { useRouter, useSearchParams } from "next/navigation"
+import { fetchCategoryAPI, fetchProductAPI, addToCartAPI, addToWishlistAPI, removeFromWishlistAPI } from "../api/index"
+import { AuthContext } from "../contexts/AuthContext"
+import { CartContext } from "../contexts/cartContext"
+import { toast, ToastContainer } from "react-toastify"
+import Header from "../component/Header"
+import BackHeader from "../component/BackHeader"
+import Footer from "../component/Footer"
 
 export default function Home() {
   return (
     <div className="page-wrapper">
+      <BackHeader/>
       <Header />
       <ProductPage />
       <Footer />
+      <ToastContainer theme="colored" autoClose={3000}/>
     </div>
-  );
+  )
 }
 
 function ProductPage() {
-  const router = useRouter();
-  const productMainRef = useRef(null);
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const { user } = useContext(AuthContext)
+  const { wishlist, updateCart, updateWishlist } = useContext(CartContext)
+  const productMainRef = useRef(null)
 
-  const [isOpenCategory, setIsOpenCategory] = useState(true);
-  const [isOpenPrice, setIsOpenPrice] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 9;
-  const [sortOption, setSortOption] = useState("default");
-  const [categories, setCategories] = useState([]);
-  const [selectedCategoryId, setSelectedCategoryId] = useState("");
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [isOpenCategory, setIsOpenCategory] = useState(true)
+  const [isOpenPrice, setIsOpenPrice] = useState(true)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [sortOption, setSortOption] = useState("default")
+  const [categories, setCategories] = useState([])
+  const [selectedCategoryId, setSelectedCategoryId] = useState("")
+  const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const [wishlistStatus, setWishlistStatus] = useState({})
+  const productsPerPage = 9
 
-  const toggleCategory = () => setIsOpenCategory(!isOpenCategory);
-  const togglePrice = () => setIsOpenPrice(!isOpenPrice);
+  // Lấy search query từ URL
+  const searchQuery = searchParams.get("search") || ""
+
+  // Khởi tạo wishlistStatus từ wishlist
+  useEffect(() => {
+    if (wishlist?.products) {
+      const status = {}
+      wishlist.products.forEach((p) => {
+        status[p._id] = true
+      })
+      setWishlistStatus(status)
+    }
+  }, [wishlist])
+
+  const toggleCategory = () => setIsOpenCategory(!isOpenCategory)
+  const togglePrice = () => setIsOpenPrice(!isOpenPrice)
 
   const handleSortChange = (option) => {
-    setSortOption(option);
-    setCurrentPage(1);
-    setTimeout(() => scrollToTop(), 100);
-  };
+    setSortOption(option)
+    setCurrentPage(1)
+    setTimeout(() => scrollToTop(), 100)
+  }
 
   const handleCategoryChange = (categoryId) => {
-    setSelectedCategoryId(categoryId);
-    setCurrentPage(1);
-    setTimeout(() => scrollToTop(), 100);
-  };
+    setSelectedCategoryId(categoryId)
+    setCurrentPage(1)
+    setTimeout(() => scrollToTop(), 100)
+  }
 
   const navigateToProductDetail = (productId) => {
-    router.push(`/productDetails/${productId}`);
-  };
+    router.push(`/productDetails/${productId}`)
+  }
+
+  const handleAddToCart = async (productId) => {
+    if (!user) {
+      toast.error("Vui lòng đăng nhập để thêm vào giỏ hàng")
+      router.push("/login")
+      return
+    }
+    try {
+      const response = await addToCartAPI(productId, 1)
+      updateCart(response.cart)
+      toast.success("Đã thêm vào giỏ hàng")
+    } catch (err) {
+      toast.error(err.message || "Không thể thêm vào giỏ hàng")
+    }
+  }
+
+  const handleToggleWishlist = async (productId) => {
+    if (!user) {
+      toast.error("Vui lòng đăng nhập để thêm vào yêu thích")
+      router.push("/login")
+      return
+    }
+    try {
+      let response
+      const isInWishlist = wishlistStatus[productId] || false
+      if (isInWishlist) {
+        response = await removeFromWishlistAPI(productId)
+        toast.success("Đã xóa khỏi yêu thích")
+        setWishlistStatus((prev) => {
+          const newStatus = { ...prev }
+          delete newStatus[productId]
+          return newStatus
+        })
+      } else {
+        response = await addToWishlistAPI(productId)
+        toast.success("Đã thêm vào yêu thích")
+        setWishlistStatus((prev) => ({
+          ...prev,
+          [productId]: true,
+        }))
+      }
+      updateWishlist(response.wishlist)
+    } catch (err) {
+      toast.error(err.message || "Không thể cập nhật yêu thích")
+    }
+  }
 
   // Lấy danh mục
   useEffect(() => {
     const loadCategories = async () => {
       try {
-        const data = await fetchCategoryAPI();
-        setCategories(data);
+        const data = await fetchCategoryAPI()
+        setCategories(data)
       } catch (err) {
-        setError("Không thể tải danh mục");
+        setError("Không thể tải danh mục")
       }
-    };
-    loadCategories();
-  }, []);
+    }
+    loadCategories()
+  }, [])
 
   // Lấy sản phẩm
   useEffect(() => {
     const loadProducts = async () => {
-      setLoading(true);
+      setLoading(true)
       try {
-        const data = await fetchProductAPI(selectedCategoryId);
-        setProducts(data);
+        const data = await fetchProductAPI(selectedCategoryId, searchQuery)
+        if (data.length === 0 && searchQuery) {
+          toast.info("Không tìm thấy sản phẩm phù hợp")
+        }
+        setProducts(data)
       } catch (err) {
-        setError("Không thể tải sản phẩm");
+        setError("Không thể tải sản phẩm")
+        toast.error("Không thể tải sản phẩm")
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
-    loadProducts();
-  }, [selectedCategoryId]);
+    }
+    loadProducts()
+  }, [selectedCategoryId, searchQuery])
 
   // Cuộn lên đầu trang
   const scrollToTop = () => {
@@ -89,54 +162,54 @@ function ProductPage() {
       productMainRef.current.scrollIntoView({
         behavior: "smooth",
         block: "start",
-      });
+      })
     }
-  };
+  }
 
   // Sắp xếp sản phẩm
   const sortProducts = (products) => {
     switch (sortOption) {
       case "name-az":
-        return [...products].sort((a, b) => a.productName.localeCompare(b.productName));
+        return [...products].sort((a, b) => a.productName.localeCompare(b.productName))
       case "name-za":
-        return [...products].sort((a, b) => b.productName.localeCompare(a.productName));
+        return [...products].sort((a, b) => b.productName.localeCompare(a.productName))
       case "price-asc":
-        return [...products].sort((a, b) => a.price - b.price);
+        return [...products].sort((a, b) => a.price - b.price)
       case "price-desc":
-        return [...products].sort((a, b) => b.price - a.price);
+        return [...products].sort((a, b) => b.price - b.price)
       default:
-        return products;
+        return products
     }
-  };
+  }
 
-  const sortedProducts = sortProducts(products);
-  const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+  const sortedProducts = sortProducts(products)
+  const totalPages = Math.ceil(sortedProducts.length / productsPerPage)
+  const indexOfLastProduct = currentPage * productsPerPage
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage
+  const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct)
 
   const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
-    scrollToTop();
-  };
+    setCurrentPage(pageNumber)
+    scrollToTop()
+  }
 
   const goToPreviousPage = () => {
     if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-      scrollToTop();
+      setCurrentPage(currentPage - 1)
+      scrollToTop()
     }
-  };
+  }
 
   const goToNextPage = () => {
     if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-      scrollToTop();
+      setCurrentPage(currentPage + 1)
+      scrollToTop()
     }
-  };
+  }
 
   const formatPrice = (price) => {
-    return price.toLocaleString("vi-VN") + " ₫";
-  };
+    return price.toLocaleString("vi-VN") + " ₫"
+  }
 
   return (
     <div className="page_product">
@@ -146,12 +219,12 @@ function ProductPage() {
             <Link href="/">Trang chủ</Link>
           </span>
           <span className="separator">/</span>
-          <span>Tất cả sản phẩm</span>
+          <span>{searchQuery ? `Tìm kiếm: ${searchQuery}` : "Tất cả sản phẩm"}</span>
         </div>
-        <h1 className="banner-title">TẤT CẢ SẢN PHẨM</h1>
+        <h1 className="banner-title">{searchQuery ? `KẾT QUẢ TÌM KIẾM` : "TẤT CẢ SẢN PHẨM"}</h1>
       </div>
 
-      <div className="container">
+      <div className="all-prod-container">
         <div className="product-container">
           <div className="product-sidebar">
             <div className={`filter-section ${isOpenCategory ? "open" : ""}`}>
@@ -274,6 +347,15 @@ function ProductPage() {
                         alt={product.productName}
                         className="product-image"
                       />
+                      <button
+                        className={`wishlistButton ${wishlistStatus[product._id] ? "active" : ""}`}
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          handleToggleWishlist(product._id)
+                        }}
+                      >
+                        <i className={wishlistStatus[product._id] ? "fas fa-heart" : "far fa-heart"}></i>
+                      </button>
                     </div>
                     <h3
                       className="product-title"
@@ -289,7 +371,10 @@ function ProductPage() {
                     >
                       <span className="current-price">{formatPrice(product.price)}</span>
                     </div>
-                    <button className="product-button custom-button">
+                    <button
+                      className="product-button custom-button"
+                      onClick={() => handleAddToCart(product._id)}
+                    >
                       <i className="fas fa-basket-shopping"></i> Thêm vào giỏ
                     </button>
                   </div>
@@ -331,5 +416,5 @@ function ProductPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }

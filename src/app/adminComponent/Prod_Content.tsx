@@ -2,6 +2,7 @@ import { fetchProductAPI, fetchCategoryAPI, createNewProductAPI, updateProductAP
 import React, { useState, useEffect, useRef } from 'react'
 import {Prod_List} from "./Prod_List"
 import clsx from "clsx"
+import { toast } from 'react-toastify';
 
 export const Prod_Content = ( {isDisable} ) => {
   const [categories, setCategories] = useState([])
@@ -133,9 +134,11 @@ export const Prod_Content = ( {isDisable} ) => {
         setProducts((prev) =>
           prev.map((prod) => (prod._id === updatedProduct._id ? updatedProduct : prod))
         )
+        toast.success(addMode?"Thêm thành công":"Sửa thành công")
       }else {
         const createdProduct = await createNewProductAPI(productData)
         setProducts(prev => [...prev, createdProduct])
+        toast.success("Thêm thành công")
       }
       inputRef.current.focus()
       closeForm() 
@@ -153,6 +156,7 @@ export const Prod_Content = ( {isDisable} ) => {
       try {
         await deleteProductAPI(productId)
         setProducts((prev) => prev.filter((prod) => prod._id !== productId))
+        toast.success("Xóa thành công")
       } catch (err) {
         console.log(err.response?.data?.message)
         setError(err.response?.data?.message?.split('-') || ['Không thể xóa sản phẩm'])

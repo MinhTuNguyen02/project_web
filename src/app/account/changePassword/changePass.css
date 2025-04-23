@@ -1,0 +1,65 @@
+  
+.cp-container h2 {
+    font-size: 19px;
+    line-height: 22px;
+    font-weight: 400;
+    color: #212B25;
+    text-transform: uppercase;
+    margin-bottom: 27px;
+    margin-top: 10px;
+}
+
+.cp-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.cp-form .form-group input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-group input.input-error {
+    border-color: #e74c3c;
+}
+
+.form-group .error {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.cp-form .btn-submit {
+    width: 200px;
+    background: #9c8350;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.cp-form .btn-submit:hover {
+    background: #8a703b;    
+}
+
+.cp-form .btn-submit:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
