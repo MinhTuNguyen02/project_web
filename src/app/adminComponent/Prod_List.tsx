@@ -35,6 +35,9 @@ export const  Prod_List = ({product, isDisable, onEdit, onAdd, onDelete }) => {
       <div className="prodInv">
         <span>{product.inventory==0?"Hết":product.inventory}</span>
       </div>
+      <div className="prodPC">
+        <span>{product.purchaseCount}</span>
+      </div>
       <div className="prodPrice">
         <span>{product.price}đ</span>
       </div>

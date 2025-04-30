@@ -6,12 +6,20 @@
   box-sizing: border-box;
 }
 
+body{
+  margin: 0;
+}
+
 html{
   scroll-behavior: smooth;
   font-size: 62.5%;
-  line-height: 1.6rem;
+  line-height: 1.15;
   font-family: 'roboto', sans-serif;
   box-sizing: border-box;
+}
+
+textarea{
+  font-family: 'roboto', sans-serif;
 }
 
 div{
@@ -19,7 +27,38 @@ div{
   unicode-bidi: isolate;
 }
 
+a {
+  background-color: transparent;
+  text-decoration: none;
+}
 
+ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li{
+  display: list-item;
+  unicode-bidi: isolate;
+}
+
+i{
+  vertical-align: middle;
+}
+
+.clearfix:after{
+  content: "";
+  display: table;
+  clear: both;
+}
+
+img {
+  max-width: 100%;
+  border-style: none;
+  height: auto;
+  vertical-align: middle;
+}
 
 .grid{
   width: 1200px;
@@ -45,15 +84,6 @@ div{
   color: white;
   background-color: black;
 }
-
-@keyframes Fadein{
-  from{
-      opacity: 0;
-  }to{
-      opacity: 1;
-  }
-}
-
 
 .section-1 .swiper-button-next::after, .section-1 .swiper-button-prev::after{
   font-size: 18px;

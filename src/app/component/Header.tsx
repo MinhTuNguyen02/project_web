@@ -100,7 +100,7 @@ function HeaderTop() {
       <div className={styles.container}>
         <div className={styles.block_top}>
           <div className={styles.logo}>
-            <Link href="http://localhost:3000" className={styles.logo_link}>
+            <Link href="/" className={styles.logo_link}>
               <picture>
                 <img className={styles.img_logo} src="/img/logo.webp" alt="" />
               </picture>
@@ -176,7 +176,7 @@ function HeaderTop() {
 
               <li className={styles.account}>
                 <div className={styles.icon}>
-                  <Link href={user ? "/account" : "/login"}>
+                  <Link href={user ? (user.role=="admin"? "/admin" : "/account") : "/login"}>
                     <i className="fa-regular fa-user"></i>
                   </Link>
                 </div>
@@ -190,8 +190,8 @@ function HeaderTop() {
                     </>
                   ) : (
                     <>
-                      <Link href="/login">Đăng nhập</Link>
-                      <Link href="/login">Đăng ký</Link>
+                      <Link href={`/login?tab=${'login'}`}>Đăng nhập</Link>
+                      <Link href={`/login?tab=${'register'}`}>Đăng ký</Link>
                     </>
                   )}
                 </div>
@@ -205,6 +205,12 @@ function HeaderTop() {
 }
 
 function HeaderMenu(){
+  const router = useRouter()
+
+  const handleCategoryClick = (subcategory) => {
+    router.push(`/allProducts?search=${encodeURIComponent(subcategory)}`)
+  }
+
   return(
     <div className={styles.header_menu}>
       <div className={styles.container}>
@@ -218,58 +224,58 @@ function HeaderMenu(){
             <div className={styles.list_menu}>
               <ul className={styles.item_big}>
                 <li className={styles.nav_item}>
-                  <Link href="/products/vpp-hs">VPP Học Sinh</Link>
+                  <p>VPP Học Sinh</p>
                   <ul className={styles.item_small}>
-                    <li><Link href="/products/vo?subcategory=vo">Vở</Link></li>
-                    <li><Link href="/products/but?subcategory=but">Bút</Link></li>
-                    <li><Link href="/products/balo?subcategory=balo">Balo</Link></li>
-                    <li><Link href="/products/boc-vo?subcategory=boc-vo">Bọc vở</Link></li>
-                    <li><Link href="/products/nhan-vo?subcategory=nhan-vo">Nhãn vở</Link></li>
-                    <li><Link href="/products/tay?subcategory=tay">Tẩy</Link></li>
+                    <li onClick={() => handleCategoryClick("Vở")}>Vở</li>
+                    <li onClick={() => handleCategoryClick("Bút")}>Bút</li>
+                    <li onClick={() => handleCategoryClick("Balo")}>Balo</li>
+                    <li onClick={() => handleCategoryClick("Bọc vở")}>Bọc vở</li>
+                    <li onClick={() => handleCategoryClick("Nhãn vở")}>Nhãn vở</li>
+                    <li onClick={() => handleCategoryClick("Tẩy")}>Tẩy</li>
                   </ul>
                 </li>
                 <li className={styles.nav_item}>
-                  <Link href="/products/vpp-vp">VPP Văn Phòng</Link>
+                  <p>VPP Văn Phòng</p>
                   <ul className={styles.item_small}>
-                    <li><Link href="/products/kep-tai-lieu?subcategory=kep-tai-lieu">Kẹp tài liệu</Link></li>
-                    <li><Link href="/products/so-tai-lieu?subcategory=so-tai-lieu">Sổ tài liệu</Link></li>
-                    <li><Link href="/products/ban-ghim?subcategory=ban-ghim">Bản ghim</Link></li>
-                    <li><Link href="/products/giay-note?subcategory=giay-note">Giấy note</Link></li>
-                    <li><Link href="/products/giay-in?subcategory=giay-in">Giấy in</Link></li>
-                    <li><Link href="/products/trang-tri-van-phong?subcategory=trang-tri-van-phong">Trang trí văn phòng</Link></li>
+                    <li onClick={() => handleCategoryClick("Kẹp tài liệu")}>Kẹp tài liệu</li>
+                    <li onClick={() => handleCategoryClick("Sổ tài liệu")}>Sổ tài liệu</li>
+                    <li onClick={() => handleCategoryClick("Bản ghim")}>Bản ghim</li>
+                    <li onClick={() => handleCategoryClick("Giấy note")}>Giấy note</li>
+                    <li onClick={() => handleCategoryClick("Giấy in")}>Giấy in</li>
+                    <li onClick={() => handleCategoryClick("Trang trí văn phòng")}>Trang trí văn phòng</li>
                   </ul>
                 </li>
                 <li className={styles.nav_item}>
-                  <Link href="/products/dcv">Dụng cụ vẽ</Link>
+                  <p>Dụng cụ vẽ</p>
                   <ul className={styles.item_small}>
-                    <li><Link href="/products/but-ve?subcategory=but-ve">Bút vẽ</Link></li>
-                    <li><Link href="/products/mau-ve?subcategory=mau-ve">Màu vẽ</Link></li>
-                    <li><Link href="/products/khay-co-ve?subcategory=khy-co-ve">Khay - Cọ vẽ</Link></li>
-                    <li><Link href="/products/tapve-giayve?subcategory=tapve-giayve">Tập vẽ - Giấy vẽ</Link></li>
-                    <li><Link href="/products/bo-ve-sang-tao?subcategory=bo-ve-sang-tao">Bộ vẽ sáng tạo</Link></li>
-                    <li><Link href="/products/gia-ve-khung-ve?subcategory=gia-ve-khung-ve">Giá vẽ - Khung vẽ</Link></li>
+                    <li onClick={() => handleCategoryClick("Bút vẽ")}>Bút vẽ</li>
+                    <li onClick={() => handleCategoryClick("Màu vẽ")}>Màu vẽ</li>
+                    <li onClick={() => handleCategoryClick("Khay - Cọ vẽ")}>Khay - Cọ vẽ</li>
+                    <li onClick={() => handleCategoryClick("Tập vẽ - Giấy vẽ")}>Tập vẽ - Giấy vẽ</li>
+                    <li onClick={() => handleCategoryClick("Bộ vẽ sáng tạo")}>Bộ vẽ sáng tạo</li>
+                    <li onClick={() => handleCategoryClick("Giá vẽ - khung vẽ")}>Giá vẽ - Khung vẽ</li>
                   </ul>
                 </li>
                 <li className={styles.nav_item}>
-                  <Link href="/products/but-viet">Bút viết</Link>
+                  <p>Bút viết</p>
                   <ul className={styles.item_small}>
-                    <li><Link href="/products/but-chi?subcategory=but-chi">Bút chì</Link></li>
-                    <li><Link href="/products/but-bi?subcategory=but-bi">Bút bi</Link></li>
-                    <li><Link href="/products/but-nuoc?subcategory=but-nuoc">Bút nước</Link></li>
-                    <li><Link href="/products/but-long?subcategory=but-long">Bút lông</Link></li>
-                    <li><Link href="/products/but-da-quang?subcategory=but-da-quang">Bút dạ quang</Link></li>
-                    <li><Link href="/products/but-muc?subcategory=but-muc">Bút mực</Link></li>
+                    <li onClick={() => handleCategoryClick("Bút chì")}>Bút chì</li>
+                    <li onClick={() => handleCategoryClick("Bút mực")}>Bút mực</li>
+                    <li onClick={() => handleCategoryClick("Bút nước")}>Bút nước</li>
+                    <li onClick={() => handleCategoryClick("Bút lông")}>Bút lông</li>
+                    <li onClick={() => handleCategoryClick("Bút dạ quang")}>Bút dạ quang</li>
+                    <li onClick={() => handleCategoryClick("Bút mực")}>Bút mực</li>
                   </ul>
                 </li>
                 <li className={styles.nav_item}>
-                  <Link href="/products/san-pham-ve-giay">Sản phẩm về giấy</Link>
+                  <p>Sản phẩm về giấy</p>
                   <ul className={styles.item_small}>
-                    <li><Link href="/products/so-cac-loai?subcategory=so-cac-loai">Sổ các loại</Link></li>
-                    <li><Link href="/products/tap-vo?subcategory=tap-vo">Tập vở</Link></li>
-                    <li><Link href="/products/giay-notr?subcategory=giay-note">Giấy note</Link></li>
-                    <li><Link href="/products/sticker?subcategory=sticker">Sticker</Link></li>
-                    <li><Link href="/products/cac-loai-giay-khac?subcategory=cac-loai-giay-khac">Các loại giấy khác</Link></li>
-                    <li><Link href="/products/nhan-vo?subcategory=nhan-vo">Nhãn vở</Link></li>
+                    <li onClick={() => handleCategoryClick("Sổ các loại")}>Sổ các loại</li>
+                    <li onClick={() => handleCategoryClick("Tập vở")}>Tập vở</li>
+                    <li onClick={() => handleCategoryClick("Giấy note")}>Giấy note</li>
+                    <li onClick={() => handleCategoryClick("Sticker")}>Sticker</li>
+                    <li onClick={() => handleCategoryClick("Các loại giấy khác")}>Các loại giấy khác</li>
+                    <li onClick={() => handleCategoryClick("Nhãn vở")}>Nhãn vở</li>
                   </ul>
                 </li>
               </ul>

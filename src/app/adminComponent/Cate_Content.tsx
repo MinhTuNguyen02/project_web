@@ -13,7 +13,8 @@ export const CategoryList = ( {isDisable} ) => {
   const inputRef = useRef(null)
   const [newCategory, setNewCategory] = useState({
     categoryName: '',
-    description: ''
+    description: '',
+    img: ''
   })
 
   const [editMode, setEditMode] = useState(false); // Thêm state để phân biệt thêm mới/chỉnh sửa
@@ -22,7 +23,7 @@ export const CategoryList = ( {isDisable} ) => {
   const closeForm = () => { 
     setVsb('hidden')
     setAnimate(false)
-    setNewCategory({ categoryName: '', description: '' })
+    setNewCategory({ categoryName: '', description: '', img: '' })
     setEditMode(false); // Reset chế độ chỉnh sửa
     setEditingCategory(null); // Reset danh mục đang chỉnh sửa
     setError(null)
@@ -31,7 +32,7 @@ export const CategoryList = ( {isDisable} ) => {
   const openForm = () => { 
     setVsb('visible')
     setAnimate(true)
-    setNewCategory({ categoryName: '', description: '' })
+    setNewCategory({ categoryName: '', description: '', img: '' })
     setEditMode(false); // Chế độ thêm mới    
     setError(null)
   }
@@ -51,7 +52,8 @@ export const CategoryList = ( {isDisable} ) => {
     setAnimate(true);
     setNewCategory({
       categoryName: category.categoryName,
-      description: category.description
+      description: category.description,
+      img: category.img
     });
     setEditMode(true); // Chế độ chỉnh sửa
     setEditingCategory(category); // Lưu danh mục đang chỉnh sửa
@@ -123,6 +125,15 @@ export const CategoryList = ( {isDisable} ) => {
                   type="text" 
                   id="description" 
                   value={newCategory.description} 
+                  onChange={handleInputChange} 
+                />
+              </div>
+              <div className="block-inp">
+                <label htmlFor="img">Ảnh</label>
+                <input 
+                  type="text" 
+                  id="img" 
+                  value={newCategory.img} 
                   onChange={handleInputChange} 
                 />
               </div>

@@ -4,7 +4,7 @@ import { toast } from "react-toastify"
 import { getOrdersAPI } from "../api"
 import { Order_List } from "./Order_List"
 
-export const Order_Content = () => {
+export const Order_Content = ( {isDisable} ) => {
   const [orders, setOrders] = useState([])
   const [filterStatus, setFilterStatus] = useState("")
   const [loading, setLoading] = useState(true)
@@ -63,8 +63,27 @@ export const Order_Content = () => {
         <div>Không có đơn hàng nào.</div>
       ) : (
         <div>
+          <div className="orderItem">
+            <div className="orderId">
+              <strong>ID</strong>
+            </div>
+            <div className="orderPrice">
+              <strong>Tổng tiền</strong>
+            </div>
+            <div className="orderStatus">
+              <strong>Trạng thái</strong>
+            </div>
+            <div className="orderDate">
+              <strong>Thời gian</strong>
+            </div>
+            <div className="orderShippingInfo">
+              <strong>Giao đến</strong>
+            </div>
+            <div className="orderBtn">
+            </div>
+          </div>
           {filteredOrders.map((order) => (
-            <Order_List key={order._id} order={order} onStatusUpdate={fetchOrders} />
+            <Order_List key={order._id} order={order} onStatusUpdate={fetchOrders} isDisable={isDisable}/>
           ))}
         </div>
       )}

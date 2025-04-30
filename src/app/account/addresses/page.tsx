@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation"
 import { AuthContext } from "../../contexts/AuthContext"
 import { ToastContainer, toast } from "react-toastify"
 import { getAddressesAPI, addAddressAPI, updateAddressAPI, deleteAddressAPI } from "../../api"
-import "../../resetCss.css"
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import Link from "next/link"
 import styles from "../../page.module.css"

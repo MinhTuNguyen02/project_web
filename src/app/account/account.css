@@ -1,137 +1,137 @@
 .acc-banner {
-    background-image: url('/img/banner_background.png');
-    background-size: cover;
-    background-position: center;
-    padding: 28px 0;
-    text-align: center;
-    color: white;
-    margin-bottom: 30px;
-    position: relative;
-    width: 100%;
-    margin-bottom: 30px;
-    padding: 28px 0;
-    box-sizing: border-box;
-  }
-  
-  
-  .breadcrumb {
-    position: relative;
-    z-index: 2;
-    font-size: 14px;
-    margin-bottom: 10px;
-    font-style: italic;
-  }
-  
-  .breadcrumb .separator {
-    margin: 0 8px;
-    color: #ccc;
-  }
-  
-  .breadcrumb span:last-child {
-    color: #FFD700;
-  }
-  
-  .breadcrumb span:first-child,
-  .breadcrumb a:first-child {
-  color: rgba(255, 255, 255, 0.7);
-  opacity: 0.7; 
-  text-decoration: none; 
-  }
-  .breadcrumb .separator {
+  background-image: url('/img/banner_background.png');
+  background-size: cover;
+  background-position: center;
+  padding: 28px 0;
+  text-align: center;
+  color: white;
+  margin-bottom: 30px;
+  position: relative;
+  width: 100%;
+  margin-bottom: 30px;
+  padding: 28px 0;
+  box-sizing: border-box;
+}
+
+
+.breadcrumb {
+  position: relative;
+  z-index: 2;
+  font-size: 14px;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.breadcrumb .separator {
   margin: 0 8px;
   color: #ccc;
-  }
-  
-  .breadcrumb span:first-child:hover,
-  .breadcrumb a:first-child:hover {
-  color: rgba(255, 255, 255, 1);
-  opacity: 1;
-  }
-  
-  
-  .banner-title {
-    position: relative;
-    z-index: 2;
-    font-size: 25px;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding-top: 10px;
-    margin: 0;
-    color: #D3D3D3;
-  }
+}
 
-  .page-cus-acc{
-    margin-bottom: 30px;
-    padding: 20px 0
-  }
+.breadcrumb span:last-child {
+  color: #FFD700;
+}
 
-  .acc-container{
-    width: 90%;
-    padding: 0 10px;
-    margin: auto;
-  }
+.breadcrumb span:first-child,
+.breadcrumb a:first-child {
+color: rgba(255, 255, 255, 0.7);
+opacity: 0.7; 
+text-decoration: none; 
+}
+.breadcrumb .separator {
+margin: 0 8px;
+color: #ccc;
+}
 
-  .acc-content{
-    display: flex;
-    flex-wrap: wrap;
-  }
+.breadcrumb span:first-child:hover,
+.breadcrumb a:first-child:hover {
+color: rgba(255, 255, 255, 1);
+opacity: 1;
+}
 
-  .acc-content .acc-content-left{
-    padding: 0 10px;
-    flex: 0 0 auto;
-    width: 25%;
-  }
 
-  .acc-content .acc-content-right{
-    padding: 0 10px;
-    flex: 0 0 auto;
-    width: 75%;
-  }
+.banner-title {
+  position: relative;
+  z-index: 2;
+  font-size: 25px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-top: 10px;
+  margin: 0;
+  color: #D3D3D3;
+}
 
-  .block-acc h5{
-    font-size: 19px;
-    font-weight: 400;
-    color: #212B25;
-    margin-bottom: 7px;
-    margin-top: 10px;
-  }
+.page-cus-acc{
+  margin-bottom: 30px;
+  padding: 20px 0
+}
 
-  .block-acc p{
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 16px;
-    margin-bottom: 28px;
-    color: #212B25;
-    position: relative;
-  }
+.acc-container{
+  width: 90%;
+  padding: 0 10px;
+  margin: auto;
+}
 
-  .block-acc a{
-    font-weight: 400;
-    font-size: 14px;
-    color: #333;
-    margin-bottom: 15px;
-    display: block;
-  }
+.acc-content{
+  display: flex;
+  flex-wrap: wrap;
+}
 
-  .acc-content .acc-content-right .acc-detail{
-    margin-bottom: 40px;
-  }
+.acc-content .acc-content-left{
+  padding: 0 10px;
+  flex: 0 0 auto;
+  width: 25%;
+}
 
-  .acc-content .acc-content-right h1{
-    font-size: 19px;
-    line-height: 22px;
-    font-weight: 400;
-    color: #212B25;
-    text-transform: uppercase;
-    margin-bottom: 27px;
-    margin-top: 10px;
-  }
+.acc-content .acc-content-right{
+  padding: 0 10px;
+  flex: 0 0 auto;
+  width: 75%;
+}
 
-  .acc-detail p{
-    margin: 0 0 20px 0;
-    font-size: 15px;
-  }
+.block-acc h5{
+  font-size: 19px;
+  font-weight: 400;
+  color: #212B25;
+  margin-bottom: 7px;
+  margin-top: 10px;
+}
 
-  .acc-detail p strong{
-    font-weight: bold;
-  }
+.block-acc p{
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  margin-bottom: 28px;
+  color: #212B25;
+  position: relative;
+}
+
+.block-acc a{
+  font-weight: 400;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.acc-content .acc-content-right .acc-detail{
+  margin-bottom: 40px;
+}
+
+.acc-content .acc-content-right h1{
+  font-size: 19px;
+  line-height: 22px;
+  font-weight: 400;
+  color: #212B25;
+  text-transform: uppercase;
+  margin-bottom: 27px;
+  margin-top: 10px;
+}
+
+.acc-detail p{
+  margin: 0 0 20px 0;
+  font-size: 15px;
+}
+
+.acc-detail p strong{
+  font-weight: bold;
+}

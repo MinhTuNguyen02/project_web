@@ -1,82 +1,82 @@
 .order-table-wrapper {
-    overflow-x: auto;
-    margin-top: 20px;
-  }
-  
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+}
+
+.order-table th,
+.order-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.order-table th {
+  background: #f9f9f9;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.order-table td {
+  font-size: 14px;
+}
+
+.btn-view-details {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.btn-view-details:hover {
+  background: #0056b3;
+}
+
+.btn-cancel-order {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #dc3545;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+.btn-receive-order {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #2bcb30;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-cancel-order:hover {
+  background: #c82333;
+}
+.btn-receive-order:hover {
+  background: #25941d;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
   .order-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
-    border: 1px solid #e5e5e5;
+    min-width: 600px; /* Đảm bảo bảng cuộn ngang trên mobile */
   }
-  
-  .order-table th,
-  .order-table td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #e5e5e5;
-  }
-  
-  .order-table th {
-    background: #f9f9f9;
-    font-weight: 600;
-    font-size: 14px;
-  }
-  
-  .order-table td {
-    font-size: 14px;
-  }
-  
-  .btn-view-details {
-    display: inline-block;
-    padding: 8px 16px;
-    background: #007bff;
-    color: #fff;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 14px;
-    margin-right: 10px;
-  }
-  
-  .btn-view-details:hover {
-    background: #0056b3;
-  }
-  
-  .btn-cancel-order {
-    display: inline-block;
-    padding: 8px 16px;
-    background: #dc3545;
-    color: #fff;
-    border-radius: 5px;
-    border: none;
-    font-size: 14px;
-    cursor: pointer;
-  }
-  .btn-receive-order {
-    display: inline-block;
-    padding: 8px 16px;
-    background: #2bcb30;
-    color: #fff;
-    border-radius: 5px;
-    border: none;
-    font-size: 14px;
-    cursor: pointer;
-  }
-  
-  .btn-cancel-order:hover {
-    background: #c82333;
-  }
-  .btn-receive-order:hover {
-    background: #25941d;
-  }
-  
-  .error-message {
-    color: #dc3545;
-    font-size: 14px;
-  }
-  
-  @media (max-width: 768px) {
-    .order-table {
-      min-width: 600px; /* Đảm bảo bảng cuộn ngang trên mobile */
-    }
-  }
+}

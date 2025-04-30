@@ -181,7 +181,7 @@
 .hotline_account .group_acc .sign_log{
   width: 130px;
   position: absolute;
-  top: 130%;
+  top: 150%;
   right: -100%;
   background: #fff;
   text-align: center;
@@ -340,7 +340,7 @@
   margin-bottom: 10px;
 }
 
-.header .header_menu .block_menu .category .list_menu>ul>li>a{
+.header .header_menu .block_menu .category .list_menu>ul>li>p{
   font-weight: bold;
   font-size: 14px;
   display: block;
@@ -352,11 +352,12 @@
   margin-bottom: 5px;
 }
 
-.header .header_menu .block_menu .category .list_menu>ul>li .item_small>li>a{
+.header .header_menu .block_menu .category .list_menu>ul>li .item_small>li{
   display: block;
   font-size: 14px;
   line-height: 25px;
   margin-left: 0;  
+  cursor: pointer;
 }
 
 .slogan{
@@ -500,6 +501,7 @@
   color: #A8A6A6;
   margin-bottom: 10px;
   font-size: 14px;
+  text-decoration: none;
 }
 
 .footer .first_footer .footer_menu a:hover{

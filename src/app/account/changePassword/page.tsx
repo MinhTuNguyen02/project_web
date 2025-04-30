@@ -6,7 +6,6 @@ import { ToastContainer, toast } from "react-toastify"
 import { changePasswordAPI, getAddressesAPI } from "../../api"
 import Link from "next/link"
 import styles from "../../page.module.css"
-import "../../resetCss.css"
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import "../account.css"
 import "./changePass.css"

@@ -6,6 +6,7 @@ import { CartContext } from "../contexts/cartContext"
 import { AuthContext } from "../contexts/AuthContext"
 import { toast, ToastContainer } from "react-toastify"
 import { createOrderAPI, getAddressesAPI, deleteCartItemAPI } from "../api"
+import { CITIES, SHIPPING_RATES } from "../../../untils/constant"
 import "./checkout.css"
 
 export default function CheckoutPage() {
@@ -23,9 +24,11 @@ export default function CheckoutPage() {
     phone: "",
     address: "",
     note: "",
+    shippingMethod: "standard"
   })
   const [paymentMethod, setPaymentMethod] = useState("cod")
   const [loadingAddresses, setLoadingAddresses] = useState(true)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   // Chuyển hướng nếu chưa đăng nhập
   useEffect(() => {
@@ -37,13 +40,12 @@ export default function CheckoutPage() {
   // Khởi tạo thông tin từ user
   useEffect(() => {
     if (user) {
-      setShippingInfo({
+      setShippingInfo((prev) => ({
+        ...prev,
         fullName: user.fullName || "",
         email: user.email || "",
-        phone: user.phoneNumber || "",
-        address: "",
-        note: "",
-      })
+        phone: user.phoneNumber || ""
+      }))
     }
   }, [user])
 
@@ -55,16 +57,16 @@ export default function CheckoutPage() {
           setLoadingAddresses(true)
           const response = await getAddressesAPI()
           setAddresses(response.addresses || [])
-          const defaultAddress = response.addresses.find(addr => addr.isDefault)
+          const defaultAddress = response.addresses.find((addr) => addr.isDefault)
           if (defaultAddress) {
             setSelectedAddressId(defaultAddress._id)
-            setShippingInfo({
+            setShippingInfo((prev) => ({
+              ...prev,
               fullName: defaultAddress.recipientName,
               email: user.email || "",
               phone: defaultAddress.phoneNumber,
-              address: defaultAddress.address,
-              note: "",
-            })
+              address: defaultAddress.address
+            }))
           }
         } catch (err) {
           toast.error(err.message || "Không thể tải danh sách địa chỉ")
@@ -76,7 +78,7 @@ export default function CheckoutPage() {
     }
   }, [user])
 
-  // Lấy selectedItems từ query params 
+  // Lấy selectedItems từ query params
   useEffect(() => {
     const items = searchParams.get("selectedItems")
     if (items) {
@@ -100,41 +102,60 @@ export default function CheckoutPage() {
     return null
   }
 
-  const selectedCartItems = cart.items.filter(item =>
+  const selectedCartItems = cart.items.filter((item) =>
     selectedItems.includes(item.productId._id)
   )
 
   const formatPrice = (price) => {
-    return price.toLocaleString("vi-VN") + " ₫"
+    return price.toLocaleString("vi-VN") + "₫"
   }
 
-  const calculateTotal = () => {
+  const calculateItemsTotal = () => {
     return selectedCartItems.reduce(
       (total, item) => total + item.productId.price * item.quantity,
       0
     )
   }
 
+  // Tính phí vận chuyển dựa trên khu vực
+  const calculateShippingFee = (method = shippingInfo.shippingMethod) => {
+    const getCityFromAddress = (address) => {
+      return CITIES.find(city => address.toLowerCase().includes(city.toLowerCase())) || 'default'
+    }
+
+    const city = getCityFromAddress(shippingInfo.address)
+    const { baseFee, distance, rate } = SHIPPING_RATES[city]
+    let shippingFee = baseFee + distance * rate
+    if (method === "express") {
+      shippingFee *= 1.5
+    }
+    return shippingFee
+  }
+
+  const calculateTotal = () => {
+    return calculateItemsTotal() + calculateShippingFee()
+  }
+
   const handleAddressChange = (e) => {
     const addressId = e.target.value
     setSelectedAddressId(addressId)
-    const selectedAddress = addresses.find(addr => addr._id === addressId)
+    const selectedAddress = addresses.find((addr) => addr._id === addressId)
     if (selectedAddress) {
-      setShippingInfo({
+      setShippingInfo((prev) => ({
+        ...prev,
         fullName: selectedAddress.recipientName,
         email: user.email || "",
         phone: selectedAddress.phoneNumber,
-        address: selectedAddress.address,
-        note: shippingInfo.note,
-      })
+        address: selectedAddress.address
+      }))
     } else {
-      setShippingInfo({
+      setShippingInfo((prev) => ({
+        ...prev,
         fullName: user.fullName || "",
         email: user.email || "",
         phone: user.phoneNumber || "",
-        address: "",
-        note: shippingInfo.note,
-      })
+        address: ""
+      }))
     }
   }
 
@@ -144,18 +165,26 @@ export default function CheckoutPage() {
   }
 
   const handlePlaceOrder = async () => {
-    if (!shippingInfo.fullName || !shippingInfo.email || !shippingInfo.phone || !shippingInfo.address) {
+    if (
+      !shippingInfo.fullName ||
+      !shippingInfo.email ||
+      !shippingInfo.phone ||
+      !shippingInfo.address ||
+      !shippingInfo.shippingMethod
+    ) {
       toast.error("Vui lòng điền đầy đủ thông tin bắt buộc")
       return
     }
 
+    setIsSubmitting(true)
     try {
+      const shippingFee = calculateShippingFee()
       const orderData = {
         userId: user._id,
-        items: selectedCartItems.map(item => ({
+        items: selectedCartItems.map((item) => ({
           productId: item.productId._id,
           quantity: item.quantity,
-          price: item.productId.price,
+          price: item.productId.price
         })),
         shippingInfo: {
           fullName: shippingInfo.fullName,
@@ -163,9 +192,11 @@ export default function CheckoutPage() {
           phone: shippingInfo.phone,
           address: shippingInfo.address,
           note: shippingInfo.note,
+          shippingMethod: shippingInfo.shippingMethod
         },
         paymentMethod,
-        total: calculateTotal(),
+        shippingFee,
+        total: calculateTotal()
       }
 
       const response = await createOrderAPI(orderData)
@@ -179,29 +210,37 @@ export default function CheckoutPage() {
       toast.success("Đặt hàng thành công!")
       router.push('/')
     } catch (err) {
-      toast.error(err.message || "Không thể tạo đơn hàng")
+      if (err.message.includes('Tổng tiền không khớp')) {
+        toast.error('Tổng tiền không hợp lệ, vui lòng thử lại')
+      } else if (err.message.includes('Thiếu thông tin')) {
+        toast.error('Vui lòng kiểm tra thông tin đơn hàng')
+      } else {
+        toast.error(err.message || 'Không thể tạo đơn hàng')
+      }
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
   return (
     <div className="page-wrapper">
-      <div className={"checkoutPage"}>        
-        <div className={"container"}>
+      <div className="checkoutPage">
+        <div className="container">
           {selectedCartItems.length === 0 ? (
-            <div className={"emptyCheckout"}>
+            <div className="emptyCheckout">
               <p style={{ margin: "15px 0" }}>
                 Không có sản phẩm nào được chọn.
               </p>
-              <Link href="/cart" className={"btnBackToCart"}>
+              <Link href="/cart" className="btnBackToCart">
                 Quay lại giỏ hàng
               </Link>
             </div>
           ) : (
-            <div className={"checkoutContainer"}>
-              <div className={"checkoutLeft"}>
-                <div className={"customerInfo"}>
+            <div className="checkoutContainer">
+              <div className="checkoutLeft">
+                <div className="customerInfo">
                   <h2>Thông tin khách hàng</h2>
-                  <div className={"formGroup"}>
+                  <div className="formGroup">
                     <label>
                       Họ và tên <span>*</span>
                     </label>
@@ -214,7 +253,7 @@ export default function CheckoutPage() {
                       required
                     />
                   </div>
-                  <div className={"formGroup"}>
+                  <div className="formGroup">
                     <label>
                       Email <span>*</span>
                     </label>
@@ -224,11 +263,11 @@ export default function CheckoutPage() {
                       value={shippingInfo.email}
                       onChange={handleInputChange}
                       placeholder="Nhập email"
-                      required   
-                      disabled                   
+                      required
+                      disabled
                     />
                   </div>
-                  <div className={"formGroup"}>
+                  <div className="formGroup">
                     <label>
                       Số điện thoại <span>*</span>
                     </label>
@@ -242,9 +281,9 @@ export default function CheckoutPage() {
                     />
                   </div>
                 </div>
-                <div className={"shippingInfo"}>
+                <div className="shippingInfo">
                   <h2>Thông tin giao hàng</h2>
-                  <div className={"formGroup"}>
+                  <div className="formGroup">
                     <label>Chọn địa chỉ</label>
                     <select
                       value={selectedAddressId}
@@ -252,14 +291,14 @@ export default function CheckoutPage() {
                       disabled={loadingAddresses}
                     >
                       <option value="">Nhập địa chỉ mới</option>
-                      {addresses.map(addr => (
+                      {addresses.map((addr) => (
                         <option key={addr._id} value={addr._id}>
                           {addr.recipientName}, {addr.phoneNumber}, {addr.address}
                         </option>
                       ))}
                     </select>
                   </div>
-                  <div className={"formGroup"}>
+                  <div className="formGroup">
                     <label>
                       Địa chỉ <span>*</span>
                     </label>
@@ -272,7 +311,21 @@ export default function CheckoutPage() {
                       required
                     />
                   </div>
-                  <div className={"formGroup"}>
+                  <div className="formGroup">
+                    <label>
+                      Phương thức giao hàng <span>*</span>
+                    </label>
+                    <select
+                      name="shippingMethod"
+                      value={shippingInfo.shippingMethod}
+                      onChange={handleInputChange}
+                      required
+                    >
+                      <option value="standard">Giao hàng tiêu chuẩn</option>
+                      <option value="express">Giao hàng nhanh</option>
+                    </select>
+                  </div>
+                  <div className="formGroup">
                     <label>Ghi chú</label>
                     <textarea
                       name="note"
@@ -283,10 +336,10 @@ export default function CheckoutPage() {
                   </div>
                 </div>
               </div>
-              <div className={"checkoutRight"}>
-                <div className={"orderSummary"}>
+              <div className="checkoutRight">
+                <div className="orderSummary">
                   <h2>Đơn hàng của bạn</h2>
-                  <table className={"orderTable"}>
+                  <table className="orderTable">
                     <thead>
                       <tr>
                         <th>Sản phẩm</th>
@@ -297,11 +350,11 @@ export default function CheckoutPage() {
                       {selectedCartItems.map((item) => (
                         <tr key={item.productId._id}>
                           <td>
-                            <div className={"orderProduct"}>
+                            <div className="orderProduct">
                               <img
                                 src={item.productId.img[0] || "/img/placeholder.jpg"}
                                 alt={item.productId.productName}
-                                className={"orderProductImage"}
+                                className="orderProductImage"
                               />
                               <span>
                                 {item.productId.productName} × {item.quantity}
@@ -313,21 +366,21 @@ export default function CheckoutPage() {
                       ))}
                     </tbody>
                   </table>
-                  <div className={"orderTotal"}>
+                  <div className="orderTotal">
                     <p>
-                      <strong>Tạm tính:</strong> {formatPrice(calculateTotal())}
+                      <strong>Tạm tính:</strong> {formatPrice(calculateItemsTotal())}
                     </p>
                     <p>
-                      <strong>Phí vận chuyển:</strong> Miễn phí
+                      <strong>Phí vận chuyển:</strong> {formatPrice(calculateShippingFee())}
                     </p>
                     <p>
                       <strong>Tổng cộng:</strong> {formatPrice(calculateTotal())}
                     </p>
                   </div>
                 </div>
-                <div className={paymentMethod}>
+                <div className="paymentMethod">
                   <h2>Phương thức thanh toán</h2>
-                  <div className={"paymentOption"}>
+                  <div className="paymentOption">
                     <input
                       type="radio"
                       id="cod"
@@ -338,7 +391,7 @@ export default function CheckoutPage() {
                     />
                     <label htmlFor="cod">Thanh toán khi nhận hàng (COD)</label>
                   </div>
-                  <div className={"paymentOption"}>
+                  <div className="paymentOption">
                     <input
                       type="radio"
                       id="bank"
@@ -350,10 +403,7 @@ export default function CheckoutPage() {
                     <label htmlFor="bank">Chuyển khoản ngân hàng</label>
                   </div>
                 </div>
-                <button
-                  className={"btnPlaceOrder"}
-                  onClick={handlePlaceOrder}
-                >
+                <button className="btnPlaceOrder" onClick={handlePlaceOrder}>
                   Hoàn tất đơn hàng
                 </button>
               </div>

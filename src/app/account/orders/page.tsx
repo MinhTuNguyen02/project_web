@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation"
 import { AuthContext } from "../../contexts/AuthContext"
 import { ToastContainer, toast } from "react-toastify"
 import { getAddressesAPI, getUserOrdersAPI, cancelOrderAPI, receiveOrderAPI } from "../../api"
-import "../../resetCss.css"
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import Link from "next/link"
 import styles from "../../page.module.css"
@@ -99,7 +98,7 @@ function Orders() {
   }
 
   const formatPrice = (price) => {
-    return price.toLocaleString("vi-VN") + " ₫"
+    return price.toLocaleString("vi-VN") + "₫"
   }
 
   const tmp = user.fullName.split(" ")
@@ -167,7 +166,7 @@ function Orders() {
                         <tr key={order._id}>
                           <td>#{order._id}</td>
                           <td>{formatDate(order.createdAt)}</td>
-                          <td>{formatPrice(order.total)}</td>
+                          <td>{formatPrice(order.total + order.shippingFee)}</td>
                           <td>{order.status}</td>
                           <td>
                             <Link href={`/account/orders/${order._id}`} className="btn-view-details">

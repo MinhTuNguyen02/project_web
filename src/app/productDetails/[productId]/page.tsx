@@ -176,14 +176,16 @@ function ProductDetail() {
   }
 
   return (
-    <div className="productDetailPage">
-      <div className="productBanner">
+    <div className="productDetailPage">      
+      <div className="productDetail-banner">
         <div className="breadcrumb">
-          <Link href="/">Trang chủ</Link>
+          <span>
+            <Link href="/">Trang chủ</Link>
+          </span>
           <span className="separator">/</span>
           <span>{product.productName}</span>
         </div>
-        <h1 className="bannerTitle">{product.productName.toUpperCase()}</h1>
+        <h1 className="banner-title">{product.productName}</h1>
       </div>
 
       <div className="container">
@@ -223,6 +225,10 @@ function ProductDetail() {
                   <div className="metaItem">
                     <span className="metaLabel">Mã sản phẩm:</span>
                     <span className="metaValue">{product._id}</span>
+                  </div>
+                  <div className="metaItem">
+                    <span className="metaLabel">Đã bán:</span>
+                    <span className="metaValue">{product.purchaseCount}</span>
                   </div>
                   <div className="metaItem">
                     <span className="metaLabel">Tình trạng:</span>

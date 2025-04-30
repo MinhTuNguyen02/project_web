@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
 import { updateOrderStatusAPI } from "../api"
 
-export const Order_List = ({ order, onStatusUpdate }) => {
+export const Order_List = ({ order, onStatusUpdate, isDisable }) => {
   const router = useRouter()
   const [detail, setDetail] = useState(false)
   const formatPrice = (price) => {
@@ -38,13 +38,13 @@ export const Order_List = ({ order, onStatusUpdate }) => {
     switch (order.status) {
       case "Đang chờ xử lý":
         return (
-          <button className="viewButton" onClick={handleUpdateStatus}>
+          <button className="viewButton" onClick={handleUpdateStatus} disabled={!isDisable}>
             Xử lý
           </button>
         )
       case "Đang xử lý":
         return (
-          <button className="viewButton" onClick={handleUpdateStatus}>
+          <button className="viewButton" onClick={handleUpdateStatus} disabled={!isDisable}>
             Đã xong
           </button>
         )
@@ -69,7 +69,7 @@ export const Order_List = ({ order, onStatusUpdate }) => {
           <span>{order._id}</span>
         </div>
         <div className="orderPrice">
-          <span>{formatPrice(order.total)}</span>
+          <span>{formatPrice(order.total + order.shippingFee)}</span>
         </div>
         <div className="orderStatus">
           <span>{order.status}</span>
@@ -91,7 +91,17 @@ export const Order_List = ({ order, onStatusUpdate }) => {
       </div>
       <div className={detail?"order-vsb":"order-hidden"}>
         <p className="order-items-info"><strong>Hình thức thanh toán:</strong> {paymentMethodMap[order.paymentMethod]}</p>
+        <p className="order-items-info"><strong>Ghi chú:</strong> {order.shippingInfo.note}</p>
+        <p className="order-items-info"><strong>Hình thức vận chuyển:</strong> {order.shippingInfo.shippingMethod}</p>
+        <p className="order-items-info"><strong>Phí vận chuyển:</strong> {formatPrice(order.shippingFee)}</p>
         <div className="order-items">
+          <div className="order-item">
+            <span></span>
+            <strong>Tên sản phẩm</strong>
+            <strong>Đơn giá</strong>
+            <strong>Số lượng</strong>
+            <strong>Tổng</strong>
+          </div>
           {order.items.map((item, index) => (
             <div key={index} className="order-item">
               <img src={item.productId?.img?.[0]} alt="" className="item-img"/>

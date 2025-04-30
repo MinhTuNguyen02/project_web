@@ -1,7 +1,7 @@
 "use client"
-import "../resetCss.css"
 import "@fortawesome/fontawesome-free/css/all.min.css"
-import React, { useState, useContext } from "react"
+import React, { useState, useContext, useEffect } from "react"
+import { useSearchParams } from "next/navigation"
 import { AuthContext } from "../contexts/AuthContext"
 import { ToastContainer } from 'react-toastify'
 import { toast } from 'react-toastify'
@@ -28,8 +28,10 @@ export default function LoginPage() {
 }
 
 function Login() {
+  const searchParams = useSearchParams()
+  const chosenTabQuery = searchParams.get("tab") || "login"
   const { login, register } = useContext(AuthContext)
-  const [activeTab, setActiveTab] = useState<"login" | "register">("login")
+  const [activeTab, setActiveTab] = useState(chosenTabQuery)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
@@ -47,6 +49,10 @@ function Login() {
     setPhoneNumber("")
     setShowForgotPassword(false)
   }
+
+  useEffect(() => {
+    setActiveTab(chosenTabQuery)
+  }, [chosenTabQuery])
 
   const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -108,7 +114,7 @@ function Login() {
 
   return (
     <div className="page_login">
-      <div className="news-banner">
+      <div className="login-banner">
         <div className="breadcrumb">
           <span>Trang chủ </span>
           <span className="separator">/</span>

@@ -158,7 +158,6 @@ export const Prod_Content = ( {isDisable} ) => {
         setProducts((prev) => prev.filter((prod) => prod._id !== productId))
         toast.success("Xóa thành công")
       } catch (err) {
-        console.log(err.response?.data?.message)
         setError(err.response?.data?.message?.split('-') || ['Không thể xóa sản phẩm'])
       } finally {
         setLoading(false)
@@ -283,6 +282,27 @@ export const Prod_Content = ( {isDisable} ) => {
         <button disabled={!isDisable} onClick={openForm}>Thêm sản phẩm mới</button>
       </div>
       <div>
+        <div className="prod-content">
+          <div className="prodImg">
+          </div>
+          <div className="prodId">
+            <strong>ID</strong>
+          </div>
+          <div className="prodName">
+            <strong>Tên sản phẩm</strong>
+          </div>
+          <div className="prodInv">
+            <strong>Số lượng tồn</strong>
+          </div>
+          <div className="prodPC">
+            <strong>Lượt bán</strong>
+          </div>
+          <div className="prodPrice">
+            <strong>Giá bán</strong>
+          </div>
+          <div className="prodOpt">
+          </div>
+        </div>
         {products?.map(product => 
         <Prod_List 
         key={product._id} 

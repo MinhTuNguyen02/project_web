@@ -1,97 +1,97 @@
 .address-section {
-    margin-top: 20px;
-  }
-  .add-address-btn {
-    background-color: #9c8350;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-bottom: 20px;
-  }
-  .add-address-btn:hover {
-    background-color: #8c703b;
-  }
-  .address-form {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 4px;
-    margin-bottom: 20px;
-  }
-  .form-group {
-    margin-bottom: 15px;
-  }
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  .form-group input[type="text"] {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  .form-group input[type="checkbox"] {
-    margin-right: 10px;
-  }
-  .address-form .form-actions {
-    display: flex;
-    gap: 10px;
-  }
-  .address-form .form-actions button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  .address-form .form-actions button[type="submit"] {
-    background-color: #000;
-    color: white;
-  }
-  .address-form .form-actions button[type="submit"]:hover {
-    background-color: #8c703b;
-  }
-  .address-form .form-actions button[type="button"] {
-    background-color: #dc3545;
-    color: white;
-  }
-  .address-form .form-actions button[type="button"]:hover {
-    background-color: #c82333;
-  }
-  .address-list {
-    list-style: none;
-    padding: 0;
-  }
-  .address-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    border-bottom: 1px solid #ddd;
-    font-size: 14px;
-  }
-  .address-actions {
-    display: flex;
-    gap: 10px;
-  }
-  .address-actions button {
-    padding: 8px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  .address-actions button:first-child {
-    background-color: #000;
-    color: white;
-  }
-  .address-actions button:first-child:hover {
-    background-color: #8c703b;
-  }
-  .address-actions button:last-child {
-    background-color: #dc3545;
-    color: white;
-  }
-  .address-actions button:last-child:hover {
-    background-color: #c82333;
-  }
+  margin-top: 20px;
+}
+.add-address-btn {
+  background-color: #9c8350;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+.add-address-btn:hover {
+  background-color: #8c703b;
+}
+.address-form {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+.form-group input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.form-group input[type="checkbox"] {
+  margin-right: 10px;
+}
+.address-form .form-actions {
+  display: flex;
+  gap: 10px;
+}
+.address-form .form-actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.address-form .form-actions button[type="submit"] {
+  background-color: #000;
+  color: white;
+}
+.address-form .form-actions button[type="submit"]:hover {
+  background-color: #8c703b;
+}
+.address-form .form-actions button[type="button"] {
+  background-color: #dc3545;
+  color: white;
+}
+.address-form .form-actions button[type="button"]:hover {
+  background-color: #c82333;
+}
+.address-list {
+  list-style: none;
+  padding: 0;
+}
+.address-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+}
+.address-actions {
+  display: flex;
+  gap: 10px;
+}
+.address-actions button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.address-actions button:first-child {
+  background-color: #000;
+  color: white;
+}
+.address-actions button:first-child:hover {
+  background-color: #8c703b;
+}
+.address-actions button:last-child {
+  background-color: #dc3545;
+  color: white;
+}
+.address-actions button:last-child:hover {
+  background-color: #c82333;
+}

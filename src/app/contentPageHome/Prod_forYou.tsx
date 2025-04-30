@@ -38,7 +38,6 @@ export default function Prod_forYou() {
       try {
         setLoading(true)
         const response = await fetchProductAPI()
-        console.log('API response:', response) // Debug log
         const productList = Array.isArray(response) ? response : response.products || []
         if (!productList.length) {
           throw new Error('Không có sản phẩm nào')
@@ -54,7 +53,6 @@ export default function Prod_forYou() {
         setProducts(fetchedProducts)
         setError(null)
       } catch (error) {
-        console.error('Fetch error:', error)
         setError(error.message || "Không thể tải sản phẩm")
       } finally {
         setLoading(false)

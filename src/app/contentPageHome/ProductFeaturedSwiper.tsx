@@ -32,17 +32,17 @@ export default function ProductFeaturedSwiper() {
     }
   }, [wishlist])
 
-  // Lấy sản phẩm nổi bật
+  // Lấy 5 sản phẩm có purchaseCount cao nhất
   useEffect(() => {
     const fetchFeaturedProducts = async () => {
       try {
         setLoading(true)
-        const response = await fetchProductAPI()
+        const response = await fetchProductAPI({ sort: '-purchaseCount', limit: 5 })
         const productList = Array.isArray(response) ? response : response.products || []
         if (!productList.length) {
           throw new Error('Không có sản phẩm nào')
         }
-        const fetchedProducts = productList.slice(0, 4).map(product => ({
+        const fetchedProducts = productList.map(product => ({
           id: product._id,
           name: product.productName,
           price: formatPrice(product.price),
@@ -52,7 +52,6 @@ export default function ProductFeaturedSwiper() {
         setProducts(fetchedProducts)
         setError(null)
       } catch (error) {
-        console.error('Fetch error:', error)
         setError(error.message || "Không thể tải sản phẩm nổi bật")
       } finally {
         setLoading(false)

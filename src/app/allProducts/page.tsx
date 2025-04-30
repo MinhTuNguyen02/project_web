@@ -1,6 +1,5 @@
 "use client"
 import "./product_css.css"
-import "../resetCss.css"
 import "@fortawesome/fontawesome-free/css/all.min.css"
 import React, { useState, useRef, useEffect, useContext } from "react"
 import Link from "next/link"
@@ -20,7 +19,7 @@ export default function Home() {
       <Header />
       <ProductPage />
       <Footer />
-      <ToastContainer theme="colored" autoClose={3000}/>
+      <ToastContainer theme="colored" autoClose={2000}/>
     </div>
   )
 }
@@ -46,6 +45,7 @@ function ProductPage() {
 
   // Lấy search query từ URL
   const searchQuery = searchParams.get("search") || ""
+  const categoryIdFromQuery = searchParams.get("categoryId") || ""
 
   // Khởi tạo wishlistStatus từ wishlist
   useEffect(() => {
@@ -129,6 +129,7 @@ function ProductPage() {
       try {
         const data = await fetchCategoryAPI()
         setCategories(data)
+        setSelectedCategoryId(categoryIdFromQuery)
       } catch (err) {
         setError("Không thể tải danh mục")
       }
@@ -176,7 +177,9 @@ function ProductPage() {
       case "price-asc":
         return [...products].sort((a, b) => a.price - b.price)
       case "price-desc":
-        return [...products].sort((a, b) => b.price - b.price)
+        return [...products].sort((a, b) => b.price - a.price)
+      case "purchaseCount":
+        return [...products].sort((a, b) => b.purchaseCount - a.purchaseCount)
       default:
         return products
     }
@@ -208,12 +211,12 @@ function ProductPage() {
   }
 
   const formatPrice = (price) => {
-    return price.toLocaleString("vi-VN") + " ₫"
+    return price.toLocaleString("vi-VN") + "₫"
   }
 
   return (
     <div className="page_product">
-      <div className="news-banner">
+      <div className="allproduct-banner">
         <div className="breadcrumb">
           <span>
             <Link href="/">Trang chủ</Link>
@@ -325,6 +328,18 @@ function ProductPage() {
                       onChange={() => handleSortChange("price-desc")}
                     />
                     <span>Giá cao xuống thấp</span>
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input
+                      type="radio"
+                      name="sort"
+                      id="sort-purchaseCount"
+                      checked={sortOption === "purchaseCount"}
+                      onChange={() => handleSortChange("purchaseCount")}
+                    />
+                    <span>Lượt bán</span>
                   </label>
                 </li>
               </ul>

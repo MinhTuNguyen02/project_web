@@ -2,7 +2,6 @@
 import { useContext, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { AuthContext } from "../contexts/AuthContext"
-import "../resetCss.css"
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import Link from "next/link"
 import { getAddressesAPI } from "../api"

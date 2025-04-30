@@ -4,7 +4,6 @@ import { useRouter, useParams } from "next/navigation"
 import { AuthContext } from "../../../contexts/AuthContext"
 import { ToastContainer, toast } from "react-toastify"
 import { getOrderByIdAPI } from "../../../api"
-import "../../../resetCss.css"
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import Link from "next/link"
 import styles from "../../../page.module.css"
@@ -78,7 +77,7 @@ function OrderDetail() {
   }
 
   const formatPrice = (price) => {
-    return price.toLocaleString("vi-VN") + " ₫"
+    return price.toLocaleString("vi-VN") + "₫"
   }
 
   const formatDate = (date) => {
@@ -130,6 +129,7 @@ function OrderDetail() {
                 <p><strong>Ngày đặt hàng:</strong> {formatDate(order.createdAt)}</p>
                 <p><strong>Trạng thái:</strong> {order.status}</p>
                 <p><strong>Hình thức thanh toán:</strong> {paymentMethodMap[order.paymentMethod]}</p>
+                <p><strong>Hình thức giao hàng:</strong> {order.shippingInfo.shippingMethod}</p>
               </div>
               <div className="shipping-info">
                 <h3>Thông tin giao hàng</h3>
@@ -168,7 +168,9 @@ function OrderDetail() {
                   </table>
                 </div>
                 <div className="order-total">
-                  <p><strong>Tổng tiền:</strong> {formatPrice(order.total)}</p>
+                  <p><strong>Tổng tiền sản phẩm:</strong> {formatPrice(order.total)}</p>
+                  <p><strong>Phí vận chuyển:</strong> {formatPrice(order.shippingFee)}</p>
+                  <p><strong>Tổng tiền:</strong> {formatPrice(order.shippingFee + order.total)}</p>
                 </div>
               </div>
             </div>

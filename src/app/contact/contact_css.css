@@ -1,10 +1,3 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .icons i {
     margin-left: 15px;
     font-size: 18px;
@@ -65,41 +58,67 @@ nav ul li a {
 }
 
 /* BANNER */
-.banner {
-    background-color: #333; /* Màu nền xám đậm */
+.news-banner {
+    background-image: url('/img/banner_background.png');
+    background-size: cover;
+    background-position: center;
+    padding: 28px 0;
+    text-align: center;
     color: white;
-    text-align: center;
-    padding: 50px 20px;
-}
-
-.breadcrumb {
-    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 28px 0;
+    box-sizing: border-box;
+  }
+  
+  
+  .breadcrumb {
+    position: relative;
+    z-index: 2;
     font-size: 14px;
-    color: #ddd;
     margin-bottom: 10px;
-}
-
-.breadcrumb .highlight {
-    color: #d4af37;
+    font-style: italic;
+  }
+  
+  .breadcrumb .separator {
+    margin: 0 8px;
+    color: #ccc;
+  }
+  
+  .breadcrumb span:last-child {
+    color: #FFD700;
+  }
+  
+  .breadcrumb span:first-child,
+  .breadcrumb a:first-child {
+  color: rgba(255, 255, 255, 0.7);
+  opacity: 0.7; 
+  text-decoration: none; 
+  }
+  .breadcrumb .separator {
+  margin: 0 8px;
+  color: #ccc;
+  }
+  
+  .breadcrumb span:first-child:hover,
+  .breadcrumb a:first-child:hover {
+  color: rgba(255, 255, 255, 1);
+  opacity: 1;
+  }
+  
+  
+  .banner-title {
+    position: relative;
+    z-index: 2;
+    font-size: 25px;
     font-weight: bold;
-}
-.breadcrumb-link {
-    color: #d4af37;
-    font-weight: bold;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.breadcrumb-link:hover {
-    text-decoration: underline;
-}
-
-
-.banner h1 {
-    font-size: 32px;
-    font-weight: bold;
-    margin-top: 10px;
-}
+    text-transform: uppercase;
+    padding-top: 10px;
+    margin: 0;
+    color: #D3D3D3;
+  }
 
 .contact {
     text-align: center;
@@ -120,7 +139,7 @@ nav ul li a {
 }
 .map iframe {
     width: 100%;
-    height: 600px; /* Tăng chiều cao */
+    height: 600px;
 }
 
 .contact-form {
@@ -158,21 +177,18 @@ nav ul li a {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    resize: vertical;
 }
 
 .contact-form button {
     margin-top: 15px;
-    background: #d4af37;
+    background: #9c8350;
     color: white;
     padding: 10px;
     border: none;
     cursor: pointer;
     border-radius: 5px;
     font-size: 16px;
-}
-
-input, textarea::placeholder {
-    font-style: italic;
 }
 
 footer {
