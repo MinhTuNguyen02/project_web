@@ -230,7 +230,7 @@ function HeaderMenu(){
                     <li onClick={() => handleCategoryClick("Bút")}>Bút</li>
                     <li onClick={() => handleCategoryClick("Balo")}>Balo</li>
                     <li onClick={() => handleCategoryClick("Bọc vở")}>Bọc vở</li>
-                    <li onClick={() => handleCategoryClick("Nhãn vở")}>Nhãn vở</li>
+                    <li onClick={() => handleCategoryClick("Máy tính")}>Máy tính</li>
                     <li onClick={() => handleCategoryClick("Tẩy")}>Tẩy</li>
                   </ul>
                 </li>
@@ -238,11 +238,11 @@ function HeaderMenu(){
                   <p>VPP Văn Phòng</p>
                   <ul className={styles.item_small}>
                     <li onClick={() => handleCategoryClick("Kẹp tài liệu")}>Kẹp tài liệu</li>
-                    <li onClick={() => handleCategoryClick("Sổ tài liệu")}>Sổ tài liệu</li>
-                    <li onClick={() => handleCategoryClick("Bản ghim")}>Bản ghim</li>
-                    <li onClick={() => handleCategoryClick("Giấy note")}>Giấy note</li>
+                    <li onClick={() => handleCategoryClick("Sổ")}>Sổ</li>
+                    <li onClick={() => handleCategoryClick("Kéo")}>Kéo</li>
+                    <li onClick={() => handleCategoryClick("Bàn làm việc")}>Bàn làm việc</li>
                     <li onClick={() => handleCategoryClick("Giấy in")}>Giấy in</li>
-                    <li onClick={() => handleCategoryClick("Trang trí văn phòng")}>Trang trí văn phòng</li>
+                    <li onClick={() => handleCategoryClick("Ghế")}>Ghế</li>
                   </ul>
                 </li>
                 <li className={styles.nav_item}>
@@ -251,7 +251,7 @@ function HeaderMenu(){
                     <li onClick={() => handleCategoryClick("Bút vẽ")}>Bút vẽ</li>
                     <li onClick={() => handleCategoryClick("Màu vẽ")}>Màu vẽ</li>
                     <li onClick={() => handleCategoryClick("Khay - Cọ vẽ")}>Khay - Cọ vẽ</li>
-                    <li onClick={() => handleCategoryClick("Tập vẽ - Giấy vẽ")}>Tập vẽ - Giấy vẽ</li>
+                    <li onClick={() => handleCategoryClick("Giấy vẽ")}>Giấy vẽ</li>
                     <li onClick={() => handleCategoryClick("Bộ vẽ sáng tạo")}>Bộ vẽ sáng tạo</li>
                     <li onClick={() => handleCategoryClick("Giá vẽ - khung vẽ")}>Giá vẽ - Khung vẽ</li>
                   </ul>
@@ -261,10 +261,10 @@ function HeaderMenu(){
                   <ul className={styles.item_small}>
                     <li onClick={() => handleCategoryClick("Bút chì")}>Bút chì</li>
                     <li onClick={() => handleCategoryClick("Bút mực")}>Bút mực</li>
-                    <li onClick={() => handleCategoryClick("Bút nước")}>Bút nước</li>
+                    <li onClick={() => handleCategoryClick("Bút đánh dấu")}>Bút đánh dấu</li>
                     <li onClick={() => handleCategoryClick("Bút lông")}>Bút lông</li>
-                    <li onClick={() => handleCategoryClick("Bút dạ quang")}>Bút dạ quang</li>
-                    <li onClick={() => handleCategoryClick("Bút mực")}>Bút mực</li>
+                    <li onClick={() => handleCategoryClick("Bút highlight")}>Bút highlight</li>
+                    <li onClick={() => handleCategoryClick("Bút xóa")}>Bút xóa</li>
                   </ul>
                 </li>
                 <li className={styles.nav_item}>
@@ -274,7 +274,7 @@ function HeaderMenu(){
                     <li onClick={() => handleCategoryClick("Tập vở")}>Tập vở</li>
                     <li onClick={() => handleCategoryClick("Giấy note")}>Giấy note</li>
                     <li onClick={() => handleCategoryClick("Sticker")}>Sticker</li>
-                    <li onClick={() => handleCategoryClick("Các loại giấy khác")}>Các loại giấy khác</li>
+                    <li onClick={() => handleCategoryClick("Giấy")}>Các loại giấy khác</li>
                     <li onClick={() => handleCategoryClick("Nhãn vở")}>Nhãn vở</li>
                   </ul>
                 </li>
@@ -285,7 +285,7 @@ function HeaderMenu(){
           <Slogan/>
 
           <div className={styles.menu}>
-            <a href="" title="Khuyến mãi">
+            <a href="/promotion" title="Khuyến mãi">
               <i className="fa-solid fa-fire"></i>
               Khuyến mãi
             </a>

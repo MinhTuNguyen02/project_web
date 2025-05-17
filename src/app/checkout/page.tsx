@@ -5,7 +5,7 @@ import Link from "next/link"
 import { CartContext } from "../contexts/cartContext"
 import { AuthContext } from "../contexts/AuthContext"
 import { toast, ToastContainer } from "react-toastify"
-import { createOrderAPI, getAddressesAPI, deleteCartItemAPI } from "../api"
+import { createOrderAPI, getAddressesAPI, deleteCartItemAPI, validatePromotionAPI } from "../api"
 import { CITIES, SHIPPING_RATES } from "../../../untils/constant"
 import "./checkout.css"
 
@@ -27,8 +27,11 @@ export default function CheckoutPage() {
     shippingMethod: "standard"
   })
   const [paymentMethod, setPaymentMethod] = useState("cod")
+  const [promotionCode, setPromotionCode] = useState("")
+  const [discount, setDiscount] = useState(0)
+  const [isFreeShipping, setIsFreeShipping] = useState(false) // Thêm trạng thái
   const [loadingAddresses, setLoadingAddresses] = useState(true)
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [loadingPromotion, setLoadingPromotion] = useState(false)
 
   // Chuyển hướng nếu chưa đăng nhập
   useEffect(() => {
@@ -117,8 +120,11 @@ export default function CheckoutPage() {
     )
   }
 
-  // Tính phí vận chuyển dựa trên khu vực
+  // Tính phí vận chuyển
   const calculateShippingFee = (method = shippingInfo.shippingMethod) => {
+    if (isFreeShipping) {
+      return 0 // Trả về 0 nếu free_shipping
+    }
     const getCityFromAddress = (address) => {
       return CITIES.find(city => address.toLowerCase().includes(city.toLowerCase())) || 'default'
     }
@@ -132,8 +138,9 @@ export default function CheckoutPage() {
     return shippingFee
   }
 
+  // Tính tổng tiền
   const calculateTotal = () => {
-    return calculateItemsTotal() + calculateShippingFee()
+    return calculateItemsTotal() + calculateShippingFee() - discount
   }
 
   const handleAddressChange = (e) => {
@@ -164,6 +171,37 @@ export default function CheckoutPage() {
     setShippingInfo((prev) => ({ ...prev, [name]: value }))
   }
 
+  // Xử lý áp dụng mã khuyến mãi
+  const handleApplyPromotion = async () => {
+    if (!promotionCode) {
+      toast.error("Vui lòng nhập mã khuyến mãi")
+      return
+    }
+
+    try {
+      setLoadingPromotion(true)
+      const response = await validatePromotionAPI({
+        code: promotionCode,
+        itemsTotal: calculateItemsTotal(),
+        userId: user._id
+      })
+      setDiscount(response.discount || 0)
+      setIsFreeShipping(response.promotion.type === "free_shipping") // Cập nhật trạng thái
+      if (response.promotion.type === "free_shipping") {
+        setShippingInfo((prev) => ({ ...prev, shippingMethod: "standard" }))
+        toast.success("Miễn phí vận chuyển đã được áp dụng!")
+      } else {
+        toast.success(`Mã ${promotionCode} áp dụng thành công! Giảm ${formatPrice(response.discount)}`)
+      }
+    } catch (err) {
+      setDiscount(0)
+      setIsFreeShipping(false) // Reset nếu lỗi
+      toast.error(err.message || "Mã khuyến mãi không hợp lệ")
+    } finally {
+      setLoadingPromotion(false)
+    }
+  }
+
   const handlePlaceOrder = async () => {
     if (
       !shippingInfo.fullName ||
@@ -176,7 +214,6 @@ export default function CheckoutPage() {
       return
     }
 
-    setIsSubmitting(true)
     try {
       const shippingFee = calculateShippingFee()
       const orderData = {
@@ -195,9 +232,12 @@ export default function CheckoutPage() {
           shippingMethod: shippingInfo.shippingMethod
         },
         paymentMethod,
-        shippingFee,
-        total: calculateTotal()
+        shippingFee, // Đúng: 0 nếu free_shipping
+        total: calculateTotal(), // Đúng: itemsTotal + 0 - discount
+        promotionCode: promotionCode || undefined
       }
+
+      console.log('Order data sent:', orderData) // Debug
 
       const response = await createOrderAPI(orderData)
 
@@ -210,6 +250,7 @@ export default function CheckoutPage() {
       toast.success("Đặt hàng thành công!")
       router.push('/')
     } catch (err) {
+      console.error('Order error:', err)
       if (err.message.includes('Tổng tiền không khớp')) {
         toast.error('Tổng tiền không hợp lệ, vui lòng thử lại')
       } else if (err.message.includes('Thiếu thông tin')) {
@@ -217,8 +258,6 @@ export default function CheckoutPage() {
       } else {
         toast.error(err.message || 'Không thể tạo đơn hàng')
       }
-    } finally {
-      setIsSubmitting(false)
     }
   }
 
@@ -320,6 +359,7 @@ export default function CheckoutPage() {
                       value={shippingInfo.shippingMethod}
                       onChange={handleInputChange}
                       required
+                      disabled={isFreeShipping} // Vô hiệu hóa nếu free_shipping
                     >
                       <option value="standard">Giao hàng tiêu chuẩn</option>
                       <option value="express">Giao hàng nhanh</option>
@@ -333,6 +373,24 @@ export default function CheckoutPage() {
                       onChange={handleInputChange}
                       placeholder="Ghi chú cho đơn hàng (nếu có)"
                     />
+                  </div>
+                  <div className="formGroup">
+                    <label>Mã khuyến mãi</label>
+                    <div className="promotionInput">
+                      <input
+                        type="text"
+                        value={promotionCode}
+                        onChange={(e) => setPromotionCode(e.target.value)}
+                        placeholder="Nhập mã khuyến mãi"
+                      />
+                      <button
+                        type="button"
+                        onClick={handleApplyPromotion}
+                        disabled={loadingPromotion}
+                      >
+                        {loadingPromotion ? "Đang kiểm tra..." : "Áp dụng"}
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -373,6 +431,11 @@ export default function CheckoutPage() {
                     <p>
                       <strong>Phí vận chuyển:</strong> {formatPrice(calculateShippingFee())}
                     </p>
+                    {discount > 0 && (
+                      <p>
+                        <strong>Giảm giá:</strong> -{formatPrice(discount)}
+                      </p>
+                    )}
                     <p>
                       <strong>Tổng cộng:</strong> {formatPrice(calculateTotal())}
                     </p>

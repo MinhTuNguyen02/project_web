@@ -215,8 +215,6 @@ export const Prod_Content = ( {isDisable} ) => {
                   onChange={handleInputChange} 
                   disabled={editMode?(addMode?true:false):false}
                   rows={1}
-                  style={{ resize: 'vertical' , width: 264, height: 17.7}}
-                  //style={{ whiteSpace: 'pre-wrap' }} them vao css cho chi tiet san pham
                 />
               </div>
 

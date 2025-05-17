@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { fetchMessagesAPI } from "../api"
 import { AuthContext } from "../contexts/AuthContext"
 import { useRouter } from "next/navigation"
+import BackHeader from "../component/BackHeader"
 import Header from "../component/Header"
 import Footer from "../component/Footer"
 import { Prod_Content } from "../adminComponent/Prod_Content"
@@ -16,10 +17,13 @@ import { CategoryList } from "../adminComponent/Cate_Content"
 import { Order_Content } from "../adminComponent/Order_Content"
 import { News_Content } from "../adminComponent/News_Content"
 import { Mess_List } from "../adminComponent/Mess_List"
+import { Promotion_Content } from "../adminComponent/Promotion_Content"
+import { Statistic_Content } from "../adminComponent/Statistic_Content"
 
 export default function Home() {
   return (
     <div className={styles.main}>
+      <BackHeader/>
       <Header/>
       <MainContent />
       <Footer/>
@@ -33,7 +37,7 @@ function MainContent(){
   const router = useRouter()
 
   const [isDisable, setIsDisable] = useState(false)
-  const [activeTab, setActiveTab] = useState<"category" | "product" | "order" | "news">("category")
+  const [activeTab, setActiveTab] = useState<"category" | "product" | "order" | "promotion" | "statistic" | "news">("category")
   const [openNotify, setOpenNotify] = useState(false)
   const [hasNewMessage, setHasNewMessage] = useState(false)
   const [lastMessageCount, setLastMessageCount] = useState(0)
@@ -43,7 +47,7 @@ function MainContent(){
     setIsDisable(event.target.checked)
   }
 
-  const handleTabChange = (tab: "category" | "product" | "order" | "news") => {
+  const handleTabChange = (tab: "category" | "product" | "order" | "promotion" | "statistic" | "news") => {
     setActiveTab(tab)
   }
 
@@ -153,6 +157,18 @@ function MainContent(){
               Đơn hàng
             </button>
             <button
+              className={`auth-tab ${activeTab === "promotion" ? "active" : ""}`}
+              onClick={() => handleTabChange("promotion")}
+            >
+              Khuyến mãi
+            </button>
+            <button
+              className={`auth-tab ${activeTab === "statistic" ? "active" : ""}`}
+              onClick={() => handleTabChange("statistic")}
+            >
+              Thống kê
+            </button>
+            <button
               className={`auth-tab ${activeTab === "news" ? "active" : ""}`}
               onClick={() => handleTabChange("news")}
             >
@@ -166,6 +182,10 @@ function MainContent(){
             <Prod_Content isDisable={isDisable}/>
           ) : activeTab === "order" ? (
             <Order_Content isDisable={isDisable}/>
+          ) : activeTab === "promotion" ? (
+            <Promotion_Content isDisable={isDisable}/>
+          ) : activeTab === "statistic" ? (
+            <Statistic_Content/>
           ) : (
             <News_Content isDisable={isDisable}/>
           )}

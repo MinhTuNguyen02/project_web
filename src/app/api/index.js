@@ -471,6 +471,78 @@ export const receiveOrderAPI = async (orderId) => {
   }
 }
 
+export const getDailyStatsAPI = async (startDate, endDate) => {
+  try {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      throw new Error('No token found, please login again')
+    }
+    const response = await axios.get(`${API_ROOT}/v1/orders/stats/daily`, {
+      headers: { Authorization: `Bearer ${token}` },
+      params: { startDate, endDate }
+    })
+    return response.data
+  } catch (error) {
+    if (error.response?.status === 401) {
+      localStorage.removeItem('token')
+      window.location.href = '/login'
+      throw new Error('Phiên đăng nhập hết hạn, vui lòng đăng nhập lại')
+    }
+    if (error.response?.status === 403) {
+      throw new Error('Bạn không có quyền truy cập thống kê')
+    }
+    throw error.response?.data || { message: 'Failed to fetch daily stats', statusCode: error.response?.status }
+  }
+}
+
+export const getMonthlyStatsAPI = async (year) => {
+  try {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      throw new Error('No token found, please login again')
+    }
+    const response = await axios.get(`${API_ROOT}/v1/orders/stats/monthly`, {
+      headers: { Authorization: `Bearer ${token}` },
+      params: { year }
+    })
+    return response.data
+  } catch (error) {
+    if (error.response?.status === 401) {
+      localStorage.removeItem('token')
+      window.location.href = '/login'
+      throw new Error('Phiên đăng nhập hết hạn, vui lòng đăng nhập lại')
+    }
+    if (error.response?.status === 403) {
+      throw new Error('Bạn không có quyền truy cập thống kê')
+    }
+    throw error.response?.data || { message: 'Failed to fetch monthly stats', statusCode: error.response?.status }
+  }
+}
+
+export const getYearlyStatsAPI = async (startYear, endYear) => {
+  try {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      throw new Error('No token found, please login again')
+    }
+    const response = await axios.get(`${API_ROOT}/v1/orders/stats/yearly`, {
+      headers: { Authorization: `Bearer ${token}` },
+      params: { startYear, endYear }
+    })
+    return response.data
+  } catch (error) {
+    if (error.response?.status === 401) {
+      localStorage.removeItem('token')
+      window.location.href = '/login'
+      throw new Error('Phiên đăng nhập hết hạn, vui lòng đăng nhập lại')
+    }
+    if (error.response?.status === 403) {
+      throw new Error('Bạn không có quyền truy cập thống kê')
+    }
+    throw error.response?.data || { message: 'Failed to fetch yearly stats', statusCode: error.response?.status }
+  }
+}
+
 //Message
 export const sendMessageAPI = async (messageData) => {
   try {
@@ -489,5 +561,114 @@ export const fetchMessagesAPI = async () => {
     return response.data.data
   } catch (error) {
     throw error.response?.data || { message: 'Failed to fetch messages' }
+  }
+}
+
+// Promotion APIs
+export const validatePromotionAPI = async (promotionData) => {
+  try {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      throw new Error('No token found, please login again')
+    }
+    const response = await axios.post(
+      `${API_ROOT}/v1/promotions/validate`,
+      promotionData,
+      { headers: { Authorization: `Bearer ${token}` } }
+    )
+    return response.data
+  } catch (error) {
+    if (error.response?.status === 401) {
+      localStorage.removeItem('token')
+      window.location.href = '/login'
+      throw new Error('Phiên đăng nhập hết hạn, vui lòng đăng nhập lại')
+    }
+    throw error.response?.data || { message: 'Failed to validate promotion', statusCode: error.response?.status }
+  }
+}
+
+export const fetchPromotionsAPI = async (isActive) => {
+  try {
+    const params = {}
+    if (isActive !== undefined) {
+      params.isActive = isActive
+    }
+    const response = await axios.get(`${API_ROOT}/v1/promotions`, { params })
+    return response.data
+  } catch (error) {
+    throw error.response?.data || { message: 'Failed to fetch promotions' }
+  }
+}
+
+export const createPromotionAPI = async (promotionData) => {
+  try {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      throw new Error('No token found, please login again')
+    }
+    const response = await axios.post(
+      `${API_ROOT}/v1/promotions`,
+      promotionData,
+      { headers: { Authorization: `Bearer ${token}` } }
+    )
+    return response.data.promotion // Trả về promotion thay vì toàn bộ response
+  } catch (error) {
+    if (error.response?.status === 401) {
+      localStorage.removeItem('token')
+      window.location.href = '/login'
+      throw new Error('Phiên đăng nhập hết hạn, vui lòng đăng nhập lại')
+    }
+    if (error.response?.status === 403) {
+      throw new Error('Bạn không có quyền tạo khuyến mãi')
+    }
+    throw error.response?.data || { message: 'Failed to create promotion', statusCode: error.response?.status }
+  }
+}
+
+export const updatePromotionAPI = async (promotionId, promotionData) => {
+  try {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      throw new Error('No token found, please login again')
+    }
+    const response = await axios.put(
+      `${API_ROOT}/v1/promotions/${promotionId}`,
+      promotionData,
+      { headers: { Authorization: `Bearer ${token}` } }
+    )
+    return response.data
+  } catch (error) {
+    if (error.response?.status === 401) {
+      localStorage.removeItem('token')
+      window.location.href = '/login'
+      throw new Error('Phiên đăng nhập hết hạn, vui lòng đăng nhập lại')
+    }
+    if (error.response?.status === 403) {
+      throw new Error('Bạn không có quyền cập nhật khuyến mãi')
+    }
+    throw error.response?.data || { message: 'Failed to update promotion', statusCode: error.response?.status }
+  }
+}
+
+export const deletePromotionAPI = async (promotionId) => {
+  try {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      throw new Error('No token found, please login again')
+    }
+    const response = await axios.delete(`${API_ROOT}/v1/promotions/${promotionId}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    return response.data
+  } catch (error) {
+    if (error.response?.status === 401) {
+      localStorage.removeItem('token')
+      window.location.href = '/login'
+      throw new Error('Phiên đăng nhập hết hạn, vui lòng đăng nhập lại')
+    }
+    if (error.response?.status === 403) {
+      throw new Error('Bạn không có quyền xóa khuyến mãi')
+    }
+    throw error.response?.data || { message: 'Failed to delete promotion', statusCode: error.response?.status }
   }
 }

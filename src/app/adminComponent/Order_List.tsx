@@ -1,11 +1,9 @@
 "use client"
 import { useState } from "react"
-import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
 import { updateOrderStatusAPI } from "../api"
 
 export const Order_List = ({ order, onStatusUpdate, isDisable }) => {
-  const router = useRouter()
   const [detail, setDetail] = useState(false)
   const formatPrice = (price) => {
     return price.toLocaleString("vi-VN") + "₫"
@@ -45,7 +43,7 @@ export const Order_List = ({ order, onStatusUpdate, isDisable }) => {
       case "Đang xử lý":
         return (
           <button className="viewButton" onClick={handleUpdateStatus} disabled={!isDisable}>
-            Đã xong
+            Đã xử lý
           </button>
         )
       default:
@@ -61,6 +59,10 @@ export const Order_List = ({ order, onStatusUpdate, isDisable }) => {
     cod: "Thanh toán khi nhận hàng",
     bank: "Chuyển khoản ngân hàng"
   }
+  const shippingMethodMap = {
+    standard: "Giao hàng tiêu chuẩn",
+    express: "Giao hàng nhanh"
+  }
 
   return (
     <div>
@@ -69,7 +71,7 @@ export const Order_List = ({ order, onStatusUpdate, isDisable }) => {
           <span>{order._id}</span>
         </div>
         <div className="orderPrice">
-          <span>{formatPrice(order.total + order.shippingFee)}</span>
+          <span>{formatPrice(order.total)}</span>
         </div>
         <div className="orderStatus">
           <span>{order.status}</span>
@@ -90,10 +92,11 @@ export const Order_List = ({ order, onStatusUpdate, isDisable }) => {
         </div>
       </div>
       <div className={detail?"order-vsb":"order-hidden"}>
-        <p className="order-items-info"><strong>Hình thức thanh toán:</strong> {paymentMethodMap[order.paymentMethod]}</p>
+        <p className="order-items-info"><strong>Phương thức thanh toán:</strong> {paymentMethodMap[order.paymentMethod]}</p>
         <p className="order-items-info"><strong>Ghi chú:</strong> {order.shippingInfo.note}</p>
-        <p className="order-items-info"><strong>Hình thức vận chuyển:</strong> {order.shippingInfo.shippingMethod}</p>
+        <p className="order-items-info"><strong>Phương thức giao hàng:</strong> {shippingMethodMap[order.shippingInfo.shippingMethod]}</p>
         <p className="order-items-info"><strong>Phí vận chuyển:</strong> {formatPrice(order.shippingFee)}</p>
+        {order.promotion.discount>0 && <p className="order-items-info"><strong>Khuyến mãi:</strong> -{formatPrice(order.promotion.discount)}</p>}
         <div className="order-items">
           <div className="order-item">
             <span></span>

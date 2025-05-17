@@ -166,7 +166,7 @@ function Orders() {
                         <tr key={order._id}>
                           <td>#{order._id}</td>
                           <td>{formatDate(order.createdAt)}</td>
-                          <td>{formatPrice(order.total + order.shippingFee)}</td>
+                          <td>{formatPrice(order.total)}</td>
                           <td>{order.status}</td>
                           <td>
                             <Link href={`/account/orders/${order._id}`} className="btn-view-details">

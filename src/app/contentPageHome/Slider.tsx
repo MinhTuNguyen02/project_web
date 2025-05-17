@@ -3,7 +3,6 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation, Pagination, Autoplay } from "swiper/modules"
 import Link from 'next/link'
 import styles from "../page.module.css"
-import "../resetCss.css"
 import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"

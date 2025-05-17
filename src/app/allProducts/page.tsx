@@ -36,18 +36,16 @@ function ProductPage() {
   const [currentPage, setCurrentPage] = useState(1)
   const [sortOption, setSortOption] = useState("default")
   const [categories, setCategories] = useState([])
-  const [selectedCategoryId, setSelectedCategoryId] = useState("")
+  const categoryIdFromQuery = searchParams.get("categoryId") || ""
+  const [selectedCategoryId, setSelectedCategoryId] = useState(categoryIdFromQuery)
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [wishlistStatus, setWishlistStatus] = useState({})
   const productsPerPage = 9
 
-  // Lấy search query từ URL
   const searchQuery = searchParams.get("search") || ""
-  const categoryIdFromQuery = searchParams.get("categoryId") || ""
 
-  // Khởi tạo wishlistStatus từ wishlist
   useEffect(() => {
     if (wishlist?.products) {
       const status = {}
@@ -57,6 +55,52 @@ function ProductPage() {
       setWishlistStatus(status)
     }
   }, [wishlist])
+
+  useEffect(() => {
+    const loadCategories = async () => {
+      try {
+        const data = await fetchCategoryAPI()
+        setCategories(data)
+        if (categoryIdFromQuery && data.some(cat => cat._id === categoryIdFromQuery)) {
+          setSelectedCategoryId(categoryIdFromQuery)
+        } else {
+          setSelectedCategoryId("")
+        }
+      } catch (err) {
+        setError("Không thể tải danh mục")
+      }
+    }
+    loadCategories()
+  }, [categoryIdFromQuery])
+
+  useEffect(() => {
+    const abortController = new AbortController()
+    const loadProducts = async () => {
+      if (!categories.length || selectedCategoryId === null || selectedCategoryId === undefined) {
+        return
+      }
+      setLoading(true)
+      try {
+        const data = await fetchProductAPI(selectedCategoryId, searchQuery, abortController.signal)
+        if (data.length === 0 && (searchQuery || selectedCategoryId)) {
+          toast.info("Không tìm thấy sản phẩm phù hợp")
+        }
+        setProducts(data)
+      } catch (err) {
+        if (err.name === 'AbortError') {
+          return
+        }
+        setError("Không thể tải sản phẩm")
+        toast.error("Không thể tải sản phẩm")
+      } finally {
+        setLoading(false)
+      }
+    }
+    loadProducts()
+    return () => {
+      abortController.abort()
+    }
+  }, [categories, selectedCategoryId, searchQuery])
 
   const toggleCategory = () => setIsOpenCategory(!isOpenCategory)
   const togglePrice = () => setIsOpenPrice(!isOpenPrice)
@@ -70,7 +114,14 @@ function ProductPage() {
   const handleCategoryChange = (categoryId) => {
     setSelectedCategoryId(categoryId)
     setCurrentPage(1)
-    setTimeout(() => scrollToTop(), 100)
+    const params = new URLSearchParams(searchParams)
+    if (categoryId) {
+      params.set('categoryId', categoryId)
+    } else {
+      params.delete('categoryId')
+    }
+    router.push(`/allProducts?${params.toString()}`)
+    // setTimeout(() => scrollToTop(), 100)
   }
 
   const navigateToProductDetail = (productId) => {
@@ -123,41 +174,6 @@ function ProductPage() {
     }
   }
 
-  // Lấy danh mục
-  useEffect(() => {
-    const loadCategories = async () => {
-      try {
-        const data = await fetchCategoryAPI()
-        setCategories(data)
-        setSelectedCategoryId(categoryIdFromQuery)
-      } catch (err) {
-        setError("Không thể tải danh mục")
-      }
-    }
-    loadCategories()
-  }, [])
-
-  // Lấy sản phẩm
-  useEffect(() => {
-    const loadProducts = async () => {
-      setLoading(true)
-      try {
-        const data = await fetchProductAPI(selectedCategoryId, searchQuery)
-        if (data.length === 0 && searchQuery) {
-          toast.info("Không tìm thấy sản phẩm phù hợp")
-        }
-        setProducts(data)
-      } catch (err) {
-        setError("Không thể tải sản phẩm")
-        toast.error("Không thể tải sản phẩm")
-      } finally {
-        setLoading(false)
-      }
-    }
-    loadProducts()
-  }, [selectedCategoryId, searchQuery])
-
-  // Cuộn lên đầu trang
   const scrollToTop = () => {
     if (productMainRef.current) {
       productMainRef.current.scrollIntoView({
@@ -167,13 +183,12 @@ function ProductPage() {
     }
   }
 
-  // Sắp xếp sản phẩm
   const sortProducts = (products) => {
     switch (sortOption) {
       case "name-az":
         return [...products].sort((a, b) => a.productName.localeCompare(b.productName))
       case "name-za":
-        return [...products].sort((a, b) => b.productName.localeCompare(a.productName))
+        return [...products].sort((a, b) => b.productName.localeCompare(b.productName))
       case "price-asc":
         return [...products].sort((a, b) => a.price - b.price)
       case "price-desc":

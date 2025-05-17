@@ -76,6 +76,10 @@ function OrderDetail() {
     )
   }
 
+  const calculateItemsTotal = (items) => {
+    return items.reduce((total, item) => total + item.price * item.quantity, 0)
+  }
+
   const formatPrice = (price) => {
     return price.toLocaleString("vi-VN") + "₫"
   }
@@ -88,6 +92,10 @@ function OrderDetail() {
   const paymentMethodMap = {
     cod: "Thanh toán khi nhận hàng",
     bank: "Chuyển khoản ngân hàng"
+  }
+  const shippingMethodMap = {
+    standard: "Giao hàng tiêu chuẩn",
+    express: "Giao hàng nhanh"
   }
 
   const tmp = user.fullName.split(" ")
@@ -129,7 +137,7 @@ function OrderDetail() {
                 <p><strong>Ngày đặt hàng:</strong> {formatDate(order.createdAt)}</p>
                 <p><strong>Trạng thái:</strong> {order.status}</p>
                 <p><strong>Hình thức thanh toán:</strong> {paymentMethodMap[order.paymentMethod]}</p>
-                <p><strong>Hình thức giao hàng:</strong> {order.shippingInfo.shippingMethod}</p>
+                <p><strong>Hình thức giao hàng:</strong> {shippingMethodMap[order.shippingInfo.shippingMethod]}</p>
               </div>
               <div className="shipping-info">
                 <h3>Thông tin giao hàng</h3>
@@ -168,9 +176,14 @@ function OrderDetail() {
                   </table>
                 </div>
                 <div className="order-total">
-                  <p><strong>Tổng tiền sản phẩm:</strong> {formatPrice(order.total)}</p>
+                  <p><strong>Tổng tiền sản phẩm:</strong> {formatPrice(calculateItemsTotal(order.items))}</p>
                   <p><strong>Phí vận chuyển:</strong> {formatPrice(order.shippingFee)}</p>
-                  <p><strong>Tổng tiền:</strong> {formatPrice(order.shippingFee + order.total)}</p>
+                  {order.promotion.discount > 0 && (
+                      <p>
+                        <strong>Giảm giá:</strong> -{formatPrice(order.promotion.discount)}
+                      </p>
+                    )}
+                  <p><strong>Tổng tiền:</strong> {formatPrice(order.total)}</p>
                 </div>
               </div>
             </div>

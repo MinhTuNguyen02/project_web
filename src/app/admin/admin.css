@@ -56,6 +56,115 @@
   cursor: pointer;
 }
 
+/*  */
+.update{
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.update span{
+  font-size: 14px;
+  margin-right: 5px;
+}
+.notify{
+  position: relative;
+  left: 80%;
+  font-size: 20px;
+  /* cursor: pointer; */
+}
+.notify i{
+  cursor: pointer;
+}
+.new-noti::before{
+  content: "";
+  position: absolute;
+  background-color: tomato;
+  width: 7px;
+  height: 7px;
+  border-radius: 100%;
+  right: 0%;
+}
+.notify .noti-content{
+  width: 350px;
+  position: absolute;
+  right: 0%;
+  top: 125%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 15px;
+  max-height: 500px;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 8px;
+}
+.open-noti{
+  visibility: visible;
+  opacity: 1;
+}
+.close-noti{
+  visibility: hidden;
+  opacity: 0;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 55px;
+  height: 24px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #9c8350;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #9c8350;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 24px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* Cate */
 .cate-content{
   background-color: #dddddd;
   display: flex;
@@ -92,25 +201,7 @@
   cursor: pointer;
 }
 
-.cate-content .cateShow{
-  width: 5%;
-  text-align: center;
-  align-content: center;
-}
-.cate-content .cateShow button:hover{
-  background-color: #9c8350;
-  color: #fff;
-}
-.cate-content .cateShow button{
-  width: 20px;
-  height: 20px;
-  border: none;
-  background-color: #fff;
-  cursor: pointer;
-}
-
 .prod-content{
-  /* position: relative; */
   display: flex;
   flex-wrap: wrap;
   border-bottom: 1px solid #9c8350;
@@ -244,114 +335,8 @@
   margin-bottom: 20px;
 }
 
-/*  */
-.update{
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-.update span{
-  font-size: 14px;
-  margin-right: 5px;
-}
-.notify{
-  position: relative;
-  left: 80%;
-  font-size: 20px;
-  /* cursor: pointer; */
-}
-.notify i{
-  cursor: pointer;
-}
-.new-noti::before{
-  content: "";
-  position: absolute;
-  background-color: tomato;
-  width: 7px;
-  height: 7px;
-  border-radius: 100%;
-  right: 0%;
-}
-.notify .noti-content{
-  width: 350px;
-  position: absolute;
-  right: 0%;
-  top: 125%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  padding: 15px;
-  max-height: 500px;
-  overflow-y: auto;
-  background: #fff;
-  border-radius: 8px;
-}
-.open-noti{
-  visibility: visible;
-  opacity: 1;
-}
-.close-noti{
-  visibility: hidden;
-  opacity: 0;
-}
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 55px;
-  height: 24px;
-}
 
-.switch input { 
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 16px;
-  width: 16px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #9c8350;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #9c8350;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 24px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-
+/* FRAME */
 .frameInput{
   z-index: 1;
   position: fixed;
@@ -422,11 +407,19 @@ input:checked + .slider:before {
 }
 .input-container .input-cate label{
   font-size: 14px;
+  display: block;
 }
 .input-container .input-cate input{
   border: 1px solid #000;
   padding: 0;
   font-size: 14px;
+  width: 100%;
+  height: 20px;
+}
+textarea{
+  height: 20px;
+  width: 100%;
+  resize: vertical;
 }
 /* Category */
 
@@ -448,11 +441,14 @@ input:checked + .slider:before {
 }
 .input-container .input-prod label{
   font-size: 14px;
+  display: block;
 }
 .input-container .input-prod input{
   border: 1px solid #000;
   padding: 0;
   font-size: 14px;
+  width: 100%;
+  height: 20px;
 }
 /* Product */
 
@@ -634,4 +630,77 @@ input:disabled{
 
 .messageBody p strong {
   color: #555;
+}
+
+/*Promotion*/
+.promo-content{
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #9c8350;
+  margin-bottom: 20px;
+  width: 100%;
+  height: 60px;
+  justify-self: center;
+}
+.promo-content span{
+  font-size: 13px;
+}
+.promo-content strong{
+  font-size: 14px;
+}
+
+.promo-content .promoCode{
+  width: 20%;
+  text-align: center;
+  align-content: center;
+}
+.promo-content .promoType{
+  width: 10%;
+  text-align: center;
+  align-content: center;
+}
+.promo-content .promoValue{
+  width: 10%;
+  text-align: center;
+  align-content: center;
+}
+.promo-content .promoMinOrder{
+  width: 10%;
+  text-align: center;
+  align-content: center;
+}
+.promo-content .promoStartDate{
+  width: 10%;
+  text-align: center;
+  align-content: center;
+}
+.promo-content .promoEndDate{
+  width: 10%;
+  text-align: center;
+  align-content: center;
+}
+.promo-content .promoUsedCount{
+  width: 10%;
+  text-align: center;
+  align-content: center;
+}
+.promo-content .promoStatus{
+  width: 10%;
+  text-align: center;
+  align-content: center;
+}
+.promo-content .promoOpt{
+  width: 10%;
+  text-align: center;
+  align-content: center;
+}
+
+.promo-content .promoOpt button{
+  padding: 4px 8px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.promo-content .promoOpt button:disabled{
+  cursor: auto;
 }

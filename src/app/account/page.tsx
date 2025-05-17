@@ -66,7 +66,12 @@ function Info(){
   }
 
   const tmp=user.fullName.split(' ')
-  const name=tmp[tmp.length-1]+' '+tmp[0]
+  let name=''
+  if (tmp.length==1) {
+    name = tmp[0]
+  } else {
+    name=tmp[tmp.length-1]+' '+tmp[0]
+  }
 
   const defaultAddress = addresses.find(addr => addr.isDefault)
   return(

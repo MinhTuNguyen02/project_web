@@ -14,17 +14,13 @@ export const  Prod_List = ({product, isDisable, onEdit, onAdd, onDelete }) => {
       onDelete(product._id) // Gọi hàm xóa với product._id
     }
   }
+  const formatPrice = (price) => {
+    return price.toLocaleString("vi-VN") + "₫"
+  }
   return(
     <div className="prod-content">
       <div className="prodImg">
         <img src={product.img[0]} alt={product.productName} width={60} height={60}/>
-        {/* <Image 
-        src={product.img} 
-        alt="Product Image"
-        width={60} 
-        height={60}
-        unoptimized
-        /> */}
       </div>
       <div className="prodId">
         <span>{product._id}</span>
@@ -39,7 +35,7 @@ export const  Prod_List = ({product, isDisable, onEdit, onAdd, onDelete }) => {
         <span>{product.purchaseCount}</span>
       </div>
       <div className="prodPrice">
-        <span>{product.price}đ</span>
+        <span>{formatPrice(product.price)}</span>
       </div>
       <div className="prodOpt">
         <button disabled={!isDisable} onClick={handleAdd}>Thêm</button>
