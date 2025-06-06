@@ -2,6 +2,7 @@
 import React, { createContext, useState, useEffect, useContext, useCallback } from 'react'
 import { getCartAPI, getWishlistAPI } from '../api/index'
 import { AuthContext } from './AuthContext'
+import { toast } from 'react-toastify'
 
 export const CartContext = createContext()
 
@@ -19,7 +20,11 @@ export const CartProvider = ({ children }) => {
       const response = await getCartAPI()
       setCart(response.cart || { items: [] })
     } catch (error) {
-      console.error('Failed to fetch cart:', error)
+      if (error instanceof Error) {
+        toast.error(error.message || "Không thể tải giỏ hàng")
+      } else {
+        toast.error("Không thể tải giỏ hàng")
+      }
       setCart({ items: [] })
     } finally {
       setCartLoading(false)
@@ -33,7 +38,11 @@ export const CartProvider = ({ children }) => {
       const response = await getWishlistAPI()
       setWishlist(response.wishlist || { products: [] })
     } catch (error) {
-      console.error('Failed to fetch wishlist:', error)
+      if (error instanceof Error) {
+        toast.error(error.message || "Không thể tải yêu thích")
+      } else {
+        toast.error("Không thể tải yêu thích")
+      }
       setWishlist({ products: [] })
     } finally {
       setWishlistLoading(false)

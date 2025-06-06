@@ -495,7 +495,7 @@
 
 .section_4 .section_product_forYou{
   margin-top: 300px;
-  background: url(//bizweb.dktcdn.net/100/434/558/themes/894884/assets/bg_sp_noibat.jpg?1651395726340) no-repeat top center;
+  background: url(https://res.cloudinary.com/dafqftdol/image/upload/v1747810716/bg_sp_noibat_k7n4mk.webp) no-repeat top center;
 }
 
 .block_title{
@@ -523,7 +523,7 @@
 
 .section_4 .block_title h2::after, .section_3 .block_title h2 a::after{
   content: "";
-  background: url(https://bizweb.dktcdn.net/100/434/558/themes/894884/assets/icon_after_title.png?1651395726340) no-repeat;
+  background: url(https://res.cloudinary.com/dafqftdol/image/upload/v1747810716/after_title_rcfixl.webp) no-repeat;
   width: 257px;
   height: 57px;
   display: block;
@@ -537,10 +537,9 @@
 }
 
 .section_service .sub_sec_service{
-  background: url(https://bizweb.dktcdn.net/100/434/558/themes/894884/assets/bg_dich_vu_chung_toi.jpg?1651395726340)
+  background: url(https://res.cloudinary.com/dafqftdol/image/upload/v1747810716/ser_background_wyffd2.webp)
   no-repeat top center;
   background-size: cover;
-  /* height: 720px; */
 }
 
 .section_service .service_content{

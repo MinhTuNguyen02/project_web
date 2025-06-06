@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 import React, { createContext, useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
@@ -35,7 +36,7 @@ export const AuthProvider = ({ children }) => {
         toast.error("Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.")
         localStorage.removeItem("token")
         setUser(null)
-        router.push("/login")
+        router.push("/pages/login")
       } else {
         toast.error(err.message || "Không thể tải thông tin người dùng")
         setUser(null)
@@ -52,7 +53,7 @@ export const AuthProvider = ({ children }) => {
       setUser(user)
       if (user.role === "admin") {
         toast.success("Đăng nhập thành công!")
-        router.push("/admin")
+        router.push("/pages/admin")
       } else {
         toast.success("Đăng nhập thành công!")
         router.push("/")
@@ -66,7 +67,7 @@ export const AuthProvider = ({ children }) => {
     try {
       await registerAPI({ email, password, fullName, phoneNumber })
       toast.success("Đăng ký thành công! Vui lòng đăng nhập.")
-      router.push("/login")
+      router.push("/pages/login")
     } catch (error) {
       throw new Error(error.response?.data?.message || "Đăng ký thất bại")
     }
@@ -76,7 +77,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("token")
     setUser(null)
     toast.info("Đã đăng xuất")
-    router.push("/login")
+    router.push("/pages/login")
   }
 
   return (

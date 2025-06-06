@@ -2,6 +2,14 @@ import axios from 'axios'
 import { API_ROOT } from '../../../untils/constant'
 
 //User
+export const getAllUsersAPI = async () => {
+  const token = localStorage.getItem("token")
+  const response = await axios.get(`${API_ROOT}/v1/users`, {
+    headers: { Authorization: `Bearer ${token}` },
+  })
+  return response.data
+}
+
 export const registerAPI = async (userData) => {
   const response = await axios.post(`${API_ROOT}/v1/users/register`, userData)
   return response.data
@@ -471,6 +479,12 @@ export const receiveOrderAPI = async (orderId) => {
   }
 }
 
+/**
+ * Fetches daily statistics for a given date range.
+ * @param {string} startDate - The start date in YYYY-MM-DD format.
+ * @param {string} endDate - The end date in YYYY-MM-DD format.
+ * @returns {Promise<{ stats: Array<{ date?: string, totalRevenue: number, orderCount: number, itemCount: number }> }>} The daily statistics.
+ */
 export const getDailyStatsAPI = async (startDate, endDate) => {
   try {
     const token = localStorage.getItem('token')
@@ -479,7 +493,7 @@ export const getDailyStatsAPI = async (startDate, endDate) => {
     }
     const response = await axios.get(`${API_ROOT}/v1/orders/stats/daily`, {
       headers: { Authorization: `Bearer ${token}` },
-      params: { startDate, endDate }
+      params: { startDate, endDate },
     })
     return response.data
   } catch (error) {
@@ -495,6 +509,11 @@ export const getDailyStatsAPI = async (startDate, endDate) => {
   }
 }
 
+/**
+ * Fetches monthly statistics for a given year.
+ * @param {string} year - The year to fetch statistics for.
+ * @returns {Promise<{ stats: Array<{ month?: string, totalRevenue: number, orderCount: number, itemCount: number }> }>} The monthly statistics.
+ */
 export const getMonthlyStatsAPI = async (year) => {
   try {
     const token = localStorage.getItem('token')
@@ -503,7 +522,7 @@ export const getMonthlyStatsAPI = async (year) => {
     }
     const response = await axios.get(`${API_ROOT}/v1/orders/stats/monthly`, {
       headers: { Authorization: `Bearer ${token}` },
-      params: { year }
+      params: { year },
     })
     return response.data
   } catch (error) {
@@ -519,15 +538,24 @@ export const getMonthlyStatsAPI = async (year) => {
   }
 }
 
-export const getYearlyStatsAPI = async (startYear, endYear) => {
+/**
+ * Fetches top products based on the provided parameters.
+ * @param {Object} params - The parameters for fetching top products.
+ * @param {string} [params.startDate] - The start date for daily stats (YYYY-MM-DD).
+ * @param {string} [params.endDate] - The end date for daily stats (YYYY-MM-DD).
+ * @param {string} [params.year] - The year for monthly or yearly stats.
+ * @param {string} [params.month] - The month for monthly stats.
+ * @returns {Promise<{ topProducts: Array<{ productId: string, productName: string, totalQuantity: number, totalRevenue: number, img: string[] }> }>} The top products.
+ */
+export const getTopProductsAPI = async (params) => {
   try {
     const token = localStorage.getItem('token')
     if (!token) {
       throw new Error('No token found, please login again')
     }
-    const response = await axios.get(`${API_ROOT}/v1/orders/stats/yearly`, {
+    const response = await axios.get(`${API_ROOT}/v1/orders/stats/top-products`, {
       headers: { Authorization: `Bearer ${token}` },
-      params: { startYear, endYear }
+      params,
     })
     return response.data
   } catch (error) {
@@ -539,7 +567,7 @@ export const getYearlyStatsAPI = async (startYear, endYear) => {
     if (error.response?.status === 403) {
       throw new Error('Bạn không có quyền truy cập thống kê')
     }
-    throw error.response?.data || { message: 'Failed to fetch yearly stats', statusCode: error.response?.status }
+    throw error.response?.data || { message: 'Failed to fetch top products', statusCode: error.response?.status }
   }
 }
 
