@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -11,12 +11,14 @@ import "../login/login_css.css"
 
 export default function ResetPasswordPage() {
   return (
-    <div>
+    <>
       <Header />
-      <ResetPassword />
+      <Suspense fallback={<div>Loading...</div>}>
+        <ResetPassword />
+      </Suspense>
       <Footer />
       <ToastContainer theme="colored" autoClose={2000}/>
-    </div>
+    </>
   )
 }
 
@@ -30,7 +32,7 @@ function ResetPassword() {
   useEffect(() => {
     if (!token) {
       toast.error("Liên kết không hợp lệ")
-      router.push("/login")
+      router.push("/pages/login")
     }
   }, [token, router])
 
@@ -47,7 +49,7 @@ function ResetPassword() {
     try {
       await resetPasswordAPI(token, password)
       toast.success("Đặt lại mật khẩu thành công! Vui lòng đăng nhập.")
-      router.push("/login")
+      router.push("/pages/login")
     } catch (err) {
       if (err instanceof Error) {
         toast.error(err.message || "Đặt lại mật khẩu thất bại")
@@ -59,15 +61,13 @@ function ResetPassword() {
 
   return (
     <div className="page_login">
-      <div className="container-login">
-        <div className="news-banner">
-          <div className="breadcrumb">
-            <span>Trang chủ </span>
-            <span className="separator">/</span>
-            <span>Đặt lại mật khẩu</span>
-          </div>
-          <h1 className="banner-title">ĐẶT LẠI MẬT KHẨU</h1>
+      <div className="login-banner">
+        <div className="breadcrumb">
+          <span>Đặt lại mật khẩu</span>
         </div>
+        <h1 className="banner-title">ĐẶT LẠI MẬT KHẨU</h1>
+      </div>
+      <div className="container-login">
         <div className="account-box-shadow">
           <form className="form-signup" onSubmit={handleSubmit}>
             <div className="form-group">
@@ -98,7 +98,7 @@ function ResetPassword() {
                 minLength={6}
               />
             </div>
-            <button type="submit" className="btn-radius">
+            <button type="submit" className="btn-login">
               ĐẶT LẠI MẬT KHẨU
             </button>
           </form>

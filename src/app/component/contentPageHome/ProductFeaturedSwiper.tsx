@@ -70,6 +70,18 @@ export default function ProductFeaturedSwiper() {
       router.push("/pages/login")
       return
     }
+    // Tìm sản phẩm với productId
+    const product = products.find((item: Product) => item._id === productId);
+  
+    // Kiểm tra sản phẩm tồn tại và inventory
+    if (!product) {
+      toast.error("Sản phẩm không tồn tại");
+      return;
+    }
+    if (product.inventory === 0) {
+      toast.error("Sản phẩm đã hết hàng");
+      return;
+    }
     try {
       const response = await addToCartAPI(productId, 1)
       updateCart(response.cart)

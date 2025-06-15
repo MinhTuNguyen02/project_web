@@ -702,8 +702,8 @@
   /* font-size: 24px; */
   font-weight: bold;
   padding: 0px;
-  border-width: initial;
-  border-style: none;
+  border: initial;
+  border: none;
   border-color: initial;
   border-image: initial;
   background: #FFD57E;

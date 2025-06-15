@@ -28,7 +28,7 @@ export default function Footer(){
                 <li>
                   <i className="fa-regular fa-envelope"></i>
                   <strong>Email: </strong>
-                  <a href="mailto:hahahehe@gmail.com">hahahehe@gmail.com</a>
+                  <a href="mailto:hahahehe@gmail.com">officehubstationery59@gmail.com</a>
                 </li>
               </ul>
             </div>
@@ -36,22 +36,22 @@ export default function Footer(){
             <div className={styles.footer_content_2}>
               <h4><span>Tìm hiểu thêm</span></h4>
               <div className={styles.footer_menu}>
-                <a href="">abcde</a>
-                <a href="">fghij</a>
-                <a href="">klmno</a>
-                <a href="">pqrst</a>
-                <a href="">uvwxyz</a>
+                <a href="">Trang chủ</a>
+                <a href="">Giới thiệu</a>
+                <a href="">Sản phẩm</a>
+                <a href="">Tin tức</a>
+                <a href="">Liên hệ</a>
               </div>
             </div>
 
             <div className={styles.footer_content_3}>
               <h4><span>Hỗ trợ khách hàng</span></h4>
               <div className={styles.footer_menu}>
-                <a href="">abcde</a>
-                <a href="">fghij</a>
-                <a href="">klmno</a>
-                <a href="">pqrst</a>
-                <a href="">uvwxyz</a>
+                <a href="">Trang chủ</a>
+                <a href="">Giới thiệu</a>
+                <a href="">Sản phẩm</a>
+                <a href="">Tin tức</a>
+                <a href="">Liên hệ</a>
               </div>
             </div>
 
@@ -84,9 +84,6 @@ export default function Footer(){
                     </span>
                   </li>
                 </ul>
-              </div>
-              <h4><span>Phương thức thanh toán</span></h4>
-              <div className={styles.payment}>
               </div>
             </div>
           </div>

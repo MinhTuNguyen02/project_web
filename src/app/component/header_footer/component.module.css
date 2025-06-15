@@ -499,8 +499,8 @@
 .footer .first_footer .footer_menu a{
   display: block;
   color: #A8A6A6;
-  margin-bottom: 10px;
-  font-size: 14px;
+  margin: 15px 0;
+  font-size: 15px;
   text-decoration: none;
 }
 
@@ -707,7 +707,7 @@
     height: 40px;
   }
   .hotline_account .group_acc .hotline a{
-    font-size: 18;
+    font-size: 18px;
   }
   .header .header_top .logo{
     width: 25%;

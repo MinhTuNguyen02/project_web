@@ -115,7 +115,7 @@ function Wishlist() {
                 <div key={product._id} className="wishlist-item">
                   <div
                     className="wishlist-image-wrapper"
-                    onClick={() => router.push(`/productDetails/${product._id}`)}
+                    onClick={() => router.push(`/pages/productDetails/${product._id}`)}
                     style={{ cursor: "pointer" }}
                   >
                     <img
@@ -126,7 +126,7 @@ function Wishlist() {
                   </div>
                   <div
                     className="wishlist-title"
-                    onClick={() => router.push(`/productDetails/${product._id}`)}
+                    onClick={() => router.push(`/pages/productDetails/${product._id}`)}
                   >
                     <h3 style={{display: 'inline'}}>
                       {product.productName}

@@ -2,7 +2,7 @@
 "use client"
 import "./product_css.css"
 import "@fortawesome/fontawesome-free/css/all.min.css"
-import React, { useState, useRef, useEffect, useContext } from "react"
+import React, { useState, useRef, useEffect, useContext, Suspense } from "react"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { fetchCategoryAPI, fetchProductAPI, addToCartAPI, addToWishlistAPI, removeFromWishlistAPI } from "@/app/api/index"
@@ -19,7 +19,9 @@ export default function Home() {
     <div className="page-wrapper">
       <BackHeader />
       <Header />
-      <ProductPage />
+      <Suspense fallback={<div>Loading...</div>}>
+        <ProductPage />
+      </Suspense>
       <Footer />
       <ToastContainer theme="colored" autoClose={2000} />
     </div>
@@ -164,6 +166,18 @@ function ProductPage() {
       toast.error("Vui lòng đăng nhập để thêm vào giỏ hàng")
       router.push("/pages/login")
       return
+    }
+    // Tìm sản phẩm với productId
+    const product = products.find((item: Product) => item._id === productId);
+  
+    // Kiểm tra sản phẩm tồn tại và inventory
+    if (!product) {
+      toast.error("Sản phẩm không tồn tại");
+      return;
+    }
+    if (product.inventory === 0) {
+      toast.error("Sản phẩm đã hết hàng");
+      return;
     }
     try {
       const response = await addToCartAPI(productId, 1)
