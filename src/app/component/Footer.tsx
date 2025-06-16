@@ -1,9 +1,9 @@
 // src/app/components/Footer.tsx
-"use client";
 import styles from "../page.module.css";
 import clsx from "clsx";
+import Link from "next/link";
 
-export default function Footer() {
+export default function Footer(){
   return(
     <div className={styles.footer}>
       <div className={styles.first_footer}>
@@ -37,7 +37,7 @@ export default function Footer() {
             <div className={styles.footer_content_2}>
               <h4><span>Tìm hiểu thêm</span></h4>
               <div className={styles.footer_menu}>
-                <a href="">abcde</a>
+                <Link href="/admin">abcde</Link>
                 <a href="">fghij</a>
                 <a href="">klmno</a>
                 <a href="">pqrst</a>

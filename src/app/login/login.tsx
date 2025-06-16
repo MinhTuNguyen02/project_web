@@ -1,24 +1,7 @@
 "use client";
-import "./login_css.css";
-
-import '@fortawesome/fontawesome-free/css/all.min.css';
-
 import React, { useState } from "react";
 
-import Header from "../component/Header";
-import Footer from "../component/Footer";
-
-export default function Home() {
-  return (
-    <div>
-      <Header/>
-      <Login/>
-      <Footer/>
-    </div>
-  );
-}
-
-function Login() {
+const Login: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"login" | "register">("login");
 
   const handleTabChange = (tab: "login" | "register") => {
@@ -28,12 +11,7 @@ function Login() {
   return (
     <div className="page_login">
       <div className="container">
-      <div className="news-banner">
-      <div className="breadcrumb">
-         <span>Trang chủ </span><span className="separator">/</span><span> Đăng nhập tài khoản</span>
-      </div>
-      <h1 className="banner-title">ĐĂNG NHẬP TÀI KHOẢN</h1>
-      </div>
+        <h1 className="title-head">ĐĂNG NHẬP TÀI KHOẢN</h1>
         <div className="account-box-shadow">
           {/* Tabs */}
           <div className="auth-tabs">
@@ -110,7 +88,7 @@ function Login() {
           )}
 
           <p className="privacy-text">
-          Copyright © 2025 hehe companry. All rights reserved..
+            Template Stationery cam kết bảo mật và sẽ không bao giờ đăng hay chia sẻ thông tin mà chưa có được sự đồng ý của bạn.
           </p>
 
           {/* Social Login */}
@@ -125,4 +103,6 @@ function Login() {
       </div>
     </div>
   );
-}
+};
+
+export default Login;
