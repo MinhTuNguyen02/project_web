@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation"
 import { AuthContext } from "@/app/contexts/AuthContext"
 import { ToastContainer, toast } from "react-toastify"
 import { changePasswordAPI, getAddressesAPI } from "@/app/api"
+import { PasswordField } from "@/app/types"
 import Link from "next/link"
 import styles from "@/app/page.module.css"
 import Header from "@/app/component/header_footer/Header"
@@ -34,6 +35,11 @@ function ChangePassword(){
   })
   const [errors, setErrors] = useState({oldPassword: '', newPassword: '', confirmPassword: ''})
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showPassword, setShowPassword] = useState({
+    oldPassword: false,
+    newPassword: false,
+    confirmPassword: false,
+  })
 
   useEffect(() => {
     if (!loading && !user) {
@@ -109,6 +115,10 @@ function ChangePassword(){
     return <h2 style={{ justifySelf: "center" }}>Đang tải...</h2>
   }
 
+  const togglePasswordVisibility = (field: PasswordField) => {
+    setShowPassword(prev => ({ ...prev, [field]: !prev[field] }))
+  }
+
   if (!user) {
     return null
   }
@@ -149,13 +159,14 @@ function ChangePassword(){
             </div>
 
             <div className="acc-content-right">
-                <div className="cp-container">
-                  <h2>Đổi mật khẩu</h2>
-                  <form onSubmit={handleSubmit} className="cp-form">
-                    <div className="form-group">
-                      <label htmlFor="oldPassword">Mật khẩu cũ</label>
+              <div className="cp-container">
+                <h2>Đổi mật khẩu</h2>
+                <form onSubmit={handleSubmit} className="cp-form">
+                  <div className="form-group">
+                    <label htmlFor="oldPassword">Mật khẩu cũ</label>
+                    <div className="password-input">
                       <input
-                        type="password"
+                        type={showPassword.oldPassword ? "text" : "password"}
                         id="oldPassword"
                         name="oldPassword"
                         value={formData.oldPassword}
@@ -163,12 +174,22 @@ function ChangePassword(){
                         placeholder="Mật khẩu cũ"
                         className={errors.oldPassword ? "input-error" : ""}
                       />
-                      {errors.oldPassword && <span className="error">{errors.oldPassword}</span>}
+                      <span
+                        className="password-toggle"
+                        onClick={() => togglePasswordVisibility("oldPassword")}
+                      >
+                        <i
+                          className={`fas ${showPassword.oldPassword ? "fa-eye-slash" : "fa-eye"}`}
+                        ></i>
+                      </span>
                     </div>
-                    <div className="form-group">
-                      <label htmlFor="newPassword">Mật khẩu mới</label>
-                      <input
-                        type="password"
+                    {errors.oldPassword && <span className="error">{errors.oldPassword}</span>}
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="newPassword">Mật khẩu mới</label>
+                    <div className="password-input">
+                    <input
+                        type={showPassword.newPassword ? "text" : "password"}
                         id="newPassword"
                         name="newPassword"
                         value={formData.newPassword}
@@ -176,12 +197,22 @@ function ChangePassword(){
                         placeholder="Mật khẩu mới"
                         className={errors.newPassword ? "input-error" : ""}
                       />
-                      {errors.newPassword && <span className="error">{errors.newPassword}</span>}
+                      <span
+                        className="password-toggle"
+                        onClick={() => togglePasswordVisibility("newPassword")}
+                      >
+                        <i
+                          className={`fas ${showPassword.newPassword ? "fa-eye-slash" : "fa-eye"}`}
+                        ></i>
+                      </span>
                     </div>
-                    <div className="form-group">
-                      <label htmlFor="confirmPassword">Xác nhận mật khẩu mới</label>
+                    {errors.newPassword && <span className="error">{errors.newPassword}</span>}
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="confirmPassword">Xác nhận mật khẩu mới</label>
+                    <div className="password-input">
                       <input
-                        type="password"
+                        type={showPassword.confirmPassword ? "text" : "password"}
                         id="confirmPassword"
                         name="confirmPassword"
                         value={formData.confirmPassword}
@@ -189,13 +220,22 @@ function ChangePassword(){
                         placeholder="Xác nhận lại mật khẩu"
                         className={errors.confirmPassword ? "input-error" : ""}
                       />
-                      {errors.confirmPassword && <span className="error">{errors.confirmPassword}</span>}
+                      <span
+                        className="password-toggle"
+                        onClick={() => togglePasswordVisibility("confirmPassword")}
+                      >
+                        <i
+                          className={`fas ${showPassword.confirmPassword ? "fa-eye-slash" : "fa-eye"}`}
+                        ></i>
+                      </span>
                     </div>
-                    <button type="submit" className="btn-submit" disabled={isSubmitting}>
-                      {isSubmitting ? "Đang xử lý..." : "Đổi mật khẩu"}
-                    </button>
-                  </form>
-                </div>
+                    {errors.confirmPassword && <span className="error">{errors.confirmPassword}</span>}
+                  </div>
+                  <button type="submit" className="btn-submit" disabled={isSubmitting}>
+                    {isSubmitting ? "Đang xử lý..." : "Đổi mật khẩu"}
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>

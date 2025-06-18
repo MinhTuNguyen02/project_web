@@ -63,6 +63,24 @@ export const resetPasswordAPI = async (token, password) => {
   }
 }
 
+export const updateUserInfoAPI = async (userData) => {
+  try {
+    const token = localStorage.getItem('token')
+    if (!token) throw new Error('No authentication token found')
+
+    const response = await axios.put(
+      `${API_ROOT}/v1/users/me`,
+      userData,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    return response.data
+  } catch (error) {
+    throw error.response?.data || { message: 'Failed to update user info' }
+  }
+}
+
 //address
 export const addAddressAPI = async (addressData) => {
   try {

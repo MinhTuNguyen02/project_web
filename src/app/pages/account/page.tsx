@@ -2,35 +2,43 @@
 import { useContext, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { AuthContext } from "@/app/contexts/AuthContext"
-import { Address } from "@/app/types"
 import Link from "next/link"
-import { getAddressesAPI } from "@/app/api"
+import { ToastContainer, toast } from "react-toastify"
+import { fetchUserInfoAPI, getAddressesAPI, updateUserInfoAPI } from "@/app/api"
 import styles from "@/app/page.module.css"
 import Header from "@/app/component/header_footer/Header"
 import Footer from "@/app/component/header_footer/Footer"
 import "./account.css"
 import '@fortawesome/fontawesome-free/css/all.min.css'
+import { Address } from "@/app/types"
 
 export default function Home() {
   return (
     <div className={styles.main}>
-    <Header/>
-    <Info/>
-    <Footer/>
+      <Header />
+      <Info />
+      <Footer />
+      <ToastContainer theme="colored" autoClose={2000}/>
     </div>
   )
 }
 
-function Info(){
-  const { user, loading, logout } = useContext(AuthContext)
+function Info() {
+  const { user, loading, logout, setUser } = useContext(AuthContext)
   const [addresses, setAddresses] = useState<Address[]>([])
   const [addressLoading, setAddressLoading] = useState(true)
-  const [addressError, setAddressError] = useState<string | null>(null)
+  const [editMode, setEditMode] = useState(false)
+  const [fullName, setFullName] = useState(user?.fullName || "")
+  const [phoneNumber, setPhoneNumber] = useState(user?.phoneNumber || "")
+  const [error, setError] = useState(null)
   const router = useRouter()
-  
+
   useEffect(() => {
     if (!loading && !user) {
       router.push("/pages/login")
+    } else if (user) {
+      setFullName(user.fullName)
+      setPhoneNumber(user.phoneNumber)
     }
   }, [user, loading, router])
 
@@ -43,9 +51,9 @@ function Info(){
           setAddresses(response.addresses || [])
         } catch (error) {
           if (error instanceof Error) {
-            setAddressError(error.message || 'Failed to fetch addresses')
+            toast.error(error.message || 'Không thể tải địa chỉ')
           } else {
-            setAddressError('Failed to fetch addresses')
+            toast.error('Không thể tải địa chỉ')
           }
         } finally {
           setAddressLoading(false)
@@ -55,10 +63,31 @@ function Info(){
     }
   }, [user])
 
+  const handleUpdateInfo = async (e: { preventDefault: () => void }) => {
+    e.preventDefault()
+    try {
+      setError(null)
+      const response = await updateUserInfoAPI({ fullName, phoneNumber })
+      if (response.user) {
+        setUser(response.user) 
+      } else {
+        const updatedUser = await fetchUserInfoAPI(localStorage.getItem('token') || '')
+        setUser(updatedUser.user) 
+      }
+      toast.success("Cập nhật thành công")
+      setEditMode(false)
+    } catch (err) {
+      if (err instanceof Error) {
+        toast.error(err.message || 'Không thể cập nhật thông tin')
+      } else {
+        toast.error('Không thể cập nhật thông tin')
+      }
+    }
+  }
+
+
   if (loading) {
-    return (
-      <h2 style={{justifySelf:"center"}}>Đang tải...</h2>
-    )
+    return <h2 style={{ justifySelf: "center" }}>Đang tải...</h2>
   }
 
   if (!user) {
@@ -70,24 +99,25 @@ function Info(){
     router.push("/pages/login")
   }
 
-  const tmp=user.fullName.split(' ')
-  let name=''
-  if (tmp.length==1) {
+  const tmp = user.fullName.split(' ')
+  let name = ''
+  if (tmp.length === 1) {
     name = tmp[0]
   } else {
-    name=tmp[tmp.length-1]+' '+tmp[0]
+    name = tmp[tmp.length - 1] + ' ' + tmp[0]
   }
 
   const defaultAddress = addresses.find(addr => addr.isDefault)
-  return(
+
+  return (
     <div>
       <div className="acc-banner">
         <div className="breadcrumb">
-            <span>
-              <Link href="/">Trang chủ</Link>
-            </span>
-            <span className="separator">/</span>
-            <span>Trang khách hàng</span>
+          <span>
+            <Link href="/">Trang chủ</Link>
+          </span>
+          <span className="separator">/</span>
+          <span>Trang khách hàng</span>
         </div>
         <h1 className="banner-title">TRANG KHÁCH HÀNG</h1>
       </div>
@@ -111,20 +141,51 @@ function Info(){
             <div className="acc-content-right">
               <h1>Thông tin tài khoản</h1>
               <div className="acc-detail">
-                <p><strong>Họ tên: </strong>{user.fullName}</p>
+                <p><strong>Họ tên: </strong>
+                  {editMode ? (
+                    <input
+                      type="text"
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                      required
+                    />
+                  ) : (
+                    user.fullName
+                  )}
+                </p>
                 <p><strong>Email: </strong>{user.email}</p>
-                <p><strong>Điện thoại: </strong>{user.phoneNumber}</p>
+                <p><strong>Điện thoại: </strong>
+                  {editMode ? (
+                    <input
+                      type="tel"
+                      value={phoneNumber}
+                      onChange={(e) => setPhoneNumber(e.target.value)}
+                      required
+                      pattern="[0-9]{10}"
+                      placeholder="Nhập số điện thoại 10 số"
+                    />
+                  ) : (
+                    user.phoneNumber
+                  )}
+                </p>
                 <p><strong>Địa chỉ: </strong>
                   {addressLoading ? (
                     'Đang tải địa chỉ...'
-                  ) : addressError ? (
-                    'Lỗi khi tải địa chỉ'
                   ) : defaultAddress ? (
                     `${defaultAddress.recipientName}, ${defaultAddress.phoneNumber}, ${defaultAddress.address}`
                   ) : (
                     'Chưa có địa chỉ mặc định'
                   )}
                 </p>
+                {editMode ? (
+                  <div>
+                    {error && <p style={{ color: 'red' }}>{error}</p>}
+                    <button type="submit" onClick={handleUpdateInfo}>Lưu thay đổi</button>
+                    <button type="button" onClick={() => setEditMode(false)}>Hủy</button>
+                  </div>
+                ) : (
+                  <button onClick={() => setEditMode(true)}>Chỉnh sửa thông tin</button>
+                )}
               </div>
             </div>
           </div>

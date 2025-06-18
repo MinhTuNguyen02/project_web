@@ -461,3 +461,12 @@ opacity: 1;
 .wishlistButton i {
   font-size: 16px;
 }
+
+.apply-price-button, .reset-price-button {
+  padding: 8px 15px;
+  margin-top: 10px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

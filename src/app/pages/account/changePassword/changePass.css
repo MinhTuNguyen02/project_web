@@ -63,3 +63,22 @@
     background: #ccc;
     cursor: not-allowed;
 }
+
+.password-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .password-input input {
+    width: 100%;
+    padding-right: 40px; /* Để chừa chỗ cho nút toggle */
+  }
+  .password-toggle {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: #666;
+  }
+  .password-toggle:hover {
+    color: #000;
+  }

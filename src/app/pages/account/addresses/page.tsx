@@ -42,7 +42,7 @@ function Address_Content() {
 
   useEffect(() => {
     if (!loading && !user) {
-      router.push("pages/login")
+      router.push("/pages/login")
     }
   }, [user, loading, router])
 
@@ -90,7 +90,7 @@ function Address_Content() {
     }
     if (!user?._id) {
       setError("Không tìm thấy thông tin người dùng, vui lòng đăng nhập lại")
-      router.push("pages/login")
+      router.push("/pages/login")
       return
     }
     try {

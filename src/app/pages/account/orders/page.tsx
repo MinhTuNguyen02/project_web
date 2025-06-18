@@ -34,7 +34,7 @@ function Orders() {
 
   useEffect(() => {
     if (!loading && !user) {
-      router.push("pages/login")
+      router.push("/pages/login")
     }
   }, [user, loading, router])
 

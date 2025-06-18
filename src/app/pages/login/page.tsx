@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import "./login_css.css"
 import Header from "@/app/component/header_footer/Header"
 import Footer from "@/app/component/header_footer/Footer"
+import { PasswordFieldLogin } from "@/app/types"
 
 export default function LoginPage() {
   const { loading } = useContext(AuthContext)
@@ -40,6 +41,11 @@ function Login() {
   const [phoneNumber, setPhoneNumber] = useState("")
   const [showForgotPassword, setShowForgotPassword] = useState(false)
   const [forgotEmail, setForgotEmail] = useState("")
+  const [showPassword, setShowPassword] = useState({
+    loginPassword: false,
+    signinPassword: false,
+    confirmPassword: false,
+  })
 
   const handleTabChange = (tab: "login" | "register") => {
     setActiveTab(tab)
@@ -49,6 +55,9 @@ function Login() {
     setFullName("")
     setPhoneNumber("")
     setShowForgotPassword(false)
+    setShowPassword({loginPassword: false,
+      signinPassword: false,
+      confirmPassword: false,})
   }
 
   useEffect(() => {
@@ -125,6 +134,9 @@ function Login() {
     }
   }
 
+  const togglePasswordVisibility = (field: PasswordFieldLogin) => {
+    setShowPassword(prev => ({ ...prev, [field]: !prev[field] }))
+  }
   return (
     <div className="page_login">
       <div className="login-banner">
@@ -175,14 +187,24 @@ function Login() {
                 <label>
                   Mật khẩu<span>*</span>
                 </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Nhập Mật khẩu"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
+                <div className="password-input">
+                  <input
+                    type={showPassword.loginPassword ? "text" : "password"}
+                    className="form-control"
+                    placeholder="Nhập Mật khẩu"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                  <span
+                    className="password-toggle"
+                    onClick={() => togglePasswordVisibility("loginPassword")}
+                  >
+                    <i
+                      className={`fas ${showPassword.loginPassword ? "fa-eye-slash" : "fa-eye"}`}
+                    ></i>
+                  </span>
+                </div>
               </div>
               <button
                 type="button"
@@ -268,29 +290,49 @@ function Login() {
                 <label>
                   Mật khẩu<span>*</span>
                 </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Nhập Mật khẩu"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  minLength={6}
-                />
+                <div className="password-input">
+                  <input
+                    type={showPassword.signinPassword ? "text" : "password"}
+                    className="form-control"
+                    placeholder="Nhập Mật khẩu"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    minLength={6}
+                  />
+                  <span
+                    className="password-toggle"
+                    onClick={() => togglePasswordVisibility("signinPassword")}
+                  >
+                    <i
+                      className={`fas ${showPassword.signinPassword ? "fa-eye-slash" : "fa-eye"}`}
+                    ></i>
+                  </span>
+                </div>
               </div>
               <div className="form-group">
                 <label>
                   Nhập lại mật khẩu<span>*</span>
                 </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Nhập lại mật khẩu"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  required
-                  minLength={6}
-                />
+                <div className="password-input">
+                  <input
+                    type={showPassword.confirmPassword ? "text" : "password"}
+                    className="form-control"
+                    placeholder="Nhập lại mật khẩu"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    required
+                    minLength={6}
+                  />
+                  <span
+                    className="password-toggle"
+                    onClick={() => togglePasswordVisibility("confirmPassword")}
+                  >
+                    <i
+                      className={`fas ${showPassword.confirmPassword ? "fa-eye-slash" : "fa-eye"}`}
+                    ></i>
+                  </span>
+                </div>
               </div>
               <button type="submit" className="btn-login">
                 ĐĂNG KÝ

@@ -176,3 +176,6 @@ export interface TopProduct {
   totalRevenue: number
   img: string[]
 }
+
+export type PasswordField = 'oldPassword' | 'newPassword' | 'confirmPassword'
+export type PasswordFieldLogin = 'loginPassword' | 'signinPassword' | 'confirmPassword'
