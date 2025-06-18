@@ -61,6 +61,9 @@ export const User_Content = () => {
             <div className="userName">
               <strong>Họ tên</strong>
             </div>
+            <div className="userSDT">
+              <strong>Số điện thoại</strong>
+            </div>
             <div className="userDate">
               <strong>Thời điểm đăng ký</strong>
             </div>

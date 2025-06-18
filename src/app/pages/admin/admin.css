@@ -654,22 +654,27 @@ input:disabled{
   font-size: 14px;
 }
 .userId{
-  width: 25%;
+  width: 20%;
   text-align: center;
   align-content: center;
 }
 .userEmail{
-  width: 25%;
+  width: 20%;
+  text-align: center;
+  align-content: center;
+}
+.userSDT{
+  width: 20%;
   text-align: center;
   align-content: center;
 }
 .userName{
-  width: 25%;
+  width: 20%;
   text-align: center;
   align-content: center;
 }
 .userDate{
-  width: 25%;
+  width: 20%;
   text-align: center;
   align-content: center;
 }

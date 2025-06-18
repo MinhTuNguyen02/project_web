@@ -225,4 +225,22 @@ box-shadow: 0 0 5px rgba(166, 139, 91, 0.5);
   font-size: 24px;
   font-weight: bold;
 }
-  
+
+.password-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.password-input input {
+  width: 100%;
+  padding-right: 40px; /* Để chừa chỗ cho nút toggle */
+}
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  color: #666;
+}
+.password-toggle:hover {
+  color: #000;
+}

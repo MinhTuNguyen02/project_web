@@ -21,6 +21,9 @@ export const User_List = ({ user }: {user: User,}) => {
         <div className="userName">
           <span>{user.fullName}</span>
         </div>
+        <div className="userSDT">
+          <span>{user.phoneNumber}</span>
+        </div>
         <div className="userDate">
           <span>{formatDate(user.createdAt)}</span>
         </div>
