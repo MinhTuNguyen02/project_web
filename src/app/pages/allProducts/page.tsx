@@ -233,10 +233,8 @@ function ProductPage() {
         return [...products].sort((a, b) => a.price - b.price)
       case "price-desc":
         return [...products].sort((a, b) => b.price - a.price)
-      case "purchaseCount":
-        return [...products].sort((a, b) => b.purchaseCount - a.purchaseCount)
       default:
-        return products
+        return [...products].sort((a, b) => b.purchaseCount - a.purchaseCount)
     }
   }
 
@@ -410,18 +408,6 @@ function ProductPage() {
                       onChange={() => handleSortChange("price-desc")}
                     />
                     <span>Giá cao xuống thấp</span>
-                  </label>
-                </li>
-                <li>
-                  <label>
-                    <input
-                      type="radio"
-                      name="sort"
-                      id="sort-purchaseCount"
-                      checked={sortOption === "purchaseCount"}
-                      onChange={() => handleSortChange("purchaseCount")}
-                    />
-                    <span>Lượt bán</span>
                   </label>
                 </li>
               </ul>

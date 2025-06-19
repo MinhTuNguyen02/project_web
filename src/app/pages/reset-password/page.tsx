@@ -34,6 +34,11 @@ function ResetPassword() {
       toast.error("Liên kết không hợp lệ")
       router.push("/pages/login")
     }
+    const isResetDone = localStorage.getItem(`resetDone_${token}`)
+    if (isResetDone) {
+      toast.error("Liên kết này đã được sử dụng. Vui lòng đăng nhập.")
+      router.push("/pages/login")
+    }
   }, [token, router])
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
@@ -48,6 +53,7 @@ function ResetPassword() {
     }
     try {
       await resetPasswordAPI(token, password)
+      localStorage.setItem(`resetDone_${token}`, "true")
       toast.success("Đặt lại mật khẩu thành công! Vui lòng đăng nhập.")
       router.push("/pages/login")
     } catch (err) {

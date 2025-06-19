@@ -43,7 +43,7 @@ export default function Prod_forYou() {
         if (!productList.length) {
           throw new Error('Không có sản phẩm nào')
         }
-        const fetchedProducts = productList.slice(6, 12)
+        const fetchedProducts = productList.slice(10, 16)
         setProducts(fetchedProducts)
         setError(null)
       } catch (error) {
